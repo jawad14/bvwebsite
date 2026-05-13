@@ -33,11 +33,8 @@ export default function MobileDrawer({ open, onClose }: Props) {
     >
       <div className="drawer__panel" ref={panelRef}>
         <div className="drawer__head">
-          <a className="brand" href="/" style={{ gap: 8 }}>
-            <img src="/bv-mark.png" alt="" className="brand__mark" style={{ height: 36 }} />
-            <span className="brand__word">
-              <span className="brand__name" style={{ fontSize: 22 }}>best value<i>.</i></span>
-            </span>
+          <a className="brand" href="/">
+            <img src="/bv-logo.png" alt="Best Value Auto Body Supply" style={{ height: 36, width: 'auto' }} />
           </a>
           <button className="drawer__close" onClick={onClose} aria-label="Close menu">
             <svg><use href="#i-x" /></svg>
