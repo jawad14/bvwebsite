@@ -13,7 +13,11 @@ export default function Header() {
       <header className="header">
         <div className="container header__row">
           <a className="brand" href="/" aria-label="Best Value — Auto Body Supply, Home">
-            <Image src="/bv-logo.png" alt="Best Value Auto Body Supply" width={123} height={44} className="brand__mark" priority />
+            <Image src="/bv-mark.png" alt="" width={44} height={44} className="brand__mark" style={{ height: 44, width: 'auto' }} />
+            <span className="brand__word">
+              <span className="brand__name">best value<i>.</i></span>
+              <span className="brand__sub">AUTO&nbsp;&nbsp;BODY&nbsp;&nbsp;SUPPLY</span>
+            </span>
           </a>
 
           <SearchForm />
