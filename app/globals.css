@@ -1514,3 +1514,125 @@ p { margin: 0; text-wrap: pretty; }
   .apply-form__actions { flex-direction: column-reverse; }
   .apply-form__actions .btn { width: 100%; justify-content: center; }
 }
+
+/* ─── Customer Registration page ───────────────────────────── */
+.reg-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.reg-benefit {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px 24px;
+}
+.reg-benefit__icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px; border-radius: 12px;
+  background: rgba(237,28,36,.08); color: var(--bv-red);
+  margin-bottom: 16px;
+}
+.reg-benefit h4 { font-size: 16px; font-weight: 700; color: var(--ink-1); margin: 0 0 8px; }
+.reg-benefit p  { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+
+.reg-how {
+  display: flex; flex-direction: column; gap: 0;
+  border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+}
+.reg-how__step {
+  display: flex; align-items: flex-start; gap: 20px;
+  padding: 28px 32px;
+  border-bottom: 1px solid var(--line);
+}
+.reg-how__step:last-child { border-bottom: 0; }
+.reg-how__num {
+  flex-shrink: 0;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bv-red); color: #fff;
+  font-size: 18px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-jost), sans-serif;
+}
+.reg-how__step h4 { font-size: 16px; font-weight: 700; color: var(--ink-1); margin: 0 0 6px; }
+.reg-how__step p  { font-size: 14px; color: var(--ink-2); margin: 0; line-height: 1.6; }
+
+.reg-form-wrap {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Stepper */
+.reg-steps {
+  display: flex; align-items: center;
+  padding: 28px 32px 0;
+  gap: 0;
+}
+.reg-step {
+  display: flex; align-items: center; gap: 10px;
+  flex: 1;
+}
+.reg-step:last-child { flex: none; }
+.reg-step__num {
+  flex-shrink: 0;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid var(--line);
+  background: #fff; color: var(--ink-3);
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.reg-step.is-active .reg-step__num { background: var(--bv-navy); border-color: var(--bv-navy); color: #fff; }
+.reg-step.is-done   .reg-step__num { background: #22c55e; border-color: #22c55e; color: #fff; }
+.reg-step__label {
+  font-size: 13px; font-weight: 600; color: var(--ink-3);
+  white-space: nowrap;
+  transition: color .2s;
+}
+.reg-step.is-active .reg-step__label { color: var(--bv-navy); }
+.reg-step.is-done   .reg-step__label { color: #22c55e; }
+.reg-step__line {
+  flex: 1; height: 2px; background: var(--line); margin: 0 12px; border-radius: 2px;
+  min-width: 20px;
+}
+.reg-step.is-done + .reg-step .reg-step__line,
+.reg-step.is-done  .reg-step__line { background: #22c55e; }
+
+.reg-panel { padding: 28px 32px 32px; }
+.reg-panel__title { font-size: 18px; font-weight: 700; color: var(--ink-1); margin: 0 0 24px; }
+
+.reg-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line);
+}
+
+/* Registration success */
+.reg-success {
+  text-align: center;
+  padding: 64px 32px;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.reg-success__icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: #f0fdf4; display: flex; align-items: center; justify-content: center;
+  color: #22c55e;
+}
+.reg-success__icon svg { width: 40px; height: 40px; }
+.reg-success h2 { font-size: 26px; font-weight: 800; color: var(--ink-1); margin: 0; }
+.reg-success p  { font-size: 15px; color: var(--ink-2); max-width: 440px; margin: 0; line-height: 1.6; }
+.reg-success__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+
+@media (max-width: 900px) {
+  .reg-benefits { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .reg-benefits { grid-template-columns: 1fr; }
+  .reg-steps { padding: 20px 20px 0; }
+  .reg-step__label { display: none; }
+  .reg-panel { padding: 20px; }
+  .reg-nav { flex-direction: column-reverse; gap: 10px; }
+  .reg-nav .btn { width: 100%; justify-content: center; }
+  .reg-how__step { padding: 20px; }
+}

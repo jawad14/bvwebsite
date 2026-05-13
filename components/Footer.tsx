@@ -56,6 +56,7 @@ export default function Footer() {
             <h5>Company</h5>
             <ul>
               <li><a href="#">About Best Value</a></li>
+              <li><a href="/register">Register Business Account</a></li>
               <li><a href="#">Wholesale &amp; dealers</a></li>
               <li><a href="#">Become a shop partner</a></li>
               <li><a href="/careers">Careers</a></li>

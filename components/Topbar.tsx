@@ -20,6 +20,7 @@ export default function Topbar() {
           <a href="/returns" className="topbar__item">Returns &amp; Warranty</a>
           <a href="/faq" className="topbar__item">FAQs</a>
           <a href="/careers" className="topbar__item">Careers</a>
+          <a href="/register" className="topbar__item" style={{ color: 'var(--bv-red)', fontWeight: 700 }}>Register Account</a>
         </div>
       </div>
     </div>
