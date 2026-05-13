@@ -19,6 +19,7 @@ export default function Topbar() {
           <a href="#contact" className="topbar__item">Delivery zones</a>
           <a href="/returns" className="topbar__item">Returns &amp; Warranty</a>
           <a href="/faq" className="topbar__item">FAQs</a>
+          <a href="/careers" className="topbar__item">Careers</a>
         </div>
       </div>
     </div>

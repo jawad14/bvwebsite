@@ -68,6 +68,7 @@ export default function MobileDrawer({ open, onClose }: Props) {
             <a href="#contact">Same-day delivery zones</a>
             <a href="/returns">Returns &amp; Warranty</a>
             <a href="/faq">Frequently Asked Questions</a>
+            <a href="/careers">Careers — We&apos;re hiring</a>
             <a href="#contact">Become a shop partner</a>
             <a href="#contact">Visit our counter (Melrose Park, IL)</a>
           </div>
