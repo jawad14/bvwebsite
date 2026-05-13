@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="90" viewBox="0 0 320 90" role="img" aria-label="best value. Auto Body Supply">
+  <image x="0" y="3" width="140" height="84" preserveAspectRatio="xMinYMid meet"></image>
+  <text x="150" y="56" font-family="&#39;Jost&#39;,&#39;Century Gothic&#39;,sans-serif" font-weight="800" font-size="44" fill="#FFFFFF" letter-spacing="-1">best value</text>
+  <circle cx="309" cy="52" r="5" fill="#FFFFFF"></circle>
+  <rect x="150" y="66" width="160" height="1.2" fill="#FFFFFF" opacity=".4"></rect>
+  <text x="150" y="80" font-family="&#39;Inter&#39;,sans-serif" font-weight="700" font-size="9" letter-spacing="3.6" fill="rgba(255,255,255,0.7)">AUTO  BODY  SUPPLY</text>
+</svg>
