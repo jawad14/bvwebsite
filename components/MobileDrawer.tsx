@@ -47,16 +47,16 @@ export default function MobileDrawer({ open, onClose }: Props) {
         <div className="drawer__section">
           <h4>Shop categories</h4>
           <div className="drawer__list">
-            <a href="#">Bumpers &amp; Bumper Covers</a>
-            <a href="#">Headlights &amp; Tail Lights</a>
-            <a href="#">Fenders</a>
-            <a href="#">Mirrors</a>
-            <a href="#">Grilles</a>
-            <a href="#">Hoods &amp; Panels</a>
-            <a href="#">Doors &amp; Related</a>
-            <a href="#">Heating &amp; Cooling</a>
+            <a href="/parts">Bumpers &amp; Bumper Covers</a>
+            <a href="/parts">Headlights &amp; Tail Lights</a>
+            <a href="/parts">Fenders</a>
+            <a href="/parts">Mirrors</a>
+            <a href="/parts">Grilles</a>
+            <a href="/parts">Hoods &amp; Panels</a>
+            <a href="/parts">Doors &amp; Related</a>
+            <a href="/parts">Heating &amp; Cooling</a>
             <a href="/paints">Automotive Paints</a>
-            <a href="#">Inner Structure</a>
+            <a href="/parts">Inner Structure</a>
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export default function MobileDrawer({ open, onClose }: Props) {
           <div className="drawer__list">
             <a href="tel:17737621000">📞 Call (773) 762-1000</a>
             <a href="#contact">Request a quote</a>
-            <a href="#contact">Same-day delivery zones</a>
+            <a href="/delivery">Same-Day Delivery &amp; Zones</a>
             <a href="/returns">Returns &amp; Warranty</a>
             <a href="/faq">Frequently Asked Questions</a>
             <a href="/careers">Careers — We&apos;re hiring</a>

@@ -29,12 +29,12 @@ export default function Footer() {
           <div className="footer__col">
             <h5>Shop</h5>
             <ul>
-              <li><a href="#">Bumpers</a></li>
-              <li><a href="#">Headlights &amp; Tail Lights</a></li>
-              <li><a href="#">Fenders</a></li>
-              <li><a href="#">Mirrors</a></li>
-              <li><a href="#">Grilles</a></li>
-              <li><a href="#">Hoods &amp; Panels</a></li>
+              <li><a href="/parts">Bumpers</a></li>
+              <li><a href="/parts">Headlights &amp; Tail Lights</a></li>
+              <li><a href="/parts">Fenders</a></li>
+              <li><a href="/parts">Mirrors</a></li>
+              <li><a href="/parts">Grilles</a></li>
+              <li><a href="/parts">Hoods &amp; Panels</a></li>
               <li><a href="/paints">Automotive Paints</a></li>
             </ul>
           </div>
@@ -44,7 +44,7 @@ export default function Footer() {
             <ul>
               <li><a href="tel:17737621000">Call to order</a></li>
               <li><a href="#contact">Request a quote</a></li>
-              <li><a href="#contact">1-hour delivery zones</a></li>
+              <li><a href="/delivery">Same-Day Delivery</a></li>
               <li><a href="#contact">Best price guarantee</a></li>
               <li><a href="/returns">Returns &amp; Warranty</a></li>
               <li><a href="/faq">FAQs</a></li>
