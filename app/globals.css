@@ -1639,6 +1639,111 @@ p { margin: 0; text-wrap: pretty; }
   .reg-how__step { padding: 20px; }
 }
 
+/* ─── Account Application Form (register) ───────────────────── */
+.acct-form-wrap {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.acct-form-header {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 20px 32px;
+  border-bottom: 2px solid var(--bv-navy);
+  background: var(--bv-navy);
+}
+.acct-form-header strong { font-size: 18px; font-weight: 800; color: #fff; font-family: var(--font-jost), sans-serif; }
+.acct-form-header span   { font-size: 13px; color: rgba(255,255,255,.7); }
+
+.acct-form { padding: 0; }
+
+.acct-section {
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--line);
+}
+.acct-section:last-of-type { border-bottom: 0; }
+.acct-section__title {
+  font-size: 14px; font-weight: 800; color: var(--ink-1);
+  text-transform: uppercase; letter-spacing: .08em;
+  margin: 0 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--bv-red);
+  display: inline-block;
+}
+
+.acct-row { display: flex; gap: 14px; margin-bottom: 14px; }
+.acct-row:last-child { margin-bottom: 0; }
+.acct-row--addr { align-items: flex-end; }
+.acct-row--3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+
+/* Tax deduction radio row */
+.acct-tax {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.acct-tax__q   { font-size: 15px; font-weight: 600; color: var(--ink-1); }
+.acct-tax__hint { font-size: 13px; color: var(--ink-3); }
+.acct-radio {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 500; color: var(--ink-2);
+  cursor: pointer;
+}
+.acct-radio input { accent-color: var(--bv-navy); width: 16px; height: 16px; }
+
+/* Declaration */
+.acct-declaration__text {
+  font-size: 14px; color: var(--ink-2); line-height: 1.7;
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-soft);
+}
+.acct-sign {
+  display: flex; gap: 16px; margin-bottom: 20px;
+}
+.acct-agree {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14px; color: var(--ink-2); cursor: pointer; line-height: 1.5;
+}
+.acct-agree input { position: absolute; opacity: 0; width: 0; height: 0; }
+.acct-agree__box {
+  flex-shrink: 0; margin-top: 2px;
+  width: 20px; height: 20px; border-radius: 5px;
+  border: 2px solid var(--line);
+  background: #fff;
+  transition: background .15s, border-color .15s;
+}
+.acct-agree input:checked ~ .acct-agree__box {
+  background: var(--bv-navy); border-color: var(--bv-navy);
+}
+.acct-agree input:checked ~ .acct-agree__box::after {
+  content: '';
+  display: block;
+  margin: 3px auto 0;
+  width: 5px; height: 9px;
+  border: 2px solid #fff;
+  border-top: 0; border-left: 0;
+  transform: rotate(45deg);
+}
+
+.acct-footer {
+  display: flex; align-items: center; gap: 20px;
+  padding: 24px 32px;
+  border-top: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.acct-footer__note { font-size: 13px; color: var(--ink-3); line-height: 1.5; }
+
+@media (max-width: 700px) {
+  .acct-section, .acct-footer { padding-left: 20px; padding-right: 20px; }
+  .acct-form-header { padding: 16px 20px; }
+  .acct-row, .acct-row--3 { flex-direction: column; grid-template-columns: 1fr; }
+  .acct-row--addr { flex-direction: column; }
+  .acct-sign { flex-direction: column; }
+  .acct-footer { flex-direction: column; align-items: stretch; }
+  .acct-footer .btn { width: 100%; justify-content: center; }
+}
+
 /* ─── Job Application Form (careers/apply) ──────────────────── */
 .app-form-wrap {
   background: #fff;

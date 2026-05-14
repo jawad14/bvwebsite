@@ -132,14 +132,18 @@ export default function RegisterPage() {
 
       {/* Form */}
       <section className="section section--soft" id="apply">
-        <div className="container" style={{ maxWidth: 780 }}>
+        <div className="container" style={{ maxWidth: 820 }}>
           <div className="section__head" style={{ marginBottom: 36 }}>
             <div>
               <span className="eyebrow">Application</span>
-              <h2>Register Your Business</h2>
+              <h2>Application Form to Open a New Account</h2>
             </div>
           </div>
-          <div className="reg-form-wrap">
+          <div className="acct-form-wrap">
+            <div className="acct-form-header">
+              <strong>Best Value Auto Body Supply, Inc.</strong>
+              <span>160 N 25th Ave · Melrose Park, IL 60160 · Phone: (773) 762-1000 · Fax: (773) 542-5854</span>
+            </div>
             <RegisterForm />
           </div>
         </div>
