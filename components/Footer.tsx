@@ -6,12 +6,8 @@ export default function Footer() {
       <div className="container">
         <div className="footer__main">
           <div className="footer__brand">
-            <a className="brand" href="/" aria-label="Best Value — Auto Body Supply">
-              <Image src="/bv-mark-white.webp" alt="" width={52} height={52} className="brand__mark" />
-              <span className="brand__word">
-                <span className="brand__name">best value<i>.</i></span>
-                <span className="brand__sub">AUTO&nbsp;&nbsp;BODY&nbsp;&nbsp;SUPPLY</span>
-              </span>
+            <a href="/" aria-label="Best Value — Auto Body Supply">
+              <Image src="/bv-logo-white.webp" alt="Best Value Auto Body Supply" width={280} height={100} className="brand__logo" style={{ height: 80, width: 'auto' }} />
             </a>
             <p>
               Best Value Auto Body Supply, Inc. — supplying collision repair shops, mechanics and
