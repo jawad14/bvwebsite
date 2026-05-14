@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm start *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/delivery)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/parts)",
+      "Bash(brew install *)",
+      "Bash(cwebp -version)",
+      "Bash(sed -i '' -e 's|/parts/bumper\\\\.jpg|/parts/bumper.webp|g' -e 's|/parts/headlights\\\\.jpg|/parts/headlights.webp|g' -e 's|/parts/corner-lights\\\\.jpg|/parts/corner-lights.webp|g' -e 's|/parts/fog-light\\\\.jpg|/parts/fog-light.webp|g' -e 's|/parts/front-bonnet\\\\.jpg|/parts/front-bonnet.webp|g' -e 's|/parts/grill\\\\.jpg|/parts/grill.webp|g' -e 's|/parts/side-mirror\\\\.jpg|/parts/side-mirror.webp|g' -e 's|/parts/handles\\\\.jpg|/parts/handles.webp|g' -e 's|/parts/splash-shield\\\\.jpg|/parts/splash-shield.webp|g' -e 's|/parts/ac-condenser\\\\.jpg|/parts/ac-condenser.webp|g' -e 's|/parts/condenser-fan\\\\.jpg|/parts/condenser-fan.webp|g' -e 's|/parts/heater-core\\\\.jpg|/parts/heater-core.webp|g' components/Categories.tsx app/parts/page.tsx)",
+      "Bash(sed -i '' -e 's|/bv-mark\\\\.png|/bv-mark.webp|g' -e 's|/bv-mark-white\\\\.png|/bv-mark-white.webp|g' -e 's|\"/careers\\\\.png\"|\"/careers.webp\"|g' -e 's|/delivery-truck\\\\.png|/delivery-truck.webp|g' components/Header.tsx components/MobileDrawer.tsx components/Footer.tsx app/careers/page.tsx app/delivery/page.tsx)",
+      "Bash(identify /Users/jawadsiddique/Documents/development/bvwebsite/bv-nextjs/public/bv-logo.png)",
+      "Bash(python3 -c \"from PIL import Image; img=Image.open\\('/Users/jawadsiddique/Documents/development/bvwebsite/bv-nextjs/public/bv-logo.png'\\); print\\(img.size\\)\")",
+      "Bash([ -e \"$SRC/$item\" ])"
+    ]
+  }
+}
