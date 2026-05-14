@@ -55,7 +55,7 @@ export default function MobileDrawer({ open, onClose }: Props) {
             <a href="#">Hoods &amp; Panels</a>
             <a href="#">Doors &amp; Related</a>
             <a href="#">Heating &amp; Cooling</a>
-            <a href="#">Automotive Paints</a>
+            <a href="/paints">Automotive Paints</a>
             <a href="#">Inner Structure</a>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import CareersClient from '@/components/CareersClient'
 
 export const metadata: Metadata = {
@@ -18,32 +19,29 @@ export default function CareersPage() {
   return (
     <>
       {/* Page banner */}
-      <div className="page-banner">
+      <div className="page-banner page-banner--split">
         <div className="container page-banner__inner">
-          <span className="eyebrow" style={{ color: '#FFB3B6' }}>We&apos;re hiring</span>
-          <h1>Build Your Career at Best Value</h1>
-          <p>
-            Join a 25-year-old company that&apos;s still growing. We&apos;re looking for driven,
-            customer-focused people to help us serve collision shops and drivers across
-            the Chicago metro area.
-          </p>
-        </div>
-      </div>
-
-      {/* Perks strip */}
-      <section className="section section--soft">
-        <div className="container">
-          <div className="perks-grid">
-            {perks.map(({ icon, title, body }) => (
-              <div key={title} className="perk-card">
-                <span className="perk-card__icon">{icon}</span>
-                <h4>{title}</h4>
-                <p>{body}</p>
-              </div>
-            ))}
+          <div className="page-banner__copy">
+            <span className="eyebrow" style={{ color: '#FFB3B6' }}>We&apos;re hiring</span>
+            <h1>Build Your Career at Best Value</h1>
+            <p>
+              Join a 25-year-old company that&apos;s still growing. We&apos;re looking for driven,
+              customer-focused people to help us serve collision shops and drivers across
+              the Chicago metro area.
+            </p>
+          </div>
+          <div className="page-banner__visual" aria-hidden="true">
+            <Image
+              src="/careers.png"
+              alt="Best Value Auto Body Supply team"
+              width={835}
+              height={520}
+              className="page-banner__img"
+              priority
+            />
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Job listings */}
       <section className="section">
@@ -62,6 +60,21 @@ export default function CareersPage() {
             </p>
           </div>
           <CareersClient />
+        </div>
+      </section>
+
+      {/* Perks strip */}
+      <section className="section section--soft">
+        <div className="container">
+          <div className="perks-grid">
+            {perks.map(({ icon, title, body }) => (
+              <div key={title} className="perk-card">
+                <span className="perk-card__icon">{icon}</span>
+                <h4>{title}</h4>
+                <p>{body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

@@ -49,17 +49,15 @@ export default function Header() {
           <div className="container">
             <div className="nav__row">
               <a className="nav__link is-active" href="#">Shop All Parts</a>
-              <a className="nav__link" href="#">Bumpers</a>
-              <a className="nav__link" href="#">Headlights &amp; Tail Lights</a>
-              <a className="nav__link" href="#">Fenders</a>
-              <a className="nav__link" href="#">Mirrors</a>
-              <a className="nav__link" href="#">Grilles</a>
-              <a className="nav__link" href="#">Hoods &amp; Panels</a>
-              <a className="nav__link" href="#">Heating &amp; Cooling</a>
-              <a className="nav__link" href="#">Automotive Paints</a>
-              <a className="nav__link has-flame" href="#">
+              <a className="nav__link" href="/paints">Automotive Paints</a>
+              <a className="nav__link has-flame" href="/deals">
                 <svg><use href="#i-flame" /></svg> Deals
               </a>
+              <a className="nav__link" href="/returns">Returns &amp; Warranty</a>
+              <a className="nav__link" href="#contact">Delivery Zones</a>
+              <a className="nav__link" href="/faq">FAQs</a>
+              <a className="nav__link" href="/careers">Careers</a>
+              <a className="nav__link" href="/register" style={{ color: 'var(--bv-red)', fontWeight: 700 }}>Register Account</a>
             </div>
           </div>
         </nav>

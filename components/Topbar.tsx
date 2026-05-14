@@ -16,11 +16,6 @@ export default function Topbar() {
             <strong>1-hour local delivery</strong>
           </span>
           <span className="topbar__sep" aria-hidden="true" />
-          <a href="#contact" className="topbar__item">Delivery zones</a>
-          <a href="/returns" className="topbar__item">Returns &amp; Warranty</a>
-          <a href="/faq" className="topbar__item">FAQs</a>
-          <a href="/careers" className="topbar__item">Careers</a>
-          <a href="/register" className="topbar__item" style={{ color: 'var(--bv-red)', fontWeight: 700 }}>Register Account</a>
         </div>
       </div>
     </div>

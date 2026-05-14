@@ -1128,6 +1128,25 @@ p { margin: 0; text-wrap: pretty; }
   font-size: clamp(15px, 1.4vw, 17px);
   max-width: 54ch;
 }
+.page-banner--split .page-banner__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+}
+.page-banner__visual {
+  flex-shrink: 0;
+  width: clamp(260px, 30vw, 420px);
+}
+.page-banner__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, .45),
+    0 0 0 1px rgba(255, 255, 255, .1);
+}
 
 /* ============== Policy page (Returns & Warranty) ============== */
 .policy-grid {
@@ -1327,6 +1346,8 @@ p { margin: 0; text-wrap: pretty; }
   .hero__inner { grid-template-columns: 1fr; gap: 36px; }
   .hero__visual { justify-self: center; width: min(80%, 480px); }
   .float--a, .float--b, .float--c, .float--d { display: none; }
+  .page-banner--split .page-banner__inner { grid-template-columns: 1fr; }
+  .page-banner__visual { display: none; }
   .split { grid-template-columns: 1fr; }
   .value { grid-template-columns: 1fr; }
   .cta-banner { grid-template-columns: 1fr; }
@@ -1892,4 +1913,220 @@ p { margin: 0; text-wrap: pretty; }
   .app-footer { flex-direction: column; align-items: stretch; }
   .app-footer .btn { width: 100%; justify-content: center; }
   .edu-table__row { grid-template-columns: 1fr; }
+}
+
+/* ─── Deals page ────────────────────────────────────────────── */
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.deal-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+  position: relative;
+  overflow: hidden;
+}
+.deal-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--bv-red), var(--bv-navy));
+}
+.deal-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.1);
+  border-color: var(--line-2);
+  transform: translateY(-3px);
+}
+
+.deal-card__top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.deal-badge {
+  font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px;
+}
+.deal-card__cat { font-size: 12px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; }
+
+.deal-card__highlight {
+  font-size: 36px; font-weight: 900;
+  color: var(--bv-red);
+  font-family: var(--font-jost), sans-serif;
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+.deal-card__title { font-size: 20px; font-weight: 800; color: var(--ink-1); margin: 0; line-height: 1.25; }
+.deal-card__desc  { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin: 0; flex: 1; }
+
+.deal-card__footer { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; padding-top: 16px; border-top: 1px solid var(--line); }
+.deal-card__meta   { display: flex; flex-direction: column; gap: 6px; }
+.deal-expiry { font-size: 13px; font-weight: 700; color: var(--ink-2); }
+.deal-expiry--urgent { color: var(--bv-red); }
+.deal-terms  { font-size: 11px; color: var(--ink-3); line-height: 1.5; }
+.deal-card__footer .btn { align-self: flex-start; }
+
+/* Empty state */
+.deals-empty {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 80px 20px; gap: 16px;
+}
+.deals-empty h3 { font-size: 22px; font-weight: 800; color: var(--ink-1); margin: 0; }
+.deals-empty p  { font-size: 15px; color: var(--ink-2); max-width: 360px; margin: 0; }
+
+/* Expired deals table */
+.deals-expired {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+}
+.deal-expired-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 16px; align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+  opacity: .6;
+}
+.deal-expired-row:last-child { border-bottom: 0; }
+.deal-expired-row__title     { font-size: 14px; font-weight: 600; color: var(--ink-1); }
+.deal-expired-row__cat       { font-size: 13px; color: var(--ink-3); }
+.deal-expired-row__highlight { font-size: 14px; font-weight: 700; color: var(--ink-2); }
+.deal-expired-row__date      { font-size: 12px; color: var(--ink-3); text-align: right; }
+
+@media (max-width: 700px) {
+  .deals-grid { grid-template-columns: 1fr; }
+  .deal-expired-row { grid-template-columns: 1fr 1fr; }
+  .deal-expired-row__cat, .deal-expired-row__date { display: none; }
+}
+
+/* ─── Automotive Paints page ─────────────────────────────────── */
+.paint-highlights {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.paint-highlight {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 14px; padding: 22px 20px;
+}
+.paint-highlight__icon { font-size: 26px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+.paint-highlight h4 { font-size: 15px; font-weight: 700; color: var(--ink-1); margin: 0 0 5px; }
+.paint-highlight p  { font-size: 13px; color: var(--ink-2); line-height: 1.55; margin: 0; }
+
+/* Category cards */
+.paint-cats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.paint-cat {
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 16px; padding: 24px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+}
+.paint-cat:hover {
+  box-shadow: 0 6px 28px rgba(0,0,0,.09);
+  border-color: var(--line-2);
+  transform: translateY(-2px);
+}
+.paint-cat__head {
+  display: flex; align-items: center; gap: 12px;
+}
+.paint-cat__icon {
+  font-size: 28px; width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(237,28,36,.07); border-radius: 12px;
+  flex-shrink: 0;
+}
+.paint-cat__head h3 { font-size: 17px; font-weight: 800; color: var(--ink-1); margin: 0; }
+.paint-cat > p { font-size: 13.5px; color: var(--ink-2); line-height: 1.6; margin: 0; flex: 1; }
+.paint-cat__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.paint-tag {
+  font-size: 11px; font-weight: 600; letter-spacing: .05em;
+  color: var(--bv-navy); background: rgba(0,29,104,.07);
+  border-radius: 6px; padding: 3px 9px;
+}
+.paint-cat__cta {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 13px; font-weight: 700; color: var(--bv-red);
+  background: none; border: none; cursor: pointer; padding: 0;
+  font-family: var(--font-jost), sans-serif;
+  margin-top: 4px;
+  transition: gap .15s;
+}
+.paint-cat__cta:hover { gap: 8px; }
+
+.inq-category-badge {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(0,29,104,.06); border-radius: 10px;
+  padding: 12px 16px; margin-bottom: 20px;
+  font-size: 14px;
+}
+.inq-category-badge span { color: var(--ink-3); }
+.inq-category-badge strong { color: var(--bv-navy); font-weight: 700; }
+
+/* Refinishing steps */
+.paint-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.paint-step {
+  display: flex; gap: 16px;
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 16px; padding: 24px;
+}
+.paint-step__num {
+  flex-shrink: 0;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bv-red); color: #fff;
+  font-size: 16px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-jost), sans-serif;
+}
+.paint-step__body { display: flex; flex-direction: column; gap: 6px; }
+.paint-step__body h4 { font-size: 15px; font-weight: 700; color: var(--ink-1); margin: 0; }
+.paint-step__body p  { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+.paint-step__products {
+  font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--bv-red); margin-top: 4px;
+}
+
+/* Brands */
+.paint-brands {
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+.paint-brand {
+  padding: 12px 24px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  font-size: 15px; font-weight: 800;
+  color: var(--ink-2);
+  background: #fff;
+  letter-spacing: .02em;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.paint-brand:hover {
+  border-color: var(--bv-navy);
+  color: var(--bv-navy);
+  background: rgba(0,29,104,.04);
+}
+
+@media (max-width: 1024px) {
+  .paint-cats { grid-template-columns: repeat(2, 1fr); }
+  .paint-steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .paint-highlights { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .paint-highlights { grid-template-columns: 1fr; }
+  .paint-cats { grid-template-columns: 1fr; }
+  .paint-steps { grid-template-columns: 1fr; }
 }

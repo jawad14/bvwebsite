@@ -35,7 +35,7 @@ export default function Footer() {
               <li><a href="#">Mirrors</a></li>
               <li><a href="#">Grilles</a></li>
               <li><a href="#">Hoods &amp; Panels</a></li>
-              <li><a href="#">Automotive Paints</a></li>
+              <li><a href="/paints">Automotive Paints</a></li>
             </ul>
           </div>
 
