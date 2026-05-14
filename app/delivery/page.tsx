@@ -119,7 +119,7 @@ export default function DeliveryPage() {
           </div>
           <div className="delivery-hero__truck">
             <Image
-              src="/delivery-truck.png"
+              src="/delivery-truck.webp"
               alt="Best Value Auto Body Supply delivery truck"
               width={3048}
               height={1376}

@@ -1,18 +1,18 @@
 import Image from 'next/image'
 
 const cats = [
-  { img: '/parts/bumper.jpg',        name: 'Bumpers & Bumper Covers',   count: '1,200+ SKUs', desc: 'Front & rear bumper covers, reinforcements, and complete assemblies.' },
-  { img: '/parts/headlights.jpg',    name: 'Headlights & Tail Lights',  count: '900+ SKUs',   desc: 'OEM-spec headlight assemblies, tail lamp units, and replacement lenses.' },
-  { img: '/parts/corner-lights.jpg', name: 'Corner & Parking Lights',   count: '400+ SKUs',   desc: 'Corner lights, side markers, and parking lamp assemblies for all makes.' },
-  { img: '/parts/fog-light.jpg',     name: 'Fog Lights',                count: '350+ SKUs',   desc: 'Direct-fit fog lamp assemblies and housings — front and rear.' },
-  { img: '/parts/front-bonnet.jpg',  name: 'Hoods & Panels',            count: '600+ SKUs',   desc: 'Replacement hoods, cowl panels, and hood hinges.' },
-  { img: '/parts/grill.jpg',         name: 'Grilles & Grille Guards',   count: '500+ SKUs',   desc: 'Upper & lower grilles, grille inserts, and overlay kits.' },
-  { img: '/parts/side-mirror.jpg',   name: 'Mirrors',                   count: '700+ SKUs',   desc: 'Power, manual, heated, and tow mirrors for cars and trucks.' },
-  { img: '/parts/handles.jpg',       name: 'Door Handles & Locks',      count: '450+ SKUs',   desc: 'Interior and exterior door handles, lock cylinders, and actuators.' },
-  { img: '/parts/splash-shield.jpg', name: 'Splash Guards & Shields',   count: '300+ SKUs',   desc: 'Mud flaps, splash shields, fender liners, and wheel well covers.' },
-  { img: '/parts/ac-condenser.jpg',  name: 'A/C Condensers',            count: '280+ SKUs',   desc: 'Direct-fit A/C condensers and receiver-drier units.' },
-  { img: '/parts/condenser-fan.jpg', name: 'Condenser Fans',            count: '200+ SKUs',   desc: 'Radiator condenser fan assemblies and individual fan motors.' },
-  { img: '/parts/heater-core.jpg',   name: 'Heating & Cooling',         count: '380+ SKUs',   desc: 'Heater cores, radiators, coolant overflow tanks, and thermostat housings.' },
+  { img: '/parts/bumper.webp',        name: 'Bumpers & Bumper Covers',   count: '1,200+ SKUs', desc: 'Front & rear bumper covers, reinforcements, and complete assemblies.' },
+  { img: '/parts/headlights.webp',    name: 'Headlights & Tail Lights',  count: '900+ SKUs',   desc: 'OEM-spec headlight assemblies, tail lamp units, and replacement lenses.' },
+  { img: '/parts/corner-lights.webp', name: 'Corner & Parking Lights',   count: '400+ SKUs',   desc: 'Corner lights, side markers, and parking lamp assemblies for all makes.' },
+  { img: '/parts/fog-light.webp',     name: 'Fog Lights',                count: '350+ SKUs',   desc: 'Direct-fit fog lamp assemblies and housings — front and rear.' },
+  { img: '/parts/front-bonnet.webp',  name: 'Hoods & Panels',            count: '600+ SKUs',   desc: 'Replacement hoods, cowl panels, and hood hinges.' },
+  { img: '/parts/grill.webp',         name: 'Grilles & Grille Guards',   count: '500+ SKUs',   desc: 'Upper & lower grilles, grille inserts, and overlay kits.' },
+  { img: '/parts/side-mirror.webp',   name: 'Mirrors',                   count: '700+ SKUs',   desc: 'Power, manual, heated, and tow mirrors for cars and trucks.' },
+  { img: '/parts/handles.webp',       name: 'Door Handles & Locks',      count: '450+ SKUs',   desc: 'Interior and exterior door handles, lock cylinders, and actuators.' },
+  { img: '/parts/splash-shield.webp', name: 'Splash Guards & Shields',   count: '300+ SKUs',   desc: 'Mud flaps, splash shields, fender liners, and wheel well covers.' },
+  { img: '/parts/ac-condenser.webp',  name: 'A/C Condensers',            count: '280+ SKUs',   desc: 'Direct-fit A/C condensers and receiver-drier units.' },
+  { img: '/parts/condenser-fan.webp', name: 'Condenser Fans',            count: '200+ SKUs',   desc: 'Radiator condenser fan assemblies and individual fan motors.' },
+  { img: '/parts/heater-core.webp',   name: 'Heating & Cooling',         count: '380+ SKUs',   desc: 'Heater cores, radiators, coolant overflow tanks, and thermostat housings.' },
 ]
 
 export default function Categories() {

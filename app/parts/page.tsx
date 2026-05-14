@@ -10,73 +10,73 @@ export const metadata: Metadata = {
 const categories = [
   {
     name: 'Bumpers & Bumper Covers',
-    img: '/parts/bumper.jpg',
+    img: '/parts/bumper.webp',
     count: '1,200+ SKUs',
     desc: 'Front & rear bumper covers, reinforcements, absorbers, and complete assemblies.',
   },
   {
     name: 'Headlights & Tail Lights',
-    img: '/parts/headlights.jpg',
+    img: '/parts/headlights.webp',
     count: '900+ SKUs',
     desc: 'OEM-spec headlight assemblies, tail lamp units, and replacement lenses.',
   },
   {
     name: 'Corner & Parking Lights',
-    img: '/parts/corner-lights.jpg',
+    img: '/parts/corner-lights.webp',
     count: '400+ SKUs',
     desc: 'Corner lights, side markers, and parking lamp assemblies for all makes.',
   },
   {
     name: 'Fog Lights',
-    img: '/parts/fog-light.jpg',
+    img: '/parts/fog-light.webp',
     count: '350+ SKUs',
     desc: 'Direct-fit fog lamp assemblies and housings — front and rear.',
   },
   {
     name: 'Hoods & Panels',
-    img: '/parts/front-bonnet.jpg',
+    img: '/parts/front-bonnet.webp',
     count: '600+ SKUs',
     desc: 'Replacement hoods, bonnet panels, cowl panels, and hood hinges.',
   },
   {
     name: 'Grilles & Grille Guards',
-    img: '/parts/grill.jpg',
+    img: '/parts/grill.webp',
     count: '500+ SKUs',
     desc: 'Upper & lower grilles, grille inserts, and overlay kits.',
   },
   {
     name: 'Mirrors',
-    img: '/parts/side-mirror.jpg',
+    img: '/parts/side-mirror.webp',
     count: '700+ SKUs',
     desc: 'Power, manual, heated, and tow mirrors for cars and trucks.',
   },
   {
     name: 'Door Handles & Locks',
-    img: '/parts/handles.jpg',
+    img: '/parts/handles.webp',
     count: '450+ SKUs',
     desc: 'Interior and exterior door handles, lock cylinders, and actuators.',
   },
   {
     name: 'Splash Guards & Shields',
-    img: '/parts/splash-shield.jpg',
+    img: '/parts/splash-shield.webp',
     count: '300+ SKUs',
     desc: 'Mud flaps, splash shields, fender liners, and wheel well covers.',
   },
   {
     name: 'A/C Condensers',
-    img: '/parts/ac-condenser.jpg',
+    img: '/parts/ac-condenser.webp',
     count: '280+ SKUs',
     desc: 'Direct-fit A/C condensers and receiver-drier units.',
   },
   {
     name: 'Condenser Fans',
-    img: '/parts/condenser-fan.jpg',
+    img: '/parts/condenser-fan.webp',
     count: '200+ SKUs',
     desc: 'Radiator condenser fan assemblies and individual fan motors.',
   },
   {
     name: 'Heating & Cooling',
-    img: '/parts/heater-core.jpg',
+    img: '/parts/heater-core.webp',
     count: '380+ SKUs',
     desc: 'Heater cores, radiators, coolant overflow tanks, and thermostat housings.',
   },
@@ -107,12 +107,12 @@ const categories = [
 ]
 
 const heroImages = [
-  { src: '/parts/bumper.jpg', alt: 'Bumper' },
-  { src: '/parts/headlights.jpg', alt: 'Headlight' },
-  { src: '/parts/grill.jpg', alt: 'Grille' },
-  { src: '/parts/side-mirror.jpg', alt: 'Mirror' },
-  { src: '/parts/front-bonnet.jpg', alt: 'Hood' },
-  { src: '/parts/corner-lights.jpg', alt: 'Corner light' },
+  { src: '/parts/bumper.webp', alt: 'Bumper' },
+  { src: '/parts/headlights.webp', alt: 'Headlight' },
+  { src: '/parts/grill.webp', alt: 'Grille' },
+  { src: '/parts/side-mirror.webp', alt: 'Mirror' },
+  { src: '/parts/front-bonnet.webp', alt: 'Hood' },
+  { src: '/parts/corner-lights.webp', alt: 'Corner light' },
 ]
 
 const placeholderIcons: Record<string, string> = {

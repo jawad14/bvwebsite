@@ -32,7 +32,7 @@ export default function CareersPage() {
           </div>
           <div className="page-banner__visual" aria-hidden="true">
             <Image
-              src="/careers.png"
+              src="/careers.webp"
               alt="Best Value Auto Body Supply team"
               width={835}
               height={520}
