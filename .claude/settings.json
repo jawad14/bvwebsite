@@ -10,7 +10,16 @@
       "Bash(sed -i '' -e 's|/bv-mark\\\\.png|/bv-mark.webp|g' -e 's|/bv-mark-white\\\\.png|/bv-mark-white.webp|g' -e 's|\"/careers\\\\.png\"|\"/careers.webp\"|g' -e 's|/delivery-truck\\\\.png|/delivery-truck.webp|g' components/Header.tsx components/MobileDrawer.tsx components/Footer.tsx app/careers/page.tsx app/delivery/page.tsx)",
       "Bash(identify /Users/jawadsiddique/Documents/development/bvwebsite/bv-nextjs/public/bv-logo.png)",
       "Bash(python3 -c \"from PIL import Image; img=Image.open\\('/Users/jawadsiddique/Documents/development/bvwebsite/bv-nextjs/public/bv-logo.png'\\); print\\(img.size\\)\")",
-      "Bash([ -e \"$SRC/$item\" ])"
+      "Bash([ -e \"$SRC/$item\" ])",
+      "Bash(curl -s -o /dev/null -w \"home: %{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"logo: %{http_code}\\\\n\" http://localhost:3000/bv-logo.webp)",
+      "Bash(curl -s -o /dev/null -w \"bumper: %{http_code}\\\\n\" http://localhost:3000/parts/bumper.webp)",
+      "Bash(curl -s -o /dev/null -w \"careers: %{http_code}\\\\n\" http://localhost:3000/careers.webp)",
+      "Bash(curl -s -o /dev/null -w \"home:     %{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"logo:     %{http_code}\\\\n\" http://localhost:3000/bv-logo.webp)",
+      "Bash(curl -s -o /dev/null -w \"bumper:   %{http_code}\\\\n\" http://localhost:3000/parts/bumper.webp)",
+      "Bash(curl -s -o /dev/null -w \"delivery: %{http_code}\\\\n\" http://localhost:3000/delivery-truck.webp)",
+      "Bash(curl -s -o /dev/null -w \"careers:  %{http_code}\\\\n\" http://localhost:3000/careers.webp)"
     ]
   }
 }
