@@ -101,7 +101,7 @@ export default function RegisterForm() {
           <div className="field" style={{ flex: 1 }}>
             <label htmlFor="r-state">State</label>
             <select id="r-state" value={form.state} onChange={set('state')}>
-              <option value="">—</option>
+              <option value="">-</option>
               {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
@@ -178,7 +178,7 @@ export default function RegisterForm() {
 
         {form.taxDeduction === 'yes' && (
           <div className="field" style={{ marginTop: 16, maxWidth: 480 }}>
-            <label>Tax I.D. Document <span className="field__hint">(PDF, JPG, PNG — max 5 MB)</span></label>
+            <label>Tax I.D. Document <span className="field__hint">(PDF, JPG, PNG - max 5 MB)</span></label>
             <div
               className={`file-drop${taxFile ? ' has-file' : ''}`}
               onClick={() => fileRef.current?.click()}

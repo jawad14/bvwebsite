@@ -105,7 +105,7 @@ export default function ChatBot() {
     } else if (step === 'find_part_ask') {
       setPartName(text)
       setStep('find_part_vehicle')
-      addBot(`Got it — **${text}**! What's the year, make, and model of your vehicle? (e.g. 2019 Toyota Camry)`)
+      addBot(`Got it - **${text}**! What's the year, make, and model of your vehicle? (e.g. 2019 Toyota Camry)`)
     } else if (step === 'find_part_vehicle') {
       setStep('find_part_result')
       addBot(`Checking availability for a **${partName}** on a **${text}**...`, undefined, 600)
@@ -133,7 +133,7 @@ export default function ChatBot() {
       }
     } else if (step === 'rep' || step === 'done') {
       if (t.includes('call') || t.includes('773') || t.includes('phone')) {
-        addBot("Great! Just dial **(773) 762-1000** — our team picks up fast. Mon–Fri 8 AM–7 PM CST. 🙂",
+        addBot("Great! Just dial **(773) 762-1000** - our team picks up fast. Mon–Fri 8 AM–7 PM CST. 🙂",
           ['🔍 Find Another Part', '💬 Get a Quote'])
       } else if (t.includes('quote') || t.includes('form')) {
         addBot("Head to our quote form and we'll get back to you quickly!", ['🌐 Open Quote Form', '🔍 Find a Part'])

@@ -80,7 +80,7 @@ export default function QuoteModal() {
           ) : (
             <>
               <p className="qmodal__sub">
-                No checkout, no sign-up. Send us the details — a real specialist will call or text back, usually within minutes.
+                No checkout, no sign-up. Send us the details - a real specialist will call or text back, usually within minutes.
               </p>
               <form className="qmodal__form" onSubmit={handleSubmit}>
                 <div className="qmodal__row">

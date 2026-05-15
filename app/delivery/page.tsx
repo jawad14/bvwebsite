@@ -69,7 +69,7 @@ const stats = [
 
 const localZones = [
   {
-    zone: 'Zone 1 — Immediate Local',
+    zone: 'Zone 1 - Immediate Local',
     time: '1–2 Hours',
     color: '#ED1C24',
     cutoff: 'Order by 4:00 PM',
@@ -80,7 +80,7 @@ const localZones = [
     ],
   },
   {
-    zone: 'Zone 2 — Chicago & Inner Suburbs',
+    zone: 'Zone 2 - Chicago & Inner Suburbs',
     time: '2–3 Hours',
     color: '#001D68',
     cutoff: 'Order by 2:00 PM',
@@ -91,7 +91,7 @@ const localZones = [
     ],
   },
   {
-    zone: 'Zone 3 — Extended Metro',
+    zone: 'Zone 3 - Extended Metro',
     time: '3–5 Hours',
     color: '#0ea5e9',
     cutoff: 'Order by 12:00 PM',
@@ -130,7 +130,7 @@ const rules = [
   {
     n: '4',
     title: 'Refused or Missed Deliveries',
-    body: 'Refused deliveries are subject to a 20% restocking fee plus return freight charges. If our driver cannot reach you, we will call ahead — a second attempt may incur a redelivery fee.',
+    body: 'Refused deliveries are subject to a 20% restocking fee plus return freight charges. If our driver cannot reach you, we will call ahead - a second attempt may incur a redelivery fee.',
   },
   {
     n: '5',
@@ -140,7 +140,7 @@ const rules = [
   {
     n: '6',
     title: 'Damaged or Incorrect Parts',
-    body: 'Inspect all parts before signing. Report damage or incorrect items immediately — do not install or modify the part. We will arrange a call tag and replacement at no cost to you.',
+    body: 'Inspect all parts before signing. Report damage or incorrect items immediately - do not install or modify the part. We will arrange a call tag and replacement at no cost to you.',
   },
 ]
 
@@ -158,7 +158,7 @@ export default function DeliveryPage() {
             <h1>Fast, Reliable Parts Delivery</h1>
             <p>
               Our own branded delivery fleet runs daily routes across the Chicago metro area
-              and into surrounding states. Same-day delivery to local shops —
+              and into surrounding states. Same-day delivery to local shops -
               no third-party carriers, no excuses.
             </p>
             <div className="delivery-hero__actions">
@@ -294,7 +294,7 @@ export default function DeliveryPage() {
                 Call now and we&apos;ll dispatch today.
               </h2>
               <p style={{ color: 'rgba(255,255,255,.8)', marginTop: 12 }}>
-                Our dispatch team is standing by. Tell us what you need and your location —
+                Our dispatch team is standing by. Tell us what you need and your location -
                 we&apos;ll confirm your delivery window on the spot.
               </p>
               <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 28, flexWrap: 'wrap' }}>

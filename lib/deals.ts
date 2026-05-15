@@ -16,7 +16,7 @@ export interface Deal {
   description: string
   highlight: string        // short discount callout, e.g. "Save 20%" or "Buy 2 Get 1"
   terms: string            // fine-print / conditions
-  validUntil: string       // ISO date string "YYYY-MM-DD" — shown as "Valid until …"
+  validUntil: string       // ISO date string "YYYY-MM-DD" - shown as "Valid until …"
   ctaLabel?: string        // defaults to "Call to Order"
   ctaHref?: string         // defaults to tel:17737621000
 }
@@ -31,7 +31,7 @@ export const deals: Deal[] = [
     id: 'bumper-blowout-may',
     active: true,
     badge: 'This Month',
-    title: 'Bumper Blowout — May',
+    title: 'Bumper Blowout - May',
     category: 'Bumpers & Covers',
     description:
       'Stock up on front and rear bumper covers for the most popular domestic and import vehicles. OEM-quality aftermarket parts at prices your shop will love.',
@@ -60,7 +60,7 @@ export const deals: Deal[] = [
     title: 'Headlight & Tail Light Week',
     category: 'Lighting',
     description:
-      'Collision shop special — 10% off all headlight assemblies, tail lights, and fog lights. OEM-spec replacements for Ford, Chevy, Toyota, Honda, and more.',
+      'Collision shop special - 10% off all headlight assemblies, tail lights, and fog lights. OEM-spec replacements for Ford, Chevy, Toyota, Honda, and more.',
     highlight: 'Save 10%',
     terms: 'Valid on lighting assemblies only. Excludes bulbs and electrical components.',
     validUntil: '2026-05-18',
@@ -69,10 +69,10 @@ export const deals: Deal[] = [
     id: 'fleet-clearance',
     active: true,
     badge: 'Clearance',
-    title: 'Overstock Clearance — Hoods & Panels',
+    title: 'Overstock Clearance - Hoods & Panels',
     category: 'Hoods & Sheet Metal',
     description:
-      'We\'re clearing space in the warehouse. Grab hoods, fenders, and door skins at our lowest prices of the year — while supplies last.',
+      'We\'re clearing space in the warehouse. Grab hoods, fenders, and door skins at our lowest prices of the year - while supplies last.',
     highlight: 'Up to 25% Off',
     terms: 'While supplies last. Clearance items are final sale. Call ahead to check stock.',
     validUntil: '2026-06-15',
@@ -85,7 +85,7 @@ export const deals: Deal[] = [
     category: 'All Parts',
     description:
       'Open a registered business account this month and receive 10% off your first three orders. Perfect for shops looking to switch suppliers.',
-    highlight: '10% Off — First 3 Orders',
+    highlight: '10% Off - First 3 Orders',
     terms: 'New registered accounts only. Must be approved within the month. Applied automatically at order placement.',
     validUntil: '2026-05-31',
     ctaLabel: 'Register Now',

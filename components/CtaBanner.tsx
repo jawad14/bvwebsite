@@ -27,7 +27,7 @@ export default function CtaBanner() {
             </h2>
             <p>
               No checkout, no sign-up. Send us the year, make, model and what you&apos;re looking
-              for — a real specialist will text or call back, usually within minutes.
+              for - a real specialist will text or call back, usually within minutes.
             </p>
             <form className="cta-banner__form" onSubmit={handleSubmit}>
               <input type="text" placeholder="Your name" required />

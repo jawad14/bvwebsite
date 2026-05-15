@@ -50,21 +50,21 @@ export async function POST(req: NextRequest) {
       from:    `"BV Registrations" <${process.env.SMTP_USER}>`,
       to:      recipient,
       replyTo: email,
-      subject: `New Account Application — ${companyName}`,
+      subject: `New Account Application - ${companyName}`,
       html: `
         <h2 style="margin:0 0 20px;font-family:sans-serif;color:#001D68">New Account Application</h2>
 
         <h3 style="font-family:sans-serif;color:#555;margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.06em">Company Information</h3>
         <table style="border-collapse:collapse;font-family:sans-serif;font-size:15px;margin-bottom:24px">
           <tr><td style="padding:6px 20px 6px 0;color:#888;width:160px">Company Name</td><td><strong>${companyName}</strong></td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Address</td><td>${address || '—'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Tel / ID #</td><td>${tel || '—'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Mobile</td><td>${mobile || '—'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Fax</td><td>${fax || '—'}</td></tr>
+          <tr><td style="padding:6px 20px 6px 0;color:#888">Address</td><td>${address || '-'}</td></tr>
+          <tr><td style="padding:6px 20px 6px 0;color:#888">Tel / ID #</td><td>${tel || '-'}</td></tr>
+          <tr><td style="padding:6px 20px 6px 0;color:#888">Mobile</td><td>${mobile || '-'}</td></tr>
+          <tr><td style="padding:6px 20px 6px 0;color:#888">Fax</td><td>${fax || '-'}</td></tr>
           <tr><td style="padding:6px 20px 6px 0;color:#888">Contact Name</td><td>${contactName}</td></tr>
           <tr><td style="padding:6px 20px 6px 0;color:#888">Email</td><td><a href="mailto:${email}">${email}</a></td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Tax Deduction</td><td>${taxDeduction === 'yes' ? '✅ Yes' : taxDeduction === 'no' ? 'No' : '—'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Print Name</td><td>${printName || '—'}</td></tr>
+          <tr><td style="padding:6px 20px 6px 0;color:#888">Tax Deduction</td><td>${taxDeduction === 'yes' ? '✅ Yes' : taxDeduction === 'no' ? 'No' : '-'}</td></tr>
+          <tr><td style="padding:6px 20px 6px 0;color:#888">Print Name</td><td>${printName || '-'}</td></tr>
         </table>
 
         ${taxFile && taxFile.size > 0 ? `<p style="font-family:sans-serif;font-size:13px;color:#888">Tax I.D. attached: ${taxFile.name}</p>` : ''}
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
     await transporter.sendMail({
       from:    `"Best Value Auto Body Supply" <${process.env.SMTP_USER}>`,
       to:      email,
-      subject: `Account Application Received — ${companyName}`,
+      subject: `Account Application Received - ${companyName}`,
       html: `
         <h2 style="font-family:sans-serif;color:#001D68">Thank you, ${firstName}!</h2>
         <p style="font-family:sans-serif;font-size:15px;color:#333">

@@ -55,7 +55,7 @@ const jobPostingSchemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
-    title: 'Delivery Driver — Parts & Logistics',
+    title: 'Delivery Driver - Parts & Logistics',
     description: 'Drive our branded delivery fleet to deliver auto body parts to collision shops and customers across the Chicago metro area. Valid driver\'s license required. Company vehicle provided.',
     datePosted: '2026-01-01',
     employmentType: 'FULL_TIME',
@@ -92,7 +92,7 @@ const perks = [
   { icon: '💰', title: 'Competitive Pay', body: 'Market-rate wages plus performance bonuses for sales roles.' },
   { icon: '🚗', title: 'Company Vehicle', body: 'Delivery drivers get a fully maintained company vehicle.' },
   { icon: '🏥', title: 'Health Benefits', body: 'Medical, dental, and vision coverage for full-time employees.' },
-  { icon: '📈', title: 'Room to Grow', body: '25 years of growth — we promote from within whenever possible.' },
+  { icon: '📈', title: 'Room to Grow', body: '25 years of growth - we promote from within whenever possible.' },
 ]
 
 export default function CareersPage() {

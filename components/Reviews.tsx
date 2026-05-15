@@ -1,6 +1,6 @@
 const reviews = [
   {
-    quote: '"Fender showed up next day, lined up perfect, painted up clean. This is my second order — Best Value is in my parts rotation now."',
+    quote: '"Fender showed up next day, lined up perfect, painted up clean. This is my second order - Best Value is in my parts rotation now."',
     initials: 'MR',
     name: 'Mike R.',
     role: 'Collision Shop Owner · Joliet, IL',

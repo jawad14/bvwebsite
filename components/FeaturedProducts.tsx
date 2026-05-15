@@ -15,7 +15,7 @@ interface Product {
 const products: Product[] = [
   {
     meta: 'FORD F-150 · 2021–2023',
-    title: 'Front Bumper Cover — Primed, w/o Park Assist',
+    title: 'Front Bumper Cover - Primed, w/o Park Assist',
     fitment: 'Fits 4 trims · Style/Sport package',
     now: '$219', was: '$268', stars: 4.9, reviews: 312,
     badges: [{ text: '−18%', variant: 'red' }, { text: 'CAPA', variant: 'ghost' }],
@@ -23,7 +23,7 @@ const products: Product[] = [
   },
   {
     meta: 'CHEVROLET SILVERADO · 2019–2024',
-    title: 'Headlight Assembly — Halogen, Driver & Passenger',
+    title: 'Headlight Assembly - Halogen, Driver & Passenger',
     fitment: 'Includes wiring connector · DOT compliant',
     now: '$284', was: '$329', stars: 4.8, reviews: 188,
     badges: [{ text: 'PAIR', variant: 'navy' }],
@@ -31,7 +31,7 @@ const products: Product[] = [
   },
   {
     meta: 'TOYOTA CAMRY · 2018–2023',
-    title: 'Front Fender — Right (Passenger), Primed Steel',
+    title: 'Front Fender - Right (Passenger), Primed Steel',
     fitment: 'Pre-drilled trim holes · Ready to paint',
     now: '$129', stars: 4.7, reviews: 94,
     badges: [{ text: 'HOT', variant: 'red' }],
@@ -39,7 +39,7 @@ const products: Product[] = [
   },
   {
     meta: 'RAM 1500 · 2019–2024',
-    title: 'Tow Mirror Set — Heated, Power-Folding, Signal',
+    title: 'Tow Mirror Set - Heated, Power-Folding, Signal',
     fitment: 'Plug-and-play · Black textured housing',
     now: '$498', was: '$569', stars: 4.9, reviews: 211,
     badges: [{ text: 'HEATED', variant: 'ghost' }, { text: '−12%', variant: 'red' }],
@@ -47,14 +47,14 @@ const products: Product[] = [
   },
   {
     meta: 'HONDA ACCORD · 2018–2022',
-    title: 'Upper Grille — Gloss Black, w/o Camera',
+    title: 'Upper Grille - Gloss Black, w/o Camera',
     fitment: 'OEM-style mounting tabs',
     now: '$94', stars: 4.6, reviews: 67,
     art: '#part-grille',
   },
   {
     meta: 'JEEP WRANGLER JL · 2018–2024',
-    title: 'Hood — Steel, Primed, w/ Hood Insulator',
+    title: 'Hood - Steel, Primed, w/ Hood Insulator',
     fitment: 'CAPA-grade replacement',
     now: '$389', stars: 4.8, reviews: 52,
     badges: [{ text: 'NEW', variant: 'navy' }],
@@ -62,7 +62,7 @@ const products: Product[] = [
   },
   {
     meta: 'NISSAN ALTIMA · 2019–2024',
-    title: 'Radiator — 1 Row Aluminum, w/o Turbo',
+    title: 'Radiator - 1 Row Aluminum, w/o Turbo',
     fitment: 'Pressure-tested · Includes drain plug',
     now: '$118', was: '$151', stars: 4.7, reviews: 138,
     badges: [{ text: '−22%', variant: 'red' }],
@@ -70,7 +70,7 @@ const products: Product[] = [
   },
   {
     meta: 'HYUNDAI SONATA · 2020–2023',
-    title: 'Front Door Shell — Driver Side, Ready to Paint',
+    title: 'Front Door Shell - Driver Side, Ready to Paint',
     fitment: 'CAPA certified',
     now: '$342', stars: 4.6, reviews: 41,
     badges: [{ text: 'PRIMED', variant: 'ghost' }],

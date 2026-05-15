@@ -4,7 +4,7 @@ const cats = [
   { img: '/parts/bumper.webp',        name: 'Bumpers & Bumper Covers',   count: '1,200+ SKUs', desc: 'Front & rear bumper covers, reinforcements, and complete assemblies.' },
   { img: '/parts/headlights.webp',    name: 'Headlights & Tail Lights',  count: '900+ SKUs',   desc: 'OEM-spec headlight assemblies, tail lamp units, and replacement lenses.' },
   { img: '/parts/corner-lights.webp', name: 'Corner & Parking Lights',   count: '400+ SKUs',   desc: 'Corner lights, side markers, and parking lamp assemblies for all makes.' },
-  { img: '/parts/fog-light.webp',     name: 'Fog Lights',                count: '350+ SKUs',   desc: 'Direct-fit fog lamp assemblies and housings — front and rear.' },
+  { img: '/parts/fog-light.webp',     name: 'Fog Lights',                count: '350+ SKUs',   desc: 'Direct-fit fog lamp assemblies and housings - front and rear.' },
   { img: '/parts/front-bonnet.webp',  name: 'Hoods & Panels',            count: '600+ SKUs',   desc: 'Replacement hoods, cowl panels, and hood hinges.' },
   { img: '/parts/grill.webp',         name: 'Grilles & Grille Guards',   count: '500+ SKUs',   desc: 'Upper & lower grilles, grille inserts, and overlay kits.' },
   { img: '/parts/side-mirror.webp',   name: 'Mirrors',                   count: '700+ SKUs',   desc: 'Power, manual, heated, and tow mirrors for cars and trucks.' },
@@ -23,12 +23,12 @@ export default function Categories() {
           <div>
             <span className="eyebrow">Shop by category</span>
             <h2 style={{ marginTop: 12 }}>
-              The body shop&apos;s catalog<br />— without the markup.
+              The body shop&apos;s catalog<br />- without the markup.
             </h2>
           </div>
           <p style={{ maxWidth: 400, color: 'var(--ink-2)', fontSize: 15 }}>
             From front bumpers to heating &amp; cooling, we stock the high-turn collision parts
-            your shop needs — all priced for the long haul.
+            your shop needs - all priced for the long haul.
           </p>
         </div>
 

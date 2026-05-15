@@ -79,7 +79,7 @@ const _categories_moved_to_PaintsClient = [
     name: 'Sandpaper & Abrasives',
     slug: 'sandpaper',
     description:
-      'Dry and wet-sand abrasives from 40 to 3000 grit for every stage — stripping, block sanding, scuffing, and final color sanding.',
+      'Dry and wet-sand abrasives from 40 to 3000 grit for every stage - stripping, block sanding, scuffing, and final color sanding.',
     tags: ['40–80 Grit', '150–320 Grit', '400–800 Grit', '1000–3000 Grit'],
   },
   {
@@ -95,7 +95,7 @@ const _categories_moved_to_PaintsClient = [
     name: 'Spray Products',
     slug: 'spray',
     description:
-      'Aerosol sprays for touch-ups, underbody protection, and quick repairs — ready-to-spray with no gun required.',
+      'Aerosol sprays for touch-ups, underbody protection, and quick repairs - ready-to-spray with no gun required.',
     tags: ['Touch-Up', 'Aerosol', 'Ready-to-Spray', 'Underbody'],
   },
   {
@@ -135,7 +135,7 @@ const _categories_moved_to_PaintsClient = [
     name: 'Supply & Misc.',
     slug: 'supply',
     description:
-      'Shop consumables and specialty products — everything from mixing sticks and gloves to paint suits and respirator cartridges.',
+      'Shop consumables and specialty products - everything from mixing sticks and gloves to paint suits and respirator cartridges.',
     tags: ['Consumables', 'PPE', 'Gloves', 'Respirators', 'Paint Suits'],
   },
 ]
@@ -185,7 +185,7 @@ const brands = [
 ]
 
 const highlights = [
-  { icon: '📦', title: '15+ Product Categories', body: 'Everything from paint and primer to abrasives, masking, and detailing — all from one supplier.' },
+  { icon: '📦', title: '15+ Product Categories', body: 'Everything from paint and primer to abrasives, masking, and detailing - all from one supplier.' },
   { icon: '🎨', title: 'OEM Color Matching', body: 'We stock toners and mixing systems so you can hit every factory color with confidence.' },
   { icon: '🚚', title: 'Same-Day Delivery', body: 'Order by noon and get your paint and supplies on the same day to shops in our delivery zone.' },
   { icon: '📞', title: 'Expert Paint Advice', body: 'Our counter staff understands refinishing. Call us and we\'ll help you spec the right products for your job.' },
@@ -200,7 +200,7 @@ export default function PaintsPage() {
           <span className="eyebrow" style={{ color: '#FFB3B6' }}>Refinishing Supplies</span>
           <h1>Automotive Paints &amp; Supplies</h1>
           <p>
-            Everything your shop needs to go from bare metal to showroom shine — paint, primer,
+            Everything your shop needs to go from bare metal to showroom shine - paint, primer,
             clear coat, body filler, abrasives, masking, and more. 15+ categories in stock
             with same-day delivery to the Chicago metro area.
           </p>
@@ -304,7 +304,7 @@ export default function PaintsPage() {
                 NEED HELP SPECCING YOUR JOB?
               </span>
               <h2 style={{ marginTop: 14, color: '#fff' }}>
-                Talk to a paint specialist — we&apos;ll get you the right products.
+                Talk to a paint specialist - we&apos;ll get you the right products.
               </h2>
               <p style={{ color: 'rgba(255,255,255,.8)', marginTop: 12 }}>
                 Whether you need a single quart of reducer or a full shop supply of primers and clears,

@@ -25,7 +25,7 @@ const jobs: Job[] = [
       'Ability to lift up to 75 lbs',
       'Experience in a warehouse or distribution center preferred',
       'Forklift certification a plus',
-      'Reliable and punctual — early shift starts at 6 AM',
+      'Reliable and punctual - early shift starts at 6 AM',
     ],
   },
   {
@@ -52,7 +52,7 @@ const jobs: Job[] = [
     type: 'Full-time',
     applyAs: 'Customer Service / General Offices',
     description:
-      'Be the voice of Best Value for our customers — resolving order issues, tracking deliveries, handling returns, and ensuring every customer leaves satisfied.',
+      'Be the voice of Best Value for our customers - resolving order issues, tracking deliveries, handling returns, and ensuring every customer leaves satisfied.',
     requirements: [
       '2+ years customer service experience',
       'Calm under pressure with strong problem-solving skills',

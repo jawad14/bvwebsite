@@ -4,7 +4,7 @@ import CareerApplyForm from '@/components/CareerApplyForm'
 
 export const metadata: Metadata = {
   title: 'Job Application | Best Value Auto Body Supply',
-  description: 'Apply for a position at Best Value Auto Body Supply — Warehouse, Driver, Customer Service, and more.',
+  description: 'Apply for a position at Best Value Auto Body Supply - Warehouse, Driver, Customer Service, and more.',
 }
 
 export default function ApplyPage() {

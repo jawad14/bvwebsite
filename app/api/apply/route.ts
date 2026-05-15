@@ -45,12 +45,12 @@ export async function POST(req: NextRequest) {
             <tbody>
               ${rows.map(([label, row]) => `<tr>
                 <td style="padding:8px;border:1px solid #eee"><strong>${label}</strong></td>
-                <td style="padding:8px;border:1px solid #eee">${row?.name || '—'}</td>
-                <td style="padding:8px;border:1px solid #eee">${row?.address || '—'}</td>
-                <td style="padding:8px;border:1px solid #eee">${row?.from || '—'}</td>
-                <td style="padding:8px;border:1px solid #eee">${row?.to || '—'}</td>
-                <td style="padding:8px;border:1px solid #eee">${row?.graduated || '—'}</td>
-                <td style="padding:8px;border:1px solid #eee">${row?.degree || '—'}</td>
+                <td style="padding:8px;border:1px solid #eee">${row?.name || '-'}</td>
+                <td style="padding:8px;border:1px solid #eee">${row?.address || '-'}</td>
+                <td style="padding:8px;border:1px solid #eee">${row?.from || '-'}</td>
+                <td style="padding:8px;border:1px solid #eee">${row?.to || '-'}</td>
+                <td style="padding:8px;border:1px solid #eee">${row?.graduated || '-'}</td>
+                <td style="padding:8px;border:1px solid #eee">${row?.degree || '-'}</td>
               </tr>`).join('')}
             </tbody>
           </table>`
@@ -79,16 +79,16 @@ export async function POST(req: NextRequest) {
       from:    `"BV Careers" <${process.env.SMTP_USER}>`,
       to:      recipient,
       replyTo: email,
-      subject: `Job Application — ${position} (${fullName || email})`,
+      subject: `Job Application - ${position} (${fullName || email})`,
       html: `
         <h2 style="margin:0 0 20px;font-family:sans-serif;color:#001D68">New Job Application</h2>
 
         <h3 style="font-family:sans-serif;color:#555;margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.06em">Personal Information</h3>
         <table style="border-collapse:collapse;font-family:sans-serif;font-size:15px;margin-bottom:24px">
-          <tr><td style="padding:6px 20px 6px 0;color:#888;width:160px">Name</td><td><strong>${fullName || '—'}</strong></td></tr>
+          <tr><td style="padding:6px 20px 6px 0;color:#888;width:160px">Name</td><td><strong>${fullName || '-'}</strong></td></tr>
           <tr><td style="padding:6px 20px 6px 0;color:#888">Email</td><td><a href="mailto:${email}">${email}</a></td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Phone</td><td>${phone || '—'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Address</td><td>${[address, apt, city, state, zip].filter(Boolean).join(', ') || '—'}</td></tr>
+          <tr><td style="padding:6px 20px 6px 0;color:#888">Phone</td><td>${phone || '-'}</td></tr>
+          <tr><td style="padding:6px 20px 6px 0;color:#888">Address</td><td>${[address, apt, city, state, zip].filter(Boolean).join(', ') || '-'}</td></tr>
           <tr><td style="padding:6px 20px 6px 0;color:#888">Position(s)</td><td><strong>${position}</strong></td></tr>
         </table>
 

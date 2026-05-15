@@ -34,7 +34,7 @@ export default function MobileDrawer({ open, onClose }: Props) {
       <div className="drawer__panel" ref={panelRef}>
         {/* Header */}
         <div className="drawer__head">
-          <a href="/" aria-label="Best Value — Auto Body Supply">
+          <a href="/" aria-label="Best Value - Auto Body Supply">
             <img src="/bv-logo.webp" alt="Best Value Auto Body Supply" style={{ height: 60, width: 'auto' }} />
           </a>
           <button className="drawer__close" onClick={onClose} aria-label="Close menu">
@@ -52,9 +52,7 @@ export default function MobileDrawer({ open, onClose }: Props) {
             <svg width="16" height="16"><use href="#i-arrow-sm" /></svg>
             Automotive Paints
           </a>
-          <a href="/deals" className="drawer__quicklink drawer__quicklink--flame">
-            🔥 Deals
-          </a>
+
         </div>
 
         {/* Category list */}
@@ -85,7 +83,7 @@ export default function MobileDrawer({ open, onClose }: Props) {
             <a href="/delivery">Same-Day Delivery &amp; Zones</a>
             <a href="/returns">Returns &amp; Warranty</a>
             <a href="/faq">Frequently Asked Questions</a>
-            <a href="/careers">Careers — We&apos;re hiring</a>
+            <a href="/careers">Careers - We&apos;re hiring</a>
             <a href="#contact">Visit our counter (Melrose Park, IL)</a>
           </div>
         </div>

@@ -12,7 +12,7 @@ export default function Header() {
     <>
       <header className="header">
         <div className="container header__row">
-          <a className="brand" href="/" aria-label="Best Value — Auto Body Supply, Home">
+          <a className="brand" href="/" aria-label="Best Value - Auto Body Supply, Home">
             <Image src="/bv-logo.webp" alt="Best Value Auto Body Supply" width={224} height={80} className="brand__logo brand__logo--desktop" style={{ height: 80, width: 'auto' }} priority />
             <Image src="/bv-mark.webp" alt="Best Value" width={44} height={44} className="brand__logo brand__logo--mobile" style={{ height: 44, width: 'auto' }} priority />
           </a>
@@ -47,10 +47,7 @@ export default function Header() {
             <div className="nav__row">
               <a className="nav__link is-active" href="/parts">Shop All Parts</a>
               <a className="nav__link" href="/paints">Automotive Paints</a>
-              <a className="nav__link has-flame" href="/deals">
-                <svg><use href="#i-flame" /></svg> Deals
-              </a>
-              <a className="nav__link" href="/returns">Returns &amp; Warranty</a>
+<a className="nav__link" href="/returns">Returns &amp; Warranty</a>
               <a className="nav__link" href="/delivery">Same-Day Delivery</a>
               <a className="nav__link" href="/faq">FAQs</a>
               <a className="nav__link" href="/careers">Careers</a>

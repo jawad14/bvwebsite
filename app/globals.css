@@ -1,7 +1,7 @@
 /* =========================================================
-   Best Value — Auto Body Supply
+   Best Value - Auto Body Supply
    Brand tokens: Red #ED1C24 · Navy #001D68 · Black #090909 · White #FFFFFF
-   Type: Jost (display) + Inter (body) — loaded via next/font/google
+   Type: Jost (display) + Inter (body) - loaded via next/font/google
    ========================================================= */
 
 :root {
@@ -699,7 +699,7 @@ p { margin: 0; text-wrap: pretty; }
 .cat--try .cat__art {
   height: 185px;
   border-radius: 0;             /* card clips via overflow:hidden */
-  background: #fff;             /* pure white — studio bg dissolves in */
+  background: #fff;             /* pure white - studio bg dissolves in */
   border-bottom: 1px solid var(--line-2);
   transition: transform .28s ease;
 }
@@ -1138,7 +1138,7 @@ p { margin: 0; text-wrap: pretty; }
 .page-banner__visual {
   flex-shrink: 0;
   width: clamp(260px, 30vw, 420px);
-  /* fade left (into text), top, and bottom — intersect both axes */
+  /* fade left (into text), top, and bottom - intersect both axes */
   -webkit-mask-image:
     linear-gradient(to right, transparent 0%, black 32%),
     linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);

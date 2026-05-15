@@ -6,11 +6,11 @@ export default function Footer() {
       <div className="container">
         <div className="footer__main">
           <div className="footer__brand">
-            <a href="/" aria-label="Best Value — Auto Body Supply">
+            <a href="/" aria-label="Best Value - Auto Body Supply">
               <Image src="/bv-logo-white.webp" alt="Best Value Auto Body Supply" width={280} height={100} className="brand__logo" style={{ height: 80, width: 'auto' }} />
             </a>
             <p>
-              Best Value Auto Body Supply, Inc. — supplying collision repair shops, mechanics and
+              Best Value Auto Body Supply, Inc. - supplying collision repair shops, mechanics and
               drivers with OEM-quality parts at honest prices since 2001. 25 years of trust, our
               own delivery fleet, and the industry&apos;s largest call center.
             </p>

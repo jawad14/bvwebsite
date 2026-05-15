@@ -11,7 +11,7 @@ export default function PromoSplit() {
               </span>
               <h3 style={{ marginTop: 14 }}>Order by phone. We&apos;ll be there in an hour.</h3>
               <p>
-                Across Chicagoland and the surrounding metro, our own trucks run all day — so the
+                Across Chicagoland and the surrounding metro, our own trucks run all day - so the
                 parts you need to finish a job today get there today.
               </p>
             </div>
@@ -32,11 +32,11 @@ export default function PromoSplit() {
                 FOR DRIVERS
               </span>
               <h3 style={{ marginTop: 14 }}>
-                Skip the dealer. We&apos;ll quote you the best price — by phone.
+                Skip the dealer. We&apos;ll quote you the best price - by phone.
               </h3>
               <p>
                 Tell us your year, make, model and what&apos;s damaged. A real parts specialist will
-                quote you in minutes — and beat the dealer&apos;s price.
+                quote you in minutes - and beat the dealer&apos;s price.
               </p>
             </div>
             <div className="promo__ctas">

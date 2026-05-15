@@ -16,7 +16,7 @@ const benefits = [
       </svg>
     ),
     title: 'Customer Credit Line',
-    body: 'Earn a credit line based on your purchase history — up to $50,000 for high-volume accounts.',
+    body: 'Earn a credit line based on your purchase history - up to $50,000 for high-volume accounts.',
   },
   {
     icon: (
@@ -34,7 +34,7 @@ const benefits = [
       </svg>
     ),
     title: 'Net 30 Payment Terms',
-    body: 'Buy now, pay later with Net 30 invoice terms — ideal for managing shop cash flow.',
+    body: 'Buy now, pay later with Net 30 invoice terms - ideal for managing shop cash flow.',
   },
   {
     icon: (
@@ -52,7 +52,7 @@ const benefits = [
       </svg>
     ),
     title: 'Priority Support Line',
-    body: 'Skip the queue — registered customers get direct access to our senior parts specialists.',
+    body: 'Skip the queue - registered customers get direct access to our senior parts specialists.',
   },
   {
     icon: (

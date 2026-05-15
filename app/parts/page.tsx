@@ -82,7 +82,7 @@ const categories = [
     name: 'Fog Lights',
     img: '/parts/fog-light.webp',
     count: '350+ SKUs',
-    desc: 'Direct-fit fog lamp assemblies and housings — front and rear.',
+    desc: 'Direct-fit fog lamp assemblies and housings - front and rear.',
   },
   {
     name: 'Hoods & Panels',
@@ -187,7 +187,7 @@ export default function PartsPage() {
             <span className="eyebrow" style={{ color: '#FFB3B6' }}>OEM-Quality Parts</span>
             <h1>Shop All Auto Body Parts</h1>
             <p>
-              Over 8,000 SKUs in stock — bumpers, lights, fenders, mirrors, grilles, and more.
+              Over 8,000 SKUs in stock - bumpers, lights, fenders, mirrors, grilles, and more.
               All OEM-spec quality at honest prices, with same-day delivery across the Chicago metro.
             </p>
             <div className="parts-hero__actions">
@@ -242,7 +242,7 @@ export default function PartsPage() {
               <h2>All Parts Categories</h2>
             </div>
             <p style={{ maxWidth: 400, color: 'var(--ink-2)', fontSize: 15 }}>
-              Can&apos;t find what you need? Call us — our team locates hard-to-find parts daily.
+              Can&apos;t find what you need? Call us - our team locates hard-to-find parts daily.
             </p>
           </div>
           <div className="parts-grid">
@@ -296,9 +296,9 @@ export default function PartsPage() {
           <div className="parts-steps">
             {[
               { n: '1', title: 'Call or Request a Quote', body: 'Reach our parts specialists at (773) 762-1000 or submit an online quote request. Have your vehicle year, make, model, and VIN handy.' },
-              { n: '2', title: 'Get Your Price', body: 'We check stock and give you an honest price — guaranteed to be the best you\'ll find. No hidden fees, no surprises.' },
+              { n: '2', title: 'Get Your Price', body: 'We check stock and give you an honest price - guaranteed to be the best you\'ll find. No hidden fees, no surprises.' },
               { n: '3', title: 'Confirm & Schedule Delivery', body: 'Confirm your order and we\'ll schedule same-day or next-day delivery to your shop or location.' },
-              { n: '4', title: 'Receive & Inspect', body: 'Our driver delivers direct to your bay. Inspect parts on arrival — any issues are resolved immediately, no hassle.' },
+              { n: '4', title: 'Receive & Inspect', body: 'Our driver delivers direct to your bay. Inspect parts on arrival - any issues are resolved immediately, no hassle.' },
             ].map(({ n, title, body }) => (
               <div key={n} className="parts-step">
                 <span className="parts-step__num">{n}</span>

@@ -47,7 +47,7 @@ const categories: Category[] = [
   },
   {
     icon: '🔴', name: 'Sandpaper & Abrasives',
-    description: 'Dry and wet-sand abrasives from 40 to 3000 grit for every stage — stripping, block sanding, scuffing, and final color sanding.',
+    description: 'Dry and wet-sand abrasives from 40 to 3000 grit for every stage - stripping, block sanding, scuffing, and final color sanding.',
     tags: ['40–80 Grit', '150–320 Grit', '400–800 Grit', '1000–3000 Grit'],
   },
   {
@@ -57,7 +57,7 @@ const categories: Category[] = [
   },
   {
     icon: '💨', name: 'Spray Products',
-    description: 'Aerosol sprays for touch-ups, underbody protection, and quick repairs — ready-to-spray with no gun required.',
+    description: 'Aerosol sprays for touch-ups, underbody protection, and quick repairs - ready-to-spray with no gun required.',
     tags: ['Touch-Up', 'Aerosol', 'Ready-to-Spray', 'Underbody'],
   },
   {
@@ -82,7 +82,7 @@ const categories: Category[] = [
   },
   {
     icon: '📦', name: 'Supply & Misc.',
-    description: 'Shop consumables and specialty products — everything from mixing sticks and gloves to paint suits and respirator cartridges.',
+    description: 'Shop consumables and specialty products - everything from mixing sticks and gloves to paint suits and respirator cartridges.',
     tags: ['Consumables', 'PPE', 'Gloves', 'Respirators', 'Paint Suits'],
   },
 ]
@@ -217,7 +217,7 @@ export default function PaintsClient() {
                   <div className="field field--full">
                     <label htmlFor="inq-msg">What do you need? <span aria-hidden="true">*</span></label>
                     <textarea id="inq-msg" rows={4} required
-                      placeholder={`Tell us what you need for ${activeCategory} — quantities, specific products, brands, or any questions…`}
+                      placeholder={`Tell us what you need for ${activeCategory} - quantities, specific products, brands, or any questions…`}
                       value={form.message} onChange={set('message')} />
                   </div>
                 </div>

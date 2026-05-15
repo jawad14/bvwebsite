@@ -75,7 +75,7 @@ export default function ReturnsPage() {
         <div className="container">
           <div className="policy-grid">
 
-            {/* Card 1 — Return Policy */}
+            {/* Card 1 - Return Policy */}
             <div className="policy-card">
               <div className="policy-card__head">
                 <span className="policy-card__num">1</span>
@@ -89,7 +89,7 @@ export default function ReturnsPage() {
               </p>
             </div>
 
-            {/* Card 2 — Incorrect Parts */}
+            {/* Card 2 - Incorrect Parts */}
             <div className="policy-card">
               <div className="policy-card__head">
                 <span className="policy-card__num">2</span>
@@ -126,7 +126,7 @@ export default function ReturnsPage() {
               </ul>
             </div>
 
-            {/* Card 3 — Warranties */}
+            {/* Card 3 - Warranties */}
             <div className="policy-card">
               <div className="policy-card__head">
                 <span className="policy-card__num">3</span>
@@ -148,7 +148,7 @@ export default function ReturnsPage() {
                 NEED HELP WITH A RETURN?
               </span>
               <h2 style={{ marginTop: 14, color: '#fff' }}>
-                Talk to a parts specialist — we&apos;ll sort it out fast.
+                Talk to a parts specialist - we&apos;ll sort it out fast.
               </h2>
               <p style={{ color: 'rgba(255,255,255,.8)', marginTop: 12 }}>
                 Call or submit a request and one of our team members will walk you through the

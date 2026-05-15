@@ -11,13 +11,13 @@ export default function Hero() {
           </h1>
           <p className="hero__sub">
             OEM-quality bumpers, headlights, fenders and body parts at the best prices in the
-            industry — backed by our own 1-hour delivery fleet and a real parts specialist on every call.
+            industry - backed by our own 1-hour delivery fleet and a real parts specialist on every call.
           </p>
 
           <div className="hero__ctas">
             <a className="btn btn--primary btn--lg" href="tel:17737621000">
               <svg width="18" height="18"><use href="#i-phone" /></svg>
-              Call to order — (773) 762-1000
+              Call to order - (773) 762-1000
             </a>
             <a className="btn btn--ghost-light btn--lg" href="#contact">
               Request a free quote

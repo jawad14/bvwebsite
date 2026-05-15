@@ -263,7 +263,7 @@ export default function CareerApplyForm() {
 
       {/* Resume */}
       <div className="app-section">
-        <h3 className="app-section__title">Resume <span className="field__hint">(PDF, DOC, DOCX — max 4 MB, optional)</span></h3>
+        <h3 className="app-section__title">Resume <span className="field__hint">(PDF, DOC, DOCX - max 4 MB, optional)</span></h3>
         <div
           className={`file-drop${resumeFile ? ' has-file' : ''}`}
           style={{ maxWidth: 480 }}

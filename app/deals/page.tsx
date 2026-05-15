@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation'
 import type { Metadata } from 'next'
 import { deals } from '@/lib/deals'
 
@@ -37,6 +38,7 @@ function formatDate(dateStr: string) {
 }
 
 export default function DealsPage() {
+  redirect('/')
   const activeDeals   = deals.filter(d => d.active && !isExpired(d.validUntil))
   const expiredDeals  = deals.filter(d => d.active && isExpired(d.validUntil))
 
@@ -51,7 +53,7 @@ export default function DealsPage() {
           <h1>Deals &amp; Weekly Specials</h1>
           <p>
             New deals every week on parts, paint, and supplies. Call to order and mention
-            the deal — our team will apply your discount automatically.
+            the deal - our team will apply your discount automatically.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28 }}>
             <a className="btn btn--primary btn--lg" href="tel:17737621000">
@@ -73,7 +75,7 @@ export default function DealsPage() {
             <div className="deals-empty">
               <span style={{ fontSize: 48 }}>🔧</span>
               <h3>New deals coming soon</h3>
-              <p>Check back next week or call us — we always have something for our regular customers.</p>
+              <p>Check back next week or call us - we always have something for our regular customers.</p>
               <a className="btn btn--primary" href="tel:17737621000">
                 <svg width="16" height="16"><use href="#i-phone" /></svg>
                 Call (773) 762-1000
