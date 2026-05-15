@@ -1,9 +1,19 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Returns & Warranty | Best Value Auto Body Supply',
+  title: 'Returns & Warranty Policy',
   description:
-    'Return policy, exchange process, and warranty information for parts purchased from Best Value Auto Body Supply.',
+    'Return and exchange policy for auto body parts at Best Value Auto Body Supply. 15-day return window, manufacturer warranty, and our no-hassle process. Melrose Park, IL.',
+  keywords: [
+    'auto parts return policy', 'collision parts warranty', 'auto body parts exchange',
+    'Best Value return policy', 'aftermarket parts warranty',
+  ],
+  alternates: { canonical: 'https://www.bestvaluepart.com/returns' },
+  openGraph: {
+    title: 'Returns & Warranty — Best Value Auto Body Supply',
+    description: '15-day returns, manufacturer warranty, no-hassle exchange process.',
+    url: 'https://www.bestvaluepart.com/returns',
+  },
 }
 
 const returnItems = [

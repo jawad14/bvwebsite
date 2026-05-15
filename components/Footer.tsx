@@ -74,7 +74,7 @@ export default function Footer() {
               </div>
               <div>
                 <svg><use href="#i-mail" /></svg>
-                <span>sales@bestvaluepart.com</span>
+                <span>infor@bestvaluepart.com</span>
               </div>
             </div>
           </div>

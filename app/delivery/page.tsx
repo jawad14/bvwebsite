@@ -1,10 +1,63 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import JsonLd from '@/components/JsonLd'
+
+const BASE = 'https://www.bestvaluepart.com'
 
 export const metadata: Metadata = {
-  title: 'Delivery Service & Zones | Best Value Auto Body Supply',
+  title: 'Same-Day Parts Delivery — Zones & Schedule',
   description:
-    'Same-day parts delivery across the Chicago metro area and surrounding states. Learn about our delivery zones, schedules, and how to place an order.',
+    'Same-day auto body parts delivery across the Chicago metro — Melrose Park, Chicago, Evanston, Naperville & more. Zone 1 delivery in 1–2 hours. 5-state regional coverage. Call (773) 762-1000.',
+  keywords: [
+    'same day auto parts delivery Chicago', 'auto body parts delivery Melrose Park',
+    'collision parts delivery Illinois', 'parts delivery Naperville', 'parts delivery Evanston',
+    'wholesale parts delivery Chicago metro', 'auto parts delivery same day', 'delivery zones Chicago',
+  ],
+  alternates: { canonical: `${BASE}/delivery` },
+  openGraph: {
+    title: 'Same-Day Parts Delivery — Best Value Auto Body Supply',
+    description: 'Zone 1 delivery in 1–2 hours. Chicago metro same-day. 5-state regional coverage. Order by 4 PM.',
+    url: `${BASE}/delivery`,
+    images: [{ url: `${BASE}/delivery-truck.webp`, width: 3048, height: 1376, alt: 'Best Value delivery truck' }],
+  },
+}
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${BASE}/delivery#service`,
+  name: 'Same-Day Auto Body Parts Delivery',
+  description: 'Best Value Auto Body Supply offers same-day delivery of OEM-quality auto body and collision parts across the Chicago metro area and regional states. Our own branded fleet runs multiple daily routes.',
+  provider: { '@id': `${BASE}/#organization` },
+  areaServed: [
+    { '@type': 'City', name: 'Chicago', containedIn: { '@type': 'State', name: 'Illinois' } },
+    { '@type': 'City', name: 'Melrose Park' },
+    { '@type': 'City', name: 'Evanston' },
+    { '@type': 'City', name: 'Naperville' },
+    { '@type': 'City', name: 'Joliet' },
+    { '@type': 'State', name: 'Illinois' },
+    { '@type': 'State', name: 'Indiana' },
+    { '@type': 'State', name: 'Wisconsin' },
+    { '@type': 'State', name: 'Iowa' },
+    { '@type': 'State', name: 'Michigan' },
+  ],
+  serviceType: 'Parts Delivery',
+  url: `${BASE}/delivery`,
+  offers: {
+    '@type': 'Offer',
+    description: 'Free delivery on orders over $150 (Zone 1 & 2) or $250 (Zone 3 & regional)',
+    priceCurrency: 'USD',
+    eligibleRegion: { '@type': 'State', name: 'Illinois' },
+  },
+}
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: BASE },
+    { '@type': 'ListItem', position: 2, name: 'Same-Day Delivery', item: `${BASE}/delivery` },
+  ],
 }
 
 const stats = [
@@ -94,6 +147,8 @@ const rules = [
 export default function DeliveryPage() {
   return (
     <>
+      <JsonLd data={serviceSchema} />
+      <JsonLd data={breadcrumbSchema} />
       {/* Hero */}
       <div className="delivery-hero">
         <div className="delivery-hero__bg" />

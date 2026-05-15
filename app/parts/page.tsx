@@ -1,10 +1,62 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import JsonLd from '@/components/JsonLd'
+
+const BASE = 'https://www.bestvaluepart.com'
 
 export const metadata: Metadata = {
-  title: 'Shop All Auto Body Parts | Best Value Auto Body Supply',
+  title: 'Shop All Auto Body Parts',
   description:
-    'Browse OEM-quality auto body parts — bumpers, headlights, fenders, mirrors, grilles, hoods, and more. Same-day delivery across Chicago metro. Call (773) 762-1000.',
+    'Browse 8,000+ OEM-quality auto body parts — bumpers, headlights, fenders, mirrors, grilles, hoods, A/C condensers, and more. Same-day delivery across the Chicago metro. Call (773) 762-1000.',
+  keywords: [
+    'auto body parts Chicago', 'bumper covers Chicago', 'headlight assemblies Illinois',
+    'fender replacement parts', 'OEM quality aftermarket parts', 'collision parts Melrose Park',
+    'side mirrors wholesale', 'grille replacement Chicago', 'auto hood replacement',
+    'A/C condenser parts', 'same-day auto parts delivery', 'wholesale collision parts Illinois',
+  ],
+  alternates: { canonical: `${BASE}/parts` },
+  openGraph: {
+    title: 'Shop All Auto Body Parts — Best Value Auto Body Supply',
+    description: '8,000+ OEM-quality collision parts. Same-day delivery across Chicago. Bumpers, lights, fenders, mirrors & more.',
+    url: `${BASE}/parts`,
+    images: [{ url: `${BASE}/parts/bumper.webp`, width: 400, height: 260, alt: 'Auto bumper cover' }],
+  },
+}
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Auto Body Parts Categories',
+  description: 'OEM-quality auto body and collision parts available at Best Value Auto Body Supply',
+  url: `${BASE}/parts`,
+  numberOfItems: 16,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Bumpers & Bumper Covers', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 2, name: 'Headlights & Tail Lights', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 3, name: 'Corner & Parking Lights', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 4, name: 'Fog Lights', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 5, name: 'Hoods & Panels', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 6, name: 'Grilles & Grille Guards', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 7, name: 'Mirrors', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 8, name: 'Door Handles & Locks', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 9, name: 'Splash Guards & Shields', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 10, name: 'A/C Condensers', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 11, name: 'Condenser Fans', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 12, name: 'Heating & Cooling', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 13, name: 'Fenders', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 14, name: 'Doors & Related', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 15, name: 'Trunk Lids & Tailgates', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 16, name: 'Inner Structure', url: `${BASE}/parts` },
+  ],
+}
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: BASE },
+    { '@type': 'ListItem', position: 2, name: 'Shop All Parts', item: `${BASE}/parts` },
+  ],
 }
 
 const categories = [
@@ -125,6 +177,8 @@ const placeholderIcons: Record<string, string> = {
 export default function PartsPage() {
   return (
     <>
+      <JsonLd data={itemListSchema} />
+      <JsonLd data={breadcrumbSchema} />
       {/* Hero */}
       <div className="parts-hero">
         <div className="parts-hero__bg" />

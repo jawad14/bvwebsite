@@ -19,7 +19,12 @@
       "Bash(curl -s -o /dev/null -w \"logo:     %{http_code}\\\\n\" http://localhost:3000/bv-logo.webp)",
       "Bash(curl -s -o /dev/null -w \"bumper:   %{http_code}\\\\n\" http://localhost:3000/parts/bumper.webp)",
       "Bash(curl -s -o /dev/null -w \"delivery: %{http_code}\\\\n\" http://localhost:3000/delivery-truck.webp)",
-      "Bash(curl -s -o /dev/null -w \"careers:  %{http_code}\\\\n\" http://localhost:3000/careers.webp)"
+      "Bash(curl -s -o /dev/null -w \"careers:  %{http_code}\\\\n\" http://localhost:3000/careers.webp)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/robots.txt)",
+      "Bash(curl -s http://localhost:3000/robots.txt)",
+      "Bash(curl -s http://localhost:3000/sitemap.xml)",
+      "Bash(curl -s http://localhost:3000/llms.txt)"
     ]
   }
 }

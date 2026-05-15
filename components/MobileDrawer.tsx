@@ -81,7 +81,7 @@ export default function MobileDrawer({ open, onClose }: Props) {
           <h4>Help &amp; Company</h4>
           <div className="drawer__list">
             <a href="tel:17737621000">📞 Call (773) 762-1000</a>
-            <a href="/#contact">Request a quote</a>
+            <button className="drawer__quote-btn" onClick={() => { onClose(); setTimeout(() => window.dispatchEvent(new CustomEvent('bv:quote')), 150) }}>Request a quote</button>
             <a href="/delivery">Same-Day Delivery &amp; Zones</a>
             <a href="/returns">Returns &amp; Warranty</a>
             <a href="/faq">Frequently Asked Questions</a>

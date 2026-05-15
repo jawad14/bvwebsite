@@ -13,7 +13,8 @@ export default function Header() {
       <header className="header">
         <div className="container header__row">
           <a className="brand" href="/" aria-label="Best Value — Auto Body Supply, Home">
-            <Image src="/bv-logo.webp" alt="Best Value Auto Body Supply" width={224} height={80} className="brand__logo" style={{ height: 80, width: 'auto' }} priority />
+            <Image src="/bv-logo.webp" alt="Best Value Auto Body Supply" width={224} height={80} className="brand__logo brand__logo--desktop" style={{ height: 80, width: 'auto' }} priority />
+            <Image src="/bv-mark.webp" alt="Best Value" width={44} height={44} className="brand__logo brand__logo--mobile" style={{ height: 44, width: 'auto' }} priority />
           </a>
 
           <SearchForm />
@@ -26,10 +27,10 @@ export default function Header() {
                 <span style={{ fontWeight: 800, fontSize: 16, color: 'var(--bv-navy)', letterSpacing: '.01em' }}>(773) 762-1000</span>
               </span>
             </a>
-            <a className="btn btn--primary" href="#contact" style={{ height: 44 }}>
+            <button className="btn btn--primary" style={{ height: 44 }} onClick={() => window.dispatchEvent(new CustomEvent('bv:quote'))}>
               Request a quote
               <svg className="arrow" width="14" height="14"><use href="#i-arrow-sm" /></svg>
-            </a>
+            </button>
             <button
               className="menu-toggle"
               type="button"

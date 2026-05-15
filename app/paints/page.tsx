@@ -2,9 +2,20 @@ import type { Metadata } from 'next'
 import PaintsClient from '@/components/PaintsClient'
 
 export const metadata: Metadata = {
-  title: 'Automotive Paints & Refinishing Supplies | Best Value Auto Body Supply',
+  title: 'Automotive Paints & Refinishing Supplies',
   description:
-    'Shop automotive paints, clear coats, primers, reducers, body fillers, adhesives, masking products, and detailing supplies at Best Value Auto Body Supply.',
+    'Shop automotive paints, clear coats, primers, reducers, body fillers, adhesives, masking products, and detailing supplies at Best Value Auto Body Supply in Melrose Park, IL. Same-day delivery across Chicago.',
+  keywords: [
+    'automotive paint Chicago', 'car paint supplies Illinois', 'clear coat Chicago',
+    'automotive primer Melrose Park', 'body filler Chicago', 'auto refinishing supplies Illinois',
+    'collision paint products', 'automotive paint wholesale Chicago',
+  ],
+  alternates: { canonical: 'https://www.bestvaluepart.com/paints' },
+  openGraph: {
+    title: 'Automotive Paints & Refinishing Supplies — Best Value Auto Body Supply',
+    description: 'Paints, clear coats, primers, body fillers and more. Same-day delivery across Chicago metro.',
+    url: 'https://www.bestvaluepart.com/paints',
+  },
 }
 
 const _categories_moved_to_PaintsClient = [

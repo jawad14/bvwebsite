@@ -2,9 +2,20 @@ import type { Metadata } from 'next'
 import { deals } from '@/lib/deals'
 
 export const metadata: Metadata = {
-  title: 'Deals & Promotions | Best Value Auto Body Supply',
+  title: 'Deals & Promotions — Weekly Specials',
   description:
-    'Current deals, weekly specials, and monthly promotions on auto body parts and refinishing supplies from Best Value Auto Body Supply.',
+    'Current deals and weekly specials on auto body parts and refinishing supplies at Best Value Auto Body Supply, Melrose Park, IL. Discounts on bumpers, headlights, paint, and more.',
+  keywords: [
+    'auto body parts deals Chicago', 'collision parts promotions Illinois',
+    'auto parts weekly specials', 'bumper deals Chicago', 'headlight specials Illinois',
+    'auto paint promotions', 'Best Value Auto Body deals',
+  ],
+  alternates: { canonical: 'https://www.bestvaluepart.com/deals' },
+  openGraph: {
+    title: 'Deals & Weekly Specials — Best Value Auto Body Supply',
+    description: 'Weekly and monthly specials on collision parts and refinishing supplies. Updated regularly.',
+    url: 'https://www.bestvaluepart.com/deals',
+  },
 }
 
 const BADGE_COLORS: Record<string, { bg: string; color: string }> = {
