@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
       attachments.push({ filename: taxFile.name, content: buf })
     }
 
-    const recipient = process.env.REGISTER_TO_EMAIL || process.env.APPLY_TO_EMAIL || 'infor@bestvaluepart.com'
+    const recipient = process.env.REGISTER_TO_EMAIL || process.env.APPLY_TO_EMAIL || 'info@bestvaluepart.com'
 
     await transporter.sendMail({
       from:    `"BV Registrations" <${process.env.SMTP_USER}>`,

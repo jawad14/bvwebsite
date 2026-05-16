@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
       attachments.push({ filename: file.name, content: buf })
     }
 
-    const recipient = process.env.APPLY_TO_EMAIL || 'infor@bestvaluepart.com'
+    const recipient = process.env.APPLY_TO_EMAIL || 'info@bestvaluepart.com'
 
     await transporter.sendMail({
       from:    `"BV Careers" <${process.env.SMTP_USER}>`,

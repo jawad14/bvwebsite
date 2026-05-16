@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    const recipient = process.env.APPLY_TO_EMAIL || 'infor@bestvaluepart.com'
+    const recipient = process.env.APPLY_TO_EMAIL || 'info@bestvaluepart.com'
 
     await transporter.sendMail({
       from:    `"BV Paint Inquiries" <${process.env.SMTP_USER}>`,

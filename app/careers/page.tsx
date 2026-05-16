@@ -50,7 +50,7 @@ const jobPostingSchemas = [
       currency: 'USD',
       value: { '@type': 'QuantitativeValue', minValue: 45000, maxValue: 75000, unitText: 'YEAR' },
     },
-    applicationContact: { '@type': 'ContactPoint', email: 'infor@bestvaluepart.com' },
+    applicationContact: { '@type': 'ContactPoint', email: 'info@bestvaluepart.com' },
   },
   {
     '@context': 'https://schema.org',
@@ -75,7 +75,7 @@ const jobPostingSchemas = [
         addressCountry: 'US',
       },
     },
-    applicationContact: { '@type': 'ContactPoint', email: 'infor@bestvaluepart.com' },
+    applicationContact: { '@type': 'ContactPoint', email: 'info@bestvaluepart.com' },
   },
 ]
 
@@ -135,8 +135,8 @@ export default function CareersPage() {
             </div>
             <p style={{ maxWidth: 440, color: 'var(--ink-2)', fontSize: 15 }}>
               Don&apos;t see a fit? Email your resume to{' '}
-              <a href="mailto:infor@bestvaluepart.com" style={{ color: 'var(--bv-red)' }}>
-                infor@bestvaluepart.com
+              <a href="mailto:info@bestvaluepart.com" style={{ color: 'var(--bv-red)' }}>
+                info@bestvaluepart.com
               </a>{' '}
               and we&apos;ll keep it on file.
             </p>

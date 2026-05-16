@@ -92,7 +92,7 @@ const organizationSchema = {
   },
   geo: { '@type': 'GeoCoordinates', latitude: 41.8997, longitude: -87.8620 },
   telephone: '+17737621000',
-  email: 'infor@bestvaluepart.com',
+  email: 'info@bestvaluepart.com',
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '08:00', closes: '19:00' },
     { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '16:00' },
