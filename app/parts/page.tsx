@@ -29,7 +29,7 @@ const itemListSchema = {
   name: 'Auto Body Parts Categories',
   description: 'OEM-quality auto body and collision parts available at Best Value Auto Body Supply',
   url: `${BASE}/parts`,
-  numberOfItems: 16,
+  numberOfItems: 15,
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Bumpers & Bumper Covers', url: `${BASE}/parts` },
     { '@type': 'ListItem', position: 2, name: 'Headlights & Tail Lights', url: `${BASE}/parts` },
@@ -38,15 +38,14 @@ const itemListSchema = {
     { '@type': 'ListItem', position: 5, name: 'Hoods & Panels', url: `${BASE}/parts` },
     { '@type': 'ListItem', position: 6, name: 'Grilles & Grille Guards', url: `${BASE}/parts` },
     { '@type': 'ListItem', position: 7, name: 'Mirrors', url: `${BASE}/parts` },
-    { '@type': 'ListItem', position: 8, name: 'Door Handles & Locks', url: `${BASE}/parts` },
-    { '@type': 'ListItem', position: 9, name: 'Splash Guards & Shields', url: `${BASE}/parts` },
-    { '@type': 'ListItem', position: 10, name: 'A/C Condensers', url: `${BASE}/parts` },
-    { '@type': 'ListItem', position: 11, name: 'Condenser Fans', url: `${BASE}/parts` },
-    { '@type': 'ListItem', position: 12, name: 'Heating & Cooling', url: `${BASE}/parts` },
-    { '@type': 'ListItem', position: 13, name: 'Fenders', url: `${BASE}/parts` },
-    { '@type': 'ListItem', position: 14, name: 'Doors & Related', url: `${BASE}/parts` },
-    { '@type': 'ListItem', position: 15, name: 'Trunk Lids & Tailgates', url: `${BASE}/parts` },
-    { '@type': 'ListItem', position: 16, name: 'Inner Structure', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 8, name: 'Splash Guards & Shields', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 9, name: 'A/C Condensers', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 10, name: 'Radiator & Condenser Fans', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 11, name: 'Radiators & Cooling', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 12, name: 'Fenders', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 13, name: 'Doors & Related', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 14, name: 'Trunk Lids & Tailgates', url: `${BASE}/parts` },
+    { '@type': 'ListItem', position: 15, name: 'Inner Structure', url: `${BASE}/parts` },
   ],
 }
 
@@ -103,12 +102,6 @@ const categories = [
     desc: 'Power, manual, heated, and tow mirrors for cars and trucks.',
   },
   {
-    name: 'Door Handles & Locks',
-    img: '/parts/handles.webp',
-    count: '450+ SKUs',
-    desc: 'Interior and exterior door handles, lock cylinders, and actuators.',
-  },
-  {
     name: 'Splash Guards & Shields',
     img: '/parts/splash-shield.webp',
     count: '300+ SKUs',
@@ -121,38 +114,38 @@ const categories = [
     desc: 'Direct-fit A/C condensers and receiver-drier units.',
   },
   {
-    name: 'Condenser Fans',
+    name: 'Radiator & Condenser Fans',
     img: '/parts/condenser-fan.webp',
     count: '200+ SKUs',
     desc: 'Radiator condenser fan assemblies and individual fan motors.',
   },
   {
-    name: 'Heating & Cooling',
-    img: '/parts/heater-core.webp',
+    name: 'Radiators & Cooling',
+    img: '/parts/radiator-cooling.webp',
     count: '380+ SKUs',
-    desc: 'Heater cores, radiators, coolant overflow tanks, and thermostat housings.',
+    desc: 'Radiators, heater cores, coolant overflow tanks, and thermostat housings.',
   },
   {
     name: 'Fenders',
-    img: null,
+    img: '/parts/handles.webp',
     count: '550+ SKUs',
     desc: 'Front fenders, quarter panels, and inner fender liners for all makes.',
   },
   {
     name: 'Doors & Related',
-    img: null,
+    img: '/parts/door.webp',
     count: '420+ SKUs',
     desc: 'Door shells, door skins, hinges, and door weatherstripping.',
   },
   {
     name: 'Trunk Lids & Tailgates',
-    img: null,
+    img: '/parts/trunk.webp',
     count: '310+ SKUs',
     desc: 'Trunk lids, deck lids, tailgates, and liftgate assemblies.',
   },
   {
     name: 'Inner Structure',
-    img: null,
+    img: '/parts/inner-structure.webp',
     count: '240+ SKUs',
     desc: 'Radiator core supports, strut towers, sub-frames, and unibody parts.',
   },
@@ -167,12 +160,7 @@ const heroImages = [
   { src: '/parts/corner-lights.webp', alt: 'Corner light' },
 ]
 
-const placeholderIcons: Record<string, string> = {
-  'Fenders': '🚗',
-  'Doors & Related': '🚪',
-  'Trunk Lids & Tailgates': '🔧',
-  'Inner Structure': '⚙️',
-}
+const placeholderIcons: Record<string, string> = {}
 
 export default function PartsPage() {
   return (

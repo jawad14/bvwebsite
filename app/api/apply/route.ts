@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import { recipients } from '@/lib/email-config'
 
 export async function POST(req: NextRequest) {
   try {
@@ -73,7 +74,7 @@ export async function POST(req: NextRequest) {
       attachments.push({ filename: file.name, content: buf })
     }
 
-    const recipient = process.env.APPLY_TO_EMAIL || 'info@bestvaluepart.com'
+    const recipient = recipients.careers
 
     await transporter.sendMail({
       from:    `"BV Careers" <${process.env.SMTP_USER}>`,

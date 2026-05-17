@@ -8,12 +8,12 @@ export default function Topbar() {
             +1 (773) 762-1000
           </a>
           <span className="topbar__sep" aria-hidden="true" />
-          <span className="topbar__item">Mon–Fri 8 AM–7 PM CST</span>
+          <span className="topbar__item">Mon–Fri 8–6 CST · Sat 8–3 CST</span>
         </div>
         <div className="topbar__right">
           <span className="topbar__promo">
             🇺🇸 <strong>25 years</strong> serving collision shops &amp; drivers ·{' '}
-            <strong>1-hour local delivery</strong>
+            <strong>Twice-daily local delivery</strong>
           </span>
           <span className="topbar__sep" aria-hidden="true" />
         </div>

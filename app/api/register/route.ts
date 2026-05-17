@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import { recipients } from '@/lib/email-config'
 
 export async function POST(req: NextRequest) {
   try {
@@ -44,7 +45,7 @@ export async function POST(req: NextRequest) {
       attachments.push({ filename: taxFile.name, content: buf })
     }
 
-    const recipient = process.env.REGISTER_TO_EMAIL || process.env.APPLY_TO_EMAIL || 'info@bestvaluepart.com'
+    const recipient = recipients.register
 
     await transporter.sendMail({
       from:    `"BV Registrations" <${process.env.SMTP_USER}>`,

@@ -11,7 +11,7 @@ export default function Hero() {
           </h1>
           <p className="hero__sub">
             OEM-quality bumpers, headlights, fenders and body parts at the best prices in the
-            industry - backed by our own 1-hour delivery fleet and a real parts specialist on every call.
+            industry - backed by our own twice-daily delivery fleet and a real parts specialist on every call.
           </p>
 
           <div className="hero__ctas">
@@ -30,7 +30,7 @@ export default function Hero() {
               <strong>25 yrs</strong><span>SERVING THE INDUSTRY</span>
             </div>
             <div className="hero__stat">
-              <strong>1-hour</strong><span>LOCAL DELIVERY</span>
+              <strong>Twice daily</strong><span>LOCAL DELIVERY</span>
             </div>
             <div className="hero__stat">
               <strong>110,000+</strong><span>PARTS IN STOCK</span>
@@ -52,7 +52,7 @@ export default function Hero() {
           </div>
           <div className="float float--b">
             <span className="ico"><svg><use href="#i-truck" /></svg></span>
-            <div>Delivered in 1 hour<small>Our own fleet, our own drivers</small></div>
+            <div>Delivered twice daily<small>Our own fleet, our own drivers</small></div>
           </div>
           <div className="float float--c">
             <span className="ico"><svg><use href="#i-headset" /></svg></span>

@@ -61,7 +61,7 @@ const breadcrumbSchema = {
 }
 
 const stats = [
-  { value: '1 Hr', label: 'Local delivery time' },
+  { value: '2x Daily', label: 'Local delivery runs' },
   { value: 'Same Day', label: 'Metro-area orders' },
   { value: '5 States', label: 'Regional coverage' },
   { value: '25 Yrs', label: 'Serving the industry' },
@@ -70,9 +70,9 @@ const stats = [
 const localZones = [
   {
     zone: 'Zone 1 - Immediate Local',
-    time: '1–2 Hours',
+    time: 'Twice Daily',
     color: '#ED1C24',
-    cutoff: 'Order by 4:00 PM',
+    cutoff: 'AM: 8:30 · PM: 12:30',
     areas: [
       'Melrose Park', 'Franklin Park', 'River Grove', 'Elmwood Park',
       'Northlake', 'Stone Park', 'Bellwood', 'Hillside', 'Berkeley',
@@ -81,9 +81,9 @@ const localZones = [
   },
   {
     zone: 'Zone 2 - Chicago & Inner Suburbs',
-    time: '2–3 Hours',
+    time: 'Twice Daily',
     color: '#001D68',
-    cutoff: 'Order by 2:00 PM',
+    cutoff: 'AM: 8:30 · PM: 12:30',
     areas: [
       'Chicago (All neighborhoods)', 'Oak Park', 'Berwyn', 'Cicero',
       'Evanston', 'Skokie', 'Lincolnwood', 'Niles', 'Rosemont',
@@ -92,9 +92,9 @@ const localZones = [
   },
   {
     zone: 'Zone 3 - Extended Metro',
-    time: '3–5 Hours',
+    time: 'Same Day',
     color: '#0ea5e9',
-    cutoff: 'Order by 12:00 PM',
+    cutoff: 'Order by 8:45 AM',
     areas: [
       'Des Plaines', 'Palatine', 'Arlington Heights', 'Schaumburg',
       'Elgin', 'Aurora', 'Naperville', 'Bolingbrook', 'Joliet',
@@ -104,43 +104,63 @@ const localZones = [
 ]
 
 const regionalZones = [
-  { state: 'Illinois', coverage: 'Statewide', time: 'Next Business Day', note: 'All IL zip codes covered. Remote areas may require scheduling.' },
-  { state: 'Indiana', coverage: 'Northwest IN', time: 'Same Day / Next Day', note: 'Gary, Hammond, Merrillville, South Bend corridor.' },
-  { state: 'Wisconsin', coverage: 'Southeast WI', time: 'Next Business Day', note: 'Milwaukee, Kenosha, Racine, and surrounding areas.' },
-  { state: 'Iowa', coverage: 'Eastern IA', time: '1–2 Business Days', note: 'Davenport, Iowa City, Cedar Rapids corridor.' },
-  { state: 'Michigan', coverage: 'Southwest MI', time: '1–2 Business Days', note: 'Kalamazoo, Grand Rapids, and Benton Harbor area.' },
+  {
+    state: 'Illinois',
+    coverage: 'Chicago & Surrounding Suburbs',
+    time: 'Same Day / Next Day',
+    cities: ['Chicago', 'Melrose Park', 'Oak Park', 'Evanston', 'Skokie', 'Cicero', 'Berwyn', 'Wilmette', 'Niles', 'Schiller Park'],
+  },
+  {
+    state: 'Indiana',
+    coverage: 'Northwest & Central IN',
+    time: 'Same Day / Next Day',
+    cities: ['Whiting', 'East Chicago', 'Hammond', 'Gary', 'Dyer', 'Highland', 'Griffith', 'Schererville', 'Merrillville'],
+  },
+  {
+    state: 'Wisconsin',
+    coverage: 'Southeast WI',
+    time: 'Next Business Day',
+    cities: ['Kenosha', 'Racine', 'Elkhorn', 'Milwaukee', 'Waukesha', 'Cudahy', 'Brookfield', 'Franklin', 'Big Bend'],
+  },
+  {
+    state: 'Iowa',
+    coverage: 'Eastern IA',
+    time: '1–2 Business Days',
+    cities: ['Silvis', 'Moline', 'Davenport', 'Muscatine', 'West Liberty', 'Iowa City', 'Cedar Rapids', 'Des Moines', 'Marshalltown'],
+  },
+  {
+    state: 'Indiana (Extended)',
+    coverage: 'Central & South IN',
+    time: '1–2 Business Days',
+    cities: ['South Bend', 'Niles', 'Elkhart', 'Lafayette', 'Frankfort', 'Lebanon', 'Indianapolis', 'Carmel', 'Fishers', 'Lawrence', 'Beech Grove', 'Greenwood', 'Plainfield', 'Brownsburg', 'Avon'],
+  },
 ]
 
 const rules = [
   {
     n: '1',
     title: 'Order Cutoff Times',
-    body: 'Local Zone 1 orders must be placed by 4:00 PM for same-day delivery. Zone 2 cutoff is 2:00 PM, Zone 3 by 12:00 PM noon. Orders placed after cutoff are scheduled for the next available route.',
+    body: 'Zone 1 and Zone 2 run twice daily - AM route cutoff is 8:30 AM, PM route cutoff is 12:30 PM. Zone 3 same-day cutoff is 8:45 AM. Orders placed after cutoff are scheduled for the next available route.',
   },
   {
     n: '2',
-    title: 'Minimum Order for Free Delivery',
-    body: 'Free delivery applies to orders of $150 or more for Zone 1 and Zone 2. Zone 3 and regional orders have a minimum of $250 for free delivery. A flat delivery fee applies to orders below minimums.',
-  },
-  {
-    n: '3',
     title: 'Signature & Receiving',
     body: 'A signature is required upon delivery for all orders over $500. Please ensure someone is available to receive and inspect parts at the time of delivery. Damages must be reported immediately.',
   },
   {
-    n: '4',
+    n: '3',
     title: 'Refused or Missed Deliveries',
-    body: 'Refused deliveries are subject to a 20% restocking fee plus return freight charges. If our driver cannot reach you, we will call ahead - a second attempt may incur a redelivery fee.',
+    body: 'Refused deliveries are subject to a 25% restocking fee plus return freight charges. If our driver cannot reach you, we will call ahead - a second attempt may incur a redelivery fee.',
   },
   {
-    n: '5',
+    n: '4',
     title: 'Scheduling & Route Changes',
     body: 'Need to schedule a specific delivery window? Call our dispatch team by 9:00 AM and we will do our best to accommodate. Route changes after dispatch may not always be possible.',
   },
   {
-    n: '6',
+    n: '5',
     title: 'Damaged or Incorrect Parts',
-    body: 'Inspect all parts before signing. Report damage or incorrect items immediately - do not install or modify the part. We will arrange a call tag and replacement at no cost to you.',
+    body: 'Inspect all parts before signing. Report damage or incorrect items immediately - do not install or modify the part. We will issue an RMA and arrange a replacement at no cost to you.',
   },
 ]
 
@@ -240,19 +260,24 @@ export default function DeliveryPage() {
               We ship to 5 surrounding states. Call to confirm coverage for your specific location.
             </p>
           </div>
-          <div className="regional-table">
-            <div className="regional-table__head">
-              <span>State</span>
-              <span>Coverage Area</span>
-              <span>Delivery Time</span>
-              <span>Notes</span>
-            </div>
-            {regionalZones.map(({ state, coverage, time, note }) => (
-              <div key={state} className="regional-table__row">
-                <span className="regional-state">{state}</span>
-                <span>{coverage}</span>
-                <span className="regional-time">{time}</span>
-                <span className="regional-note">{note}</span>
+          <div className="regional-grid">
+            {regionalZones.map(({ state, coverage, time, cities }) => (
+              <div key={state} className="regional-card">
+                <div className="regional-card__head">
+                  <div>
+                    <div className="regional-card__state">{state}</div>
+                    <div className="regional-card__coverage">{coverage}</div>
+                  </div>
+                  <span className="regional-card__time">{time}</span>
+                </div>
+                <div className="regional-card__body">
+                  <div className="regional-card__label">Coverage includes</div>
+                  <div className="regional-card__cities">
+                    {cities.map(city => (
+                      <span key={city} className="regional-card__city">{city}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
           </div>

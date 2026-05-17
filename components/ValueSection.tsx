@@ -6,8 +6,8 @@ const pillars = [
   },
   {
     n: 2,
-    strong: 'Our own 1-hour delivery',
-    text: 'We run our own fleet of trucks and our own drivers across Chicagoland - most orders land in under an hour.',
+    strong: 'Twice-daily delivery',
+    text: 'We run our own fleet of trucks and drivers across Chicagoland - two routes a day so your parts arrive when you need them.',
   },
   {
     n: 3,

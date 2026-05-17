@@ -1,87 +1,89 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 interface Category {
   icon: string
   name: string
   description: string
   tags: string[]
+  img: string
 }
 
 const categories: Category[] = [
   {
-    icon: '🎨', name: 'Paint',
+    icon: '🎨', name: 'Paint', img: '/paints/paint.webp',
     description: 'Basecoats, solid colors, and OEM-matched paint for collision repairs. Available in waterborne and solvent-based formulas for every spray system.',
     tags: ['Basecoat', 'Solid Color', 'OEM Match', 'Waterborne', 'Solvent'],
   },
   {
-    icon: '✨', name: 'Clear Coat',
+    icon: '✨', name: 'Clear Coat', img: '/paints/clear.webp',
     description: 'High-gloss clear coats that protect your finish and deliver showroom shine. Choose from standard, high-build, and fast-dry formulas.',
     tags: ['High-Gloss', 'UV Protection', 'Fast Dry', 'High-Build'],
   },
   {
-    icon: '🪣', name: 'Primer',
+    icon: '🪣', name: 'Primer', img: '/paints/primer.webp',
     description: 'Epoxy, urethane, and self-etching primers for superior adhesion and corrosion resistance on bare metal, plastic, and repaired substrates.',
     tags: ['Epoxy', 'Urethane', 'Self-Etching', 'High-Build', 'Sealer'],
   },
   {
-    icon: '🧪', name: 'Thinners & Reducers',
+    icon: '🧪', name: 'Thinners & Reducers', img: '/paints/reduct.webp',
     description: 'Slow, medium, and fast reducers to dial in viscosity and dry time for any shop environment. Compatible with all major paint systems.',
     tags: ['Slow', 'Medium', 'Fast', 'Temperature-Rated'],
   },
   {
-    icon: '🧴', name: 'Additives & Cleaners',
+    icon: '🧴', name: 'Additives & Cleaners', img: '/paints/additives.webp',
     description: 'Wax and grease removers, fisheye eliminators, flex additives, and hardeners to prep surfaces and perfect your paint chemistry.',
     tags: ['Wax Remover', 'Fisheye Eliminator', 'Flex Additive', 'Hardener'],
   },
   {
-    icon: '🔧', name: 'Body Repair & Fillers',
+    icon: '🔧', name: 'Body Repair & Fillers', img: '/paints/repair.webp',
     description: 'Premium body filler, spot putty, and glazing compound for achieving a perfectly smooth substrate before primer and paint.',
     tags: ['Body Filler', 'Spot Putty', 'Glazing Compound', 'Lightweight Filler'],
   },
   {
-    icon: '🩹', name: 'Adhesives & Sealants',
+    icon: '🩹', name: 'Adhesives & Sealants', img: '/paints/adhesives.webp',
     description: 'Panel bond adhesive, seam sealer, and urethane windshield adhesive for structural repairs and waterproof joints.',
     tags: ['Panel Bond', 'Seam Sealer', 'Urethane', 'Structural'],
   },
   {
-    icon: '🔴', name: 'Sandpaper & Abrasives',
+    icon: '🔴', name: 'Sandpaper & Abrasives', img: '/paints/sandpaper.webp',
     description: 'Dry and wet-sand abrasives from 40 to 3000 grit for every stage - stripping, block sanding, scuffing, and final color sanding.',
     tags: ['40–80 Grit', '150–320 Grit', '400–800 Grit', '1000–3000 Grit'],
   },
   {
-    icon: '🎭', name: 'Masking Products',
+    icon: '🎭', name: 'Masking Products', img: '/paints/masking.webp',
     description: 'Fine-line masking tape, automotive masking paper, plastic sheeting, and pre-taped covers to protect every surface during paint.',
     tags: ['Fine-Line Tape', 'Masking Paper', 'Plastic Sheeting', 'Pre-Taped'],
   },
   {
-    icon: '💨', name: 'Spray Products',
+    icon: '💨', name: 'Spray Products', img: '/paints/spray.webp',
     description: 'Aerosol sprays for touch-ups, underbody protection, and quick repairs - ready-to-spray with no gun required.',
     tags: ['Touch-Up', 'Aerosol', 'Ready-to-Spray', 'Underbody'],
   },
   {
-    icon: '🎯', name: 'Toners',
+    icon: '🎯', name: 'Toners', img: '/paints/toners.webp',
     description: 'Intermix toners for custom color blending and OEM color matching. Compatible with waterborne and solvent mixing systems.',
     tags: ['Intermix', 'Waterborne', 'Solvent', 'Custom Match'],
   },
   {
-    icon: '🛡️', name: 'Undercoating',
+    icon: '🛡️', name: 'Undercoating', img: '/paints/undercoating.webp',
     description: 'Rubberized and asphalt-based undercoating for rust prevention, sound deadening, and underbody protection on any vehicle.',
     tags: ['Rubberized', 'Asphalt', 'Sound Deadening', 'Rust Prevention'],
   },
   {
-    icon: '🪄', name: 'Detail Products',
+    icon: '🪄', name: 'Detail Products', img: '/paints/detail.webp',
     description: 'Compound, polish, wax, clay bars, and interior dressings to finish and protect repaired vehicles before delivery.',
     tags: ['Compound', 'Polish', 'Wax', 'Clay Bar', 'Interior'],
   },
   {
-    icon: '🔫', name: 'Tools & Equipment',
+    icon: '🔫', name: 'Tools & Equipment', img: '/paints/tools.webp',
     description: 'Spray guns, mixing cups, stir sticks, strainers, tack cloths, and safety gear to keep your shop equipped and productive.',
     tags: ['Spray Guns', 'Mixing Cups', 'Strainers', 'Tack Cloths', 'Safety'],
   },
   {
-    icon: '📦', name: 'Supply & Misc.',
+    icon: '📦', name: 'Supply & Misc.', img: '/paints/miscellaneous.webp',
     description: 'Shop consumables and specialty products - everything from mixing sticks and gloves to paint suits and respirator cartridges.',
     tags: ['Consumables', 'PPE', 'Gloves', 'Respirators', 'Paint Suits'],
   },
@@ -147,20 +149,25 @@ export default function PaintsClient() {
     <>
       {/* Category grid */}
       <div className="paint-cats">
-        {categories.map(({ icon, name, description, tags }) => (
+        {categories.map(({ icon, name, description, tags, img }) => (
           <div key={name} className="paint-cat">
-            <div className="paint-cat__head">
-              <span className="paint-cat__icon">{icon}</span>
-              <h3>{name}</h3>
+            <div className="paint-cat__img">
+              <Image src={img} alt={name} width={400} height={220} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <p>{description}</p>
-            <div className="paint-cat__tags">
-              {tags.map(t => <span key={t} className="paint-tag">{t}</span>)}
+            <div className="paint-cat__body">
+              <div className="paint-cat__head">
+                <span className="paint-cat__icon">{icon}</span>
+                <h3>{name}</h3>
+              </div>
+              <p>{description}</p>
+              <div className="paint-cat__tags">
+                {tags.map(t => <span key={t} className="paint-tag">{t}</span>)}
+              </div>
+              <button className="paint-cat__cta" onClick={() => openModal(name)}>
+                Inquire about {name}
+                <svg className="arrow" width="13" height="13"><use href="#i-arrow-sm" /></svg>
+              </button>
             </div>
-            <button className="paint-cat__cta" onClick={() => openModal(name)}>
-              Inquire about {name}
-              <svg className="arrow" width="13" height="13"><use href="#i-arrow-sm" /></svg>
-            </button>
           </div>
         ))}
       </div>

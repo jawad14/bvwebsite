@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import { recipients } from '@/lib/email-config'
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,7 +26,7 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    const recipient = process.env.APPLY_TO_EMAIL || 'info@bestvaluepart.com'
+    const recipient = recipients.inquiry
 
     await transporter.sendMail({
       from:    `"BV Paint Inquiries" <${process.env.SMTP_USER}>`,
