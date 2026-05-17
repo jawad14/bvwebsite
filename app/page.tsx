@@ -14,6 +14,18 @@ import JsonLd from '@/components/JsonLd'
 const BASE = 'https://www.bestvaluepart.com'
 
 export const metadata: Metadata = {
+  title: 'Best Value Auto Body Supply | Wholesale Collision Parts — Chicago, IL',
+  description:
+    'Chicago\'s leading wholesale auto body parts supplier. OEM-quality bumpers, headlights, fenders, mirrors & collision parts. Twice-daily delivery across Chicagoland — Oak Park, Cicero, Berwyn, Evanston, Schaumburg & more. Call (773) 762-1000.',
+  keywords: [
+    'wholesale auto body parts Chicago', 'collision parts supplier Chicagoland',
+    'OEM quality aftermarket parts Illinois', 'auto body parts Oak Park', 'auto body parts Cicero',
+    'auto body parts Berwyn', 'auto body parts Evanston', 'auto body parts Schaumburg',
+    'bumper covers Chicago wholesale', 'headlights fenders mirrors Chicago',
+    'same day auto parts delivery Chicago', 'body shop supply Melrose Park Illinois',
+    'CAPA certified parts Chicago', 'NSF certified collision parts',
+    'auto body supply shop Chicago metro', 'collision repair parts Illinois',
+  ],
   alternates: { canonical: BASE },
   openGraph: {
     url: BASE,

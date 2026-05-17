@@ -9,10 +9,17 @@ export const metadata: Metadata = {
   description:
     'Browse 8,000+ OEM-quality auto body parts — bumpers, headlights, fenders, mirrors, grilles, hoods, A/C condensers, and more. Same-day delivery across the Chicago metro. Call (773) 762-1000.',
   keywords: [
-    'auto body parts Chicago', 'bumper covers Chicago', 'headlight assemblies Illinois',
-    'fender replacement parts', 'OEM quality aftermarket parts', 'collision parts Melrose Park',
-    'side mirrors wholesale', 'grille replacement Chicago', 'auto hood replacement',
-    'A/C condenser parts', 'same-day auto parts delivery', 'wholesale collision parts Illinois',
+    'auto body parts Chicago', 'wholesale collision parts Chicagoland',
+    'bumper covers Chicago', 'aftermarket bumpers Illinois', 'bumper replacement Oak Park',
+    'headlight assemblies Illinois', 'headlight replacement Cicero', 'tail lights Chicago',
+    'fender replacement Chicago', 'fenders Berwyn', 'hoods panels Illinois',
+    'side mirrors wholesale Chicago', 'grille replacement Schaumburg', 'fog lights Chicago',
+    'A/C condenser parts Illinois', 'radiator fan Chicago', 'splash shields Illinois',
+    'OEM quality aftermarket parts Chicago', 'collision parts Melrose Park',
+    'CAPA certified bumpers Illinois', 'NSF certified headlights Chicago',
+    'auto body parts Evanston', 'auto body parts Aurora', 'auto body parts Naperville',
+    'auto body parts Joliet', 'same-day auto parts delivery Chicagoland',
+    'collision repair parts supplier Illinois', '8000 auto body parts in stock',
   ],
   alternates: { canonical: `${BASE}/parts` },
   openGraph: {

@@ -9,9 +9,10 @@ export const metadata: Metadata = {
   description:
     'Answers to common questions about aftermarket vs OEM parts, CAPA & NSF certification, Partlink numbers, warranties, and how to order from Best Value Auto Body Supply in Melrose Park, IL.',
   keywords: [
-    'aftermarket parts FAQ', 'OEM parts definition', 'CAPA certified parts explained',
-    'NSF certified auto parts', 'Partlink number', 'auto parts warranty', 'collision parts questions',
-    'Best Value Auto Body FAQ',
+    'aftermarket parts FAQ', 'OEM parts definition Chicago', 'CAPA certified parts explained',
+    'NSF certified auto parts Illinois', 'Partlink number', 'auto parts warranty Illinois',
+    'collision parts questions Chicago', 'wholesale auto parts FAQ Chicagoland',
+    'auto body parts supplier FAQ Melrose Park', 'same day parts delivery FAQ Chicago',
   ],
   alternates: { canonical: `${BASE}/faq` },
   openGraph: {
@@ -58,12 +59,22 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'What is the warranty on the parts?',
-      acceptedAnswer: { '@type': 'Answer', text: 'All merchandise sold by Best Value Auto Body Supply is subject only to the manufacturer\'s warranty and conditions, if any, and is subject to submission to the manufacturer for inspection and approval for repair or replacement of merchandise. All other accessories carry a 30-day warranty; light bulbs carry a 90-day warranty.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'All merchandise sold by Best Value Auto Body Supply is subject only to the manufacturer\'s warranty. Radiators and A/C condensers carry a 1-year warranty. Radiator fans, A/C fan motors, all lights, and mirror glass carry a 6-month warranty. Black and chrome steel bumpers carry a 1-year warranty against rust. Light bulbs, mirrors, and fans carry a 6-month warranty from the date of delivery.' },
     },
     {
       '@type': 'Question',
       name: 'Do the parts come with hardware like nuts, screws, bolts and brackets?',
       acceptedAnswer: { '@type': 'Answer', text: 'Our parts do not come with any accessories or hardware. We highly recommend reusing any accessories from the old parts that are not damaged. If you do need installation hardware, your local dealership, hardware store, or auto parts store will typically have what you need.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you deliver auto body parts to the Chicago suburbs?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. Best Value Auto Body Supply runs twice-daily delivery routes covering the entire Chicago metro area including Oak Park, Berwyn, Cicero, Evanston, Skokie, Schaumburg, Aurora, Naperville, Joliet, Bolingbrook, Des Plaines, Elgin, and many more. Same-day delivery is available for orders placed before cutoff times.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I open a wholesale account for my body shop?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Body shops, dealerships, and collision repair centers can apply for a wholesale account at bestvaluepart.com/register. Once approved, you will receive wholesale pricing, a dedicated sales representative, and access to our full catalog of 8,000+ OEM-quality collision parts with twice-daily delivery across Chicagoland.' },
     },
   ],
 }

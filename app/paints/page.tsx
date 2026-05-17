@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   keywords: [
     'automotive paint Chicago', 'car paint supplies Illinois', 'clear coat Chicago',
     'automotive primer Melrose Park', 'body filler Chicago', 'auto refinishing supplies Illinois',
-    'collision paint products', 'automotive paint wholesale Chicago',
+    'collision paint products Chicagoland', 'automotive paint wholesale Chicago',
+    'auto paint supplier Oak Park', 'refinishing supplies Schaumburg', 'primer Chicago body shop',
+    'sandpaper abrasives auto body Illinois', 'masking products collision repair Chicago',
+    'body shop paint supply same day delivery Chicago', 'urethane primer Chicago',
+    'automotive paint near me Chicago', 'wholesale paint supplies Chicagoland',
   ],
   alternates: { canonical: 'https://www.bestvaluepart.com/paints' },
   openGraph: {

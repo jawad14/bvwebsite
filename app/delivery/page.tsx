@@ -5,13 +5,18 @@ import JsonLd from '@/components/JsonLd'
 const BASE = 'https://www.bestvaluepart.com'
 
 export const metadata: Metadata = {
-  title: 'Same-Day Parts Delivery — Zones & Schedule',
+  title: 'Same-Day Auto Body Parts Delivery — Chicago, IL & Suburbs',
   description:
-    'Same-day auto body parts delivery across the Chicago metro — Melrose Park, Chicago, Evanston, Naperville & more. Zone 1 delivery in 1–2 hours. 5-state regional coverage. Call (773) 762-1000.',
+    'Twice-daily auto body parts delivery across Chicagoland — Oak Park, Cicero, Berwyn, Evanston, Schaumburg, Aurora, Naperville, Joliet & more. Same-day for most Chicago metro orders. 5-state regional coverage. Call (773) 762-1000.',
   keywords: [
     'same day auto parts delivery Chicago', 'auto body parts delivery Melrose Park',
     'collision parts delivery Illinois', 'parts delivery Naperville', 'parts delivery Evanston',
-    'wholesale parts delivery Chicago metro', 'auto parts delivery same day', 'delivery zones Chicago',
+    'parts delivery Oak Park', 'parts delivery Cicero', 'parts delivery Berwyn',
+    'parts delivery Schaumburg', 'parts delivery Aurora', 'parts delivery Joliet',
+    'parts delivery Bolingbrook', 'parts delivery Elgin', 'parts delivery Des Plaines',
+    'wholesale parts delivery Chicagoland', 'auto parts delivery same day Illinois',
+    'collision parts delivery service Chicago metro', 'body shop parts delivery Illinois',
+    'twice daily auto parts delivery Chicago', 'delivery zones Chicago suburbs',
   ],
   alternates: { canonical: `${BASE}/delivery` },
   openGraph: {
