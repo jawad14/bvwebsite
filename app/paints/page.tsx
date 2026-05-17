@@ -195,9 +195,10 @@ export default function PaintsPage() {
   return (
     <>
       {/* Banner */}
-      <div className="page-banner">
+      <div className="page-banner page-banner--paints">
+        <div className="page-banner__bg-img" />
         <div className="container page-banner__inner">
-          <span className="eyebrow" style={{ color: '#FFB3B6' }}>Refinishing Supplies</span>
+          <span className="eyebrow" style={{ color: '#fbbf24' }}>Refinishing Supplies</span>
           <h1>Automotive Paints &amp; Supplies</h1>
           <p>
             Everything your shop needs to go from bare metal to showroom shine - paint, primer,
@@ -216,23 +217,6 @@ export default function PaintsPage() {
           </div>
         </div>
       </div>
-
-      {/* Highlights strip */}
-      <section className="section section--soft">
-        <div className="container">
-          <div className="paint-highlights">
-            {highlights.map(({ icon, title, body }) => (
-              <div key={title} className="paint-highlight">
-                <span className="paint-highlight__icon">{icon}</span>
-                <div>
-                  <h4>{title}</h4>
-                  <p>{body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Paint Categories */}
       <section className="section">

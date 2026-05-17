@@ -107,29 +107,6 @@ export default function RegisterPage() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="section">
-        <div className="container" style={{ maxWidth: 860 }}>
-          <div className="section__head" style={{ marginBottom: 36 }}>
-            <div>
-              <span className="eyebrow">Process</span>
-              <h2>How It Works</h2>
-            </div>
-          </div>
-          <div className="reg-how">
-            {steps.map(({ n, title, body }) => (
-              <div key={n} className="reg-how__step">
-                <span className="reg-how__num">{n}</span>
-                <div>
-                  <h4>{title}</h4>
-                  <p>{body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Form */}
       <section className="section section--soft" id="apply">
         <div className="container" style={{ maxWidth: 820 }}>
