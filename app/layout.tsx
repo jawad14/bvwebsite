@@ -72,7 +72,15 @@ export const metadata: Metadata = {
     description: 'Same-day delivery of OEM-quality auto body parts across Chicago. Call (773) 762-1000.',
     images: ['/bv-logo.webp'],
   },
-  icons: { icon: '/favicon.svg', shortcut: '/favicon.svg' },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+      { url: '/favicon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon-192.png',
+  },
   verification: {
     google: 'add-your-google-search-console-token-here',
   },
