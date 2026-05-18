@@ -29,7 +29,7 @@ const returnItems = [
 
 const warrantyItems = [
   'All merchandise is subject only to the manufacturer\'s warranty terms and conditions.',
-  'Light bulbs, mirrors, and fans carry a 6-month warranty from the date of delivery.',
+  'Lights, mirrors, and fans carry a 6-month warranty from the date of delivery.',
   'Defects resulting from customer abuse, negligence, or mishandling void all warranty coverage.',
   'The customer is responsible for all shipping costs associated with warranty claims.',
   'No labor costs or inconvenience claims are covered under any warranty.',
