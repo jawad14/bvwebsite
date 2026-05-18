@@ -92,7 +92,7 @@ const localZones = [
     areas: [
       'Chicago (All neighborhoods)', 'Oak Park', 'Berwyn', 'Cicero',
       'Evanston', 'Skokie', 'Lincolnwood', 'Niles', 'Rosemont',
-      'Schiller Park', 'Bensenville', 'Wood Dale', 'Addison',
+      'Schiller Park', 'Des Plaines',
     ],
   },
   {
@@ -101,9 +101,10 @@ const localZones = [
     color: '#0ea5e9',
     cutoff: 'Order by 8:45 AM',
     areas: [
-      'Des Plaines', 'Palatine', 'Arlington Heights', 'Schaumburg',
+      'Palatine', 'Arlington Heights', 'Schaumburg',
       'Elgin', 'Aurora', 'Naperville', 'Bolingbrook', 'Joliet',
       'Orland Park', 'Tinley Park', 'Homewood', 'Harvey', 'Calumet City',
+      'Bensenville', 'Wood Dale', 'Addison',
     ],
   },
 ]

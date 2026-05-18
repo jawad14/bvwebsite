@@ -4,7 +4,7 @@ const cats = [
   { img: '/parts/bumper.webp',        name: 'Bumpers & Bumper Covers',   count: '1,200+ SKUs', desc: 'Front & rear bumper covers, reinforcements, and complete assemblies.' },
   { img: '/parts/headlights.webp',    name: 'Headlights & Tail Lights',  count: '900+ SKUs',   desc: 'OEM-spec headlight assemblies, tail lamp units, and replacement lenses.' },
   { img: '/parts/corner-lights.webp', name: 'Corner & Parking Lights',   count: '400+ SKUs',   desc: 'Corner lights, side markers, and parking lamp assemblies for all makes.' },
-  { img: '/parts/fog-light.webp',     name: 'Fog Lights',                count: '350+ SKUs',   desc: 'Direct-fit fog lamp assemblies and housings - front and rear.' },
+  { img: '/parts/fog-light.webp',     name: 'Fog Lights',                count: '350+ SKUs',   desc: 'Direct-fit fog lamp assemblies and housings.' },
   { img: '/parts/front-bonnet.webp',  name: 'Hoods & Panels',            count: '600+ SKUs',   desc: 'Replacement hoods, cowl panels, and hood hinges.' },
   { img: '/parts/grill.webp',         name: 'Grilles & Grille Guards',   count: '500+ SKUs',   desc: 'Upper & lower grilles, grille inserts, and overlay kits.' },
   { img: '/parts/side-mirror.webp',   name: 'Mirrors',                   count: '700+ SKUs',   desc: 'Power, manual, heated, and tow mirrors for cars and trucks.' },

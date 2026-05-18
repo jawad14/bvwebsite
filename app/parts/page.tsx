@@ -88,7 +88,7 @@ const categories = [
     name: 'Fog Lights',
     img: '/parts/fog-light.webp',
     count: '350+ SKUs',
-    desc: 'Direct-fit fog lamp assemblies and housings - front and rear.',
+    desc: 'Direct-fit fog lamp assemblies and housings.',
   },
   {
     name: 'Hoods & Panels',
