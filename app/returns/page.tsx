@@ -20,9 +20,9 @@ const returnItems = [
   'All returns and exchanges must be notified to and authorized by a sales representative within 15 days of delivery, for no charge or fee.',
   'Products that have been worked on cannot be returned.',
   'No returns will be accepted after 1 year of receipt.',
-  'A 25% restocking fee applies to all returns, covering shipping, handling, and processing costs.',
+  'A 20% to 50% restocking fee applies to all returns after 15 days of delivery, covering shipping, handling, and processing costs.',
   'Special order items may be returned with a 25% restocking fee.',
-  'The original invoice or pick ticket must accompany every return.',
+  'The original customer\'s invoice copy must accompany all walk-in returns.',
   'Parts must be in new, resalable condition and in their original packaging.',
   'Painted or otherwise altered parts are not eligible for return.',
 ]
