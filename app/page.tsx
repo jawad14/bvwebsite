@@ -50,7 +50,7 @@ export default function Home() {
       <TrustStrip />
       <Categories />
       <PromoSplit />
-      <FeaturedProducts />
+      {/* <FeaturedProducts /> */}
       <VehicleTypes />
       <ValueSection />
       <Reviews />
