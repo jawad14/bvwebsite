@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Jost, Inter } from 'next/font/google'
 import './globals.css'
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -197,6 +198,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
         <Analytics />
+        <Script src="https://www.google.com/recaptcha/api.js?render=6LcON_IsAAAAAGJ-Fl79iBcd6PTsYtizhaGC7aam" strategy="lazyOnload" />
       </body>
     </html>
   )
