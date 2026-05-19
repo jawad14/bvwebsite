@@ -85,7 +85,7 @@ export default function Footer() {
           <div className="pays">
             <span>EST. 2001</span>
             <span>25 YRS</span>
-            <span>1-HR DELIVERY</span>
+            <span>TWICE A DAY</span>
             <span>BEST PRICE</span>
           </div>
         </div>

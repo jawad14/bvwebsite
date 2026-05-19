@@ -113,7 +113,7 @@ const regionalZones = [
   {
     state: 'Illinois',
     coverage: 'Chicago & Surrounding Suburbs',
-    time: 'Same Day / Next Day',
+    time: 'Twice a Day',
     cities: ['Chicago', 'Melrose Park', 'Oak Park', 'Evanston', 'Skokie', 'Cicero', 'Berwyn', 'Wilmette', 'Niles', 'Schiller Park'],
   },
   {
