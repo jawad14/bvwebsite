@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Jost, Inter } from 'next/font/google'
 import './globals.css'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Analytics } from '@vercel/analytics/next'
 import SvgSprite from '@/components/SvgSprite'
 import Topbar from '@/components/Topbar'
 import Header from '@/components/Header'
@@ -195,6 +196,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
+        <Analytics />
       </body>
     </html>
   )
