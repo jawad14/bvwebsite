@@ -2,14 +2,27 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (cb: () => void) => void
+      execute: (siteKey: string, opts: { action: string }) => Promise<string>
+    }
+  }
+}
+
+const RECAPTCHA_SITE_KEY = '6LcON_IsAAAAAGJ-Fl79iBcd6PTsYtizhaGC7aam'
+
 export default function QuoteModal() {
   const [open, setOpen] = useState(false)
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState('')
   const btnRef = useRef<HTMLButtonElement>(null)
   const nameRef = useRef<HTMLInputElement>(null)
+  const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
-    function onOpen() { setOpen(true); setSent(false) }
+    function onOpen() { setOpen(true); setSent(false); setError('') }
     window.addEventListener('bv:quote', onOpen)
     return () => window.removeEventListener('bv:quote', onOpen)
   }, [])
@@ -26,14 +39,55 @@ export default function QuoteModal() {
     return () => document.removeEventListener('keydown', onKey)
   }, [])
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!btnRef.current) return
-    btnRef.current.textContent = 'Sending…'
-    btnRef.current.disabled = true
-    setTimeout(() => {
+    if (!btnRef.current || !formRef.current) return
+    setError('')
+
+    const form = formRef.current
+    const btn = btnRef.current
+    btn.textContent = 'Verifying…'
+    btn.disabled = true
+
+    try {
+      // Get reCAPTCHA token
+      const token = await new Promise<string>((resolve, reject) => {
+        if (!window.grecaptcha) { reject(new Error('reCAPTCHA not loaded')); return }
+        window.grecaptcha.ready(() => {
+          window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'quote' })
+            .then(resolve).catch(reject)
+        })
+      })
+
+      btn.textContent = 'Sending…'
+
+      const formData = new FormData(form)
+      const res = await fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          phone: formData.get('phone'),
+          email: formData.get('email'),
+          vehicle: formData.get('vehicle'),
+          parts: formData.get('parts'),
+          notes: formData.get('notes'),
+          website: formData.get('website'),
+          recaptchaToken: token,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Submission failed')
+      }
+
       setSent(true)
-    }, 1000)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+      btn.textContent = 'Send Quote Request'
+      btn.disabled = false
+    }
   }
 
   if (!open) return null
@@ -82,28 +136,29 @@ export default function QuoteModal() {
               <p className="qmodal__sub">
                 No checkout, no sign-up. Send us the details - a real specialist will call or text back, usually within minutes.
               </p>
-              <form className="qmodal__form" onSubmit={handleSubmit}>
+              <form className="qmodal__form" ref={formRef} onSubmit={handleSubmit}>
                 <div className="qmodal__row">
                   <div className="field">
                     <label>Your Name *</label>
-                    <input ref={nameRef} type="text" placeholder="John Smith" required />
+                    <input ref={nameRef} name="name" type="text" placeholder="John Smith" required />
                   </div>
                   <div className="field">
                     <label>Phone Number *</label>
-                    <input type="tel" placeholder="(773) 000-0000" required />
+                    <input name="phone" type="tel" placeholder="(773) 000-0000" required />
                   </div>
                 </div>
                 <div className="field">
                   <label>Email Address</label>
-                  <input type="email" placeholder="you@example.com" />
+                  <input name="email" type="email" placeholder="you@example.com" />
                 </div>
                 <div className="field">
                   <label>Vehicle (Year / Make / Model) *</label>
-                  <input type="text" placeholder="e.g. 2020 Toyota Camry" required />
+                  <input name="vehicle" type="text" placeholder="e.g. 2020 Toyota Camry" required />
                 </div>
                 <div className="field">
                   <label>Parts Needed *</label>
                   <textarea
+                    name="parts"
                     placeholder="e.g. Front bumper cover, left headlight assembly…"
                     rows={3}
                     required
@@ -112,8 +167,11 @@ export default function QuoteModal() {
                 </div>
                 <div className="field">
                   <label>Additional Notes</label>
-                  <textarea placeholder="Paint code, OEM only, urgency, etc." rows={2} style={{ resize: 'vertical' }} />
+                  <textarea name="notes" placeholder="Paint code, OEM only, urgency, etc." rows={2} style={{ resize: 'vertical' }} />
                 </div>
+                {/* Honeypot */}
+                <input type="text" name="website" autoComplete="off" tabIndex={-1} style={{ position: 'absolute', left: -9999, opacity: 0, height: 0, width: 0 }} />
+                {error && <p style={{ color: '#ff6b6b', fontSize: 14, margin: '0 0 10px' }}>{error}</p>}
                 <button className="btn btn--primary btn--lg" style={{ width: '100%', justifyContent: 'center' }} type="submit" ref={btnRef}>
                   Send Quote Request
                   <svg className="arrow" width="16" height="16"><use href="#i-arrow-sm" /></svg>
