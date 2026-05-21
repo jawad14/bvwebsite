@@ -43,7 +43,11 @@ export default function Hero() {
           <div className="ring ring--2" />
           <div className="ring ring--3" />
           <div className="car">
-            <svg><use href="#hero-car" /></svg>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/hero-collision-parts.png"
+              alt="OEM-quality collision parts – bumper, hood, headlight, mirror and fender"
+            />
           </div>
 
           <div className="float float--a">
