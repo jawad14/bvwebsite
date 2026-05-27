@@ -10,7 +10,7 @@ export default function Hero() {
             Collision parts <span className="accent">that fit right</span> the first time.
           </h1>
           <p className="hero__sub">
-            OEM-quality bumpers, headlights, fenders and body parts at the best prices in the
+            ALL AFTERMARKET/OEM COMPARABLE QUALITY bumpers, headlights, fenders and body parts at the best prices in the
             industry - backed by our own twice-daily delivery fleet and a real parts specialist on every call.
           </p>
 
