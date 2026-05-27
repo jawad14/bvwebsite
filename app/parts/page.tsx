@@ -215,7 +215,6 @@ export default function PartsPage() {
       <div className="parts-stats">
         <div className="container parts-stats__row">
           {[
-            { val: '8,000+', label: 'Parts in Stock' },
             { val: '500+', label: 'Vehicle Makes & Models' },
             { val: '1-Hour', label: 'Local Delivery' },
             { val: '25 Yrs', label: 'Industry Experience' },
