@@ -63,16 +63,10 @@ export default function CtaBanner() {
 
       setSent(true)
       form.reset()
-      btn.textContent = '✓ Quote on the way'
-      setTimeout(() => {
-        btn.textContent = 'Send quote request'
-        btn.disabled = false
-        setSent(false)
-      }, 3000)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
-      btn.textContent = 'Send quote request'
-      btn.disabled = false
+      btnRef.current!.textContent = 'Send quote request'
+      btnRef.current!.disabled = false
     }
   }
 
@@ -80,45 +74,100 @@ export default function CtaBanner() {
     <section className="section">
       <div className="container">
         <div className="cta-banner" id="contact">
-          <div>
+          <div className="cta-banner__left">
             <span className="chip" style={{ background: 'rgba(255,255,255,.16)', color: '#fff' }}>
               REQUEST A QUOTE
             </span>
             <h2 style={{ marginTop: 14 }}>
-              Tell us the vehicle and the damage. We&apos;ll quote you the best price.
+              Tell us the vehicle &amp; the damage.<br />
+              We&apos;ll quote you the <span style={{ color: 'var(--bv-red)' }}>best price</span>.
             </h2>
             <p>
-              No checkout, no sign-up. Send us the year, make, model and what you&apos;re looking
-              for - a real specialist will text or call back, usually within minutes.
+              No checkout, no sign-up. Send us the year, make, model and what
+              you&apos;re looking for&mdash;a real specialist will text or call
+              back, usually within minutes.
             </p>
-            <form className="cta-banner__form" ref={formRef} onSubmit={handleSubmit}>
-              <input name="name" type="text" placeholder="Your name" required />
-              <input name="phone" type="tel" placeholder="Phone (we'll call back)" required />
-              <input name="email" type="email" placeholder="Email address" />
-              <input name="vehicle" type="text" placeholder="Vehicle (Year / Make / Model)" required />
-              <input className="full" name="parts" type="text" placeholder="Parts needed" required />
-              <textarea className="full" name="notes" placeholder="Additional notes (optional)" rows={2} style={{ resize: 'vertical' }} />
-              {/* Honeypot */}
-              <input type="text" name="website" autoComplete="off" tabIndex={-1} style={{ position: 'absolute', left: -9999, opacity: 0, height: 0, width: 0 }} />
-              {error && <p className="full" style={{ color: '#ff6b6b', fontSize: 14, margin: 0 }}>{error}</p>}
-              <button className="btn btn--primary btn--lg full" type="submit" ref={btnRef}>
-                Send quote request
-              </button>
-            </form>
+
+            <div className="cta-banner__trust">
+              <div className="cta-banner__trust-item">
+                <svg width="18" height="18"><use href="#i-shield" /></svg>
+                <span>Price-match guarantee</span>
+              </div>
+              <div className="cta-banner__trust-item">
+                <svg width="18" height="18"><use href="#i-truck" /></svg>
+                <span>Twice-daily delivery</span>
+              </div>
+              <div className="cta-banner__trust-item">
+                <svg width="18" height="18"><use href="#i-headset" /></svg>
+                <span>Real specialists</span>
+              </div>
+            </div>
           </div>
 
-          <div className="cta-banner__phone">
-            <div>
-              <span style={{ fontSize: 12, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.65)', fontWeight: 700 }}>
-                Prefer to talk?
-              </span>
+          <div className="cta-banner__right">
+            {sent ? (
+              <div className="cta-banner__success">
+                <div className="cta-banner__success-icon">✓</div>
+                <h3>Quote request received!</h3>
+                <p>A parts specialist will reach out shortly&mdash;usually within minutes.</p>
+                <button
+                  className="btn btn--ghost-light btn--lg"
+                  type="button"
+                  onClick={() => {
+                    setSent(false)
+                    if (btnRef.current) {
+                      btnRef.current.textContent = 'Send quote request'
+                      btnRef.current.disabled = false
+                    }
+                  }}
+                >
+                  Submit another request
+                </button>
+              </div>
+            ) : (
+              <form className="cta-banner__form" ref={formRef} onSubmit={handleSubmit}>
+                <div className="cta-banner__form-group">
+                  <label htmlFor="cta-name">Your info</label>
+                  <div className="cta-banner__form-row">
+                    <input id="cta-name" name="name" type="text" placeholder="Full name" required />
+                    <input name="phone" type="tel" placeholder="Phone number" required />
+                  </div>
+                  <input name="email" type="email" placeholder="Email (optional)" />
+                </div>
+
+                <div className="cta-banner__form-group">
+                  <label htmlFor="cta-vehicle">Vehicle &amp; parts</label>
+                  <input id="cta-vehicle" name="vehicle" type="text" placeholder="Year / Make / Model  (e.g. 2019 Honda Accord)" required />
+                  <input name="parts" type="text" placeholder="Parts needed  (e.g. front bumper, headlight)" required />
+                  <textarea name="notes" placeholder="Additional details (optional)" rows={2} />
+                </div>
+
+                {/* Honeypot */}
+                <input type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: -9999, opacity: 0, height: 0, width: 0 }} />
+
+                {error && <p className="cta-banner__error">{error}</p>}
+
+                <button className="btn btn--primary btn--lg" type="submit" ref={btnRef}>
+                  <svg width="18" height="18"><use href="#i-arrow" /></svg>
+                  Send quote request
+                </button>
+
+                <p className="cta-banner__fine">
+                  We&apos;ll only use your info to respond to this request. No spam, ever.
+                </p>
+              </form>
+            )}
+
+            <div className="cta-banner__divider">
+              <span>or call us directly</span>
             </div>
-            <a className="pn" href="tel:17737621000" style={{ marginTop: 8 }}>
-              <svg><use href="#i-phone" /></svg> (773) 762-1000
-            </a>
-            <small>
-              The industry&apos;s largest call center<br />Mon–Fri 8 AM–7 PM CST · Sat 9–4
-            </small>
+
+            <div className="cta-banner__phone">
+              <a className="pn" href="tel:17737621000">
+                <svg><use href="#i-phone" /></svg> (773) 762-1000
+              </a>
+              <small>Mon–Fri 8 AM – 7 PM CST · Sat 9 – 4</small>
+            </div>
           </div>
         </div>
       </div>
