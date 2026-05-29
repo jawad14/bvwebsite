@@ -183,7 +183,7 @@ export default function PartsPage() {
             <h1>Shop All Auto Body Parts</h1>
             <p>
               Over 8,000 SKUs in stock - bumpers, lights, fenders, mirrors, grilles, and more.
-              All OEM-spec quality at honest prices, with same-day delivery across the Chicago metro.
+              All aftermarket/OEM comparable quality at honest prices, with same-day delivery across the Chicago metro.
             </p>
             <div className="parts-hero__actions">
               <a className="btn btn--primary btn--lg" href="tel:17737621000">

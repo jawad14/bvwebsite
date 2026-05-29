@@ -111,7 +111,7 @@ export default function ChatBot() {
       addBot(`Checking availability for a **${partName}** on a **${text}**...`, undefined, 600)
       setTimeout(() => {
         addBot(
-          `✅ Great news! We very likely carry that part in stock. Our inventory covers 500+ makes and models with OEM-quality parts at honest prices.\n\nTo confirm fitment and get your best price, call or request a quote now:`,
+          `✅ Great news! We very likely carry that part in stock. Our inventory covers 500+ makes and models with aftermarket/OEM comparable quality parts at honest prices.\n\nTo confirm fitment and get your best price, call or request a quote now:`,
           ['📞 Call (773) 762-1000', '💬 Request a Quote', '🔍 Find Another Part'],
           1800,
         )

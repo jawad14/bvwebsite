@@ -11,7 +11,7 @@ export default function Footer() {
             </a>
             <p>
               Best Value Auto Body Supply, Inc. - supplying collision repair shops, mechanics and
-              drivers with OEM-quality parts at honest prices since 2001. 25 years of trust, our
+              drivers with aftermarket/OEM comparable quality parts at honest prices since 2001. 25 years of trust, our
               own delivery fleet, and the industry&apos;s largest call center.
             </p>
             <div className="social">
