@@ -138,7 +138,7 @@ const regionalZones = [
     state: 'Indiana (Extended)',
     coverage: 'Central & South IN',
     time: '1 Business Day',
-    cities: ['South Bend', 'Niles', 'Elkhart', 'Lafayette', 'Frankfort', 'Lebanon', 'Indianapolis', 'Carmel', 'Fishers', 'Lawrence', 'Beech Grove', 'Greenwood', 'Plainfield', 'Brownsburg', 'Avon'],
+    cities: ['South Bend', 'Niles', 'Elkhart', 'Lafayette', 'Frankfort', 'Lebanon', 'Indianapolis', 'Carmel', 'Fishers', 'Lawrence', 'Beech Grove', 'Greenwood', 'Plainfield', 'Brownsburg', 'Avon', 'Valparaiso', 'Michigan City', 'La Porte', 'Kingsbury', 'Knox', 'Plymouth'],
   },
 ]
 
