@@ -12,7 +12,7 @@ export default function Topbar() {
         </div>
         <div className="topbar__right">
           <span className="topbar__promo">
-            🇺🇸 <strong>25 years</strong> serving collision shops &amp; drivers ·{' '}
+            🇺🇸 <strong>25 years</strong> supplying collision parts ·{' '}
             <strong>Twice-daily local delivery</strong>
           </span>
           <span className="topbar__sep" aria-hidden="true" />

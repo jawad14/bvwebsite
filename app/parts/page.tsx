@@ -216,7 +216,7 @@ export default function PartsPage() {
         <div className="container parts-stats__row">
           {[
             { val: '500+', label: 'Vehicle Makes & Models' },
-            { val: '1-Hour', label: 'Local Delivery' },
+            { val: 'Twice a Day', label: 'Local Delivery' },
             { val: '25 Yrs', label: 'Industry Experience' },
           ].map(({ val, label }) => (
             <div key={label} className="parts-stat">

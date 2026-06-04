@@ -25,6 +25,7 @@ const returnItems = [
   'The original customer\'s invoice copy must accompany all walk-in returns.',
   'Parts must be in new, resalable condition and in their original packaging.',
   'Painted or otherwise altered parts are not eligible for return.',
+  'All parts delivered at a discount are final sale and will not be accepted for return.',
 ]
 
 const warrantyItems = [

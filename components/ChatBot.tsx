@@ -89,7 +89,7 @@ export default function ChatBot() {
       } else if (t.includes('delivery') || t.includes('shipping') || t.includes('zone')) {
         setStep('delivery')
         addBot(
-          "🚚 We run same-day delivery across the Chicago metro area!\n\n• Zone 1 (Melrose Park area): 1–2 hrs\n• Zone 2 (Chicago & suburbs): 2–3 hrs\n• Zone 3 (Extended metro): 3–5 hrs\n• Regional (IL, IN, WI, IA, MI): Next day\n\nOrder cutoffs vary by zone. Want more details?",
+          "🚚 We run same-day delivery across the Chicago metro area!\n\n**Local Zones:**\n• Zone 1 (Melrose Park & immediate area): Twice Daily — cutoff AM 8:30 / PM 12:30\n• Zone 2 (Chicago & inner suburbs): Twice Daily — cutoff AM 8:30 / PM 12:30\n• Zone 3 (Extended metro): Same Day — order by 8:45 AM\n\n**Regional:**\n• Indiana (NW & Central IN): Same Day / Next Day\n• Indiana (Central & South IN): 1 Business Day\n• Wisconsin (Southeast WI): Next Business Day\n• Iowa (Eastern IA): 1–2 Business Days\n\nWant more details?",
           ['📦 More Delivery Info', '📞 Talk to a Rep', '🔍 Find a Part'],
         )
       } else if (t.includes('rep') || t.includes('call') || t.includes('talk') || t.includes('human') || t.includes('person')) {
@@ -126,7 +126,7 @@ export default function ChatBot() {
       )
     } else if (step === 'delivery') {
       if (t.includes('more') || t.includes('detail') || t.includes('info')) {
-        addBot("For full delivery zone maps and policies, visit our Delivery page. Same-day cutoffs: Zone 1 by 4 PM, Zone 2 by 2 PM, Zone 3 by 12 PM noon.",
+        addBot("For full delivery zone maps and policies, visit our Delivery page.\n\nCutoffs: Zone 1 & 2 — AM route by 8:30 AM, PM route by 12:30 PM. Zone 3 same-day by 8:45 AM. Orders after cutoff go on the next available route.",
           ['🌐 View Delivery Page', '📞 Talk to a Rep', '🔍 Find a Part'])
       } else {
         routeFallback(t)
