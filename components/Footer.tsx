@@ -88,6 +88,9 @@ export default function Footer() {
             <span>TWICE A DAY</span>
             <span>BEST PRICE</span>
           </div>
+          <span className="footer__powered">
+            Powered by <a href="https://www.keyob.com" target="_blank" rel="noopener noreferrer">Keyob</a>
+          </span>
         </div>
       </div>
     </footer>

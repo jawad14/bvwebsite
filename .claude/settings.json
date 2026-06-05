@@ -27,7 +27,8 @@
       "Bash(curl -s http://localhost:3000/llms.txt)",
       "Bash(pkill -f \"next-server\")",
       "Bash(git commit -m ' *)",
-      "Bash(git pull *)"
+      "Bash(git pull *)",
+      "Bash(vercel --version)"
     ]
   }
 }

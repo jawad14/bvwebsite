@@ -52,6 +52,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Best Value Auto Body Supply', url: BASE }],
   creator: 'Best Value Auto Body Supply',
   publisher: 'Best Value Auto Body Supply, Inc.',
+  generator: 'Keyob — https://www.keyob.com',
   category: 'Automotive Parts & Supplies',
   robots: {
     index: true,
