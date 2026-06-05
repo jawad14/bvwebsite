@@ -91,6 +91,9 @@ export default function Footer() {
           <span className="footer__powered">
             Powered by <a href="https://www.keyob.com" target="_blank" rel="noopener noreferrer">Keyob</a>
           </span>
+          <span className="footer__aleesa">
+            AI by <a href="https://www.aleesa.ai" target="_blank" rel="noopener noreferrer">Aleesa.ai</a>
+          </span>
         </div>
       </div>
     </footer>

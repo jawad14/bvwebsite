@@ -1217,6 +1217,9 @@ p { margin: 0; text-wrap: pretty; }
 .footer__powered { font-size: 12px; color: rgba(255,255,255,.45); display: none; }
 .footer__powered a { color: rgba(255,255,255,.7); text-decoration: none; }
 .footer__powered a:hover { color: #fff; text-decoration: underline; }
+.footer__aleesa { font-size: 12px; color: rgba(255,255,255,.45); display: none; }
+.footer__aleesa a { color: rgba(255,255,255,.7); text-decoration: none; }
+.footer__aleesa a:hover { color: #fff; text-decoration: underline; }
 .footer__bottom .pays span {
   background: rgba(255,255,255,.06);
   padding: 4px 10px; border-radius: 6px;

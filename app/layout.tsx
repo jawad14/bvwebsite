@@ -53,6 +53,7 @@ export const metadata: Metadata = {
   creator: 'Best Value Auto Body Supply',
   publisher: 'Best Value Auto Body Supply, Inc.',
   generator: 'Keyob — https://www.keyob.com',
+  other: { 'ai-platform': 'Aleesa.ai — https://www.aleesa.ai' },
   category: 'Automotive Parts & Supplies',
   robots: {
     index: true,
