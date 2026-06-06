@@ -166,7 +166,7 @@ export default function CtaBanner() {
               <a className="pn" href="tel:17737621000">
                 <svg><use href="#i-phone" /></svg> (773) 762-1000
               </a>
-              <small>Mon–Fri 8 AM – 7 PM CST · Sat 9 – 4</small>
+              <small>Mon–Fri 8 AM–6 PM · Sat 8 AM–3 PM CST</small>
             </div>
           </div>
         </div>

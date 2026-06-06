@@ -95,7 +95,7 @@ export default function ChatBot() {
       } else if (t.includes('rep') || t.includes('call') || t.includes('talk') || t.includes('human') || t.includes('person')) {
         setStep('rep')
         addBot(
-          "I'll connect you with our team! 📞\n\nOur parts specialists are available:\n**Mon–Fri 8 AM – 7 PM CST**\n\nCall us directly at **(773) 762-1000** or click below to request a callback.",
+          "I'll connect you with our team! 📞\n\nOur parts specialists are available:\n**Mon–Fri 8 AM–6 PM · Sat 8 AM–3 PM CST**\n\nCall us directly at **(773) 762-1000** or click below to request a callback.",
           ['📞 Call Now', '✉️ Request a Quote', '🔍 Find a Part'],
         )
       } else {
@@ -133,7 +133,7 @@ export default function ChatBot() {
       }
     } else if (step === 'rep' || step === 'done') {
       if (t.includes('call') || t.includes('773') || t.includes('phone')) {
-        addBot("Great! Just dial **(773) 762-1000** - our team picks up fast. Mon–Fri 8 AM–7 PM CST. 🙂",
+        addBot("Great! Just dial **(773) 762-1000** - our team picks up fast. Mon–Fri 8 AM–6 PM · Sat 8 AM–3 PM CST. 🙂",
           ['🔍 Find Another Part', '💬 Get a Quote'])
       } else if (t.includes('quote') || t.includes('form')) {
         addBot("Head to our quote form and we'll get back to you quickly!", ['🌐 Open Quote Form', '🔍 Find a Part'])

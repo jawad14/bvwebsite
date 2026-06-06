@@ -8,7 +8,7 @@ export default function Topbar() {
             +1 (773) 762-1000
           </a>
           <span className="topbar__sep" aria-hidden="true" />
-          <span className="topbar__item">Mon–Fri 8–6 CST · Sat 8–3 CST</span>
+          <span className="topbar__item">Mon–Fri 8 AM–6 PM · Sat 8 AM–3 PM CST</span>
         </div>
         <div className="topbar__right">
           <span className="topbar__promo">

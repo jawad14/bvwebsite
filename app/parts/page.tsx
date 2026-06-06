@@ -318,7 +318,7 @@ export default function PartsPage() {
                 We have the part. Let&apos;s get it to you today.
               </h2>
               <p style={{ color: 'rgba(255,255,255,.8)', marginTop: 10 }}>
-                Our parts specialists are standing by Mon–Fri 8 AM–7 PM CST.
+                Our parts specialists are standing by Mon–Fri 8 AM–6 PM · Sat 8 AM–3 PM CST.
                 Same-day delivery available for orders placed before cutoff.
               </p>
             </div>
