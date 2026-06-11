@@ -132,7 +132,7 @@ const regionalZones = [
     state: 'Iowa',
     coverage: 'Eastern IA',
     time: '1–2 Business Days',
-    cities: ['Silvis', 'Moline', 'Davenport', 'Muscatine', 'West Liberty', 'Iowa City', 'Cedar Rapids', 'Des Moines', 'Marshalltown'],
+    cities: ['Silvis', 'Moline', 'Davenport', 'Muscatine', 'West Liberty', 'Iowa City', 'Cedar Rapids', 'Des Moines', 'Marshalltown', 'Perry', 'Adel', 'Polk City', 'Urbandale', 'Indianola', 'Newton'],
   },
   {
     state: 'Indiana (Extended)',
