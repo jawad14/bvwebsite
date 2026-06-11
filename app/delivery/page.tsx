@@ -140,6 +140,12 @@ const regionalZones = [
     time: '1 Business Day',
     cities: ['South Bend', 'Niles', 'Elkhart', 'Lafayette', 'Frankfort', 'Lebanon', 'Indianapolis', 'Carmel', 'Fishers', 'Lawrence', 'Beech Grove', 'Greenwood', 'Plainfield', 'Brownsburg', 'Avon', 'Valparaiso', 'Michigan City', 'La Porte', 'Kingsbury', 'Knox', 'Plymouth'],
   },
+  {
+    state: 'Illinois (South)',
+    coverage: 'Central & South IL',
+    time: 'Mon & Thu — Twice a Week',
+    cities: ['Pontiac', 'Peoria', 'Morton', 'Bloomington', 'Farmer City', 'Champaign', 'Urbana', 'Rantoul', 'Paxton', 'Chatsworth', 'Onarga', 'Kankakee', 'Monee', 'Rankin'],
+  },
 ]
 
 const rules = [
