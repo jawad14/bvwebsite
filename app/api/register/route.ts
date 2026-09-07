@@ -1,10 +1,49 @@
 import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
-import { recipients } from '@/lib/email-config'
+
+const SHEET_URL = process.env.GOOGLE_SHEET_REGISTER_URL || process.env.GOOGLE_SHEET_URL!
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY!
+
+// Rate limiting: track IPs
+const submissions = new Map<string, number[]>()
+const RATE_LIMIT = 5
+const RATE_WINDOW = 60_000 // 60 seconds
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const timestamps = (submissions.get(ip) || []).filter(t => now - t < RATE_WINDOW)
+  if (timestamps.length >= RATE_LIMIT) return true
+  timestamps.push(now)
+  submissions.set(ip, timestamps)
+  return false
+}
 
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json({ error: 'Too many requests. Please wait and try again.' }, { status: 429 })
+    }
+
     const data = await req.formData()
+
+    // Honeypot check
+    if (data.get('website')) {
+      return NextResponse.json({ ok: true }) // silently reject
+    }
+
+    // Verify reCAPTCHA
+    const recaptchaToken = data.get('recaptchaToken') as string
+    const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${RECAPTCHA_SECRET}&response=${recaptchaToken}`,
+    })
+    const recaptchaResult = await recaptchaRes.json()
+
+    if (!recaptchaResult.success || recaptchaResult.score < 0.5) {
+      return NextResponse.json({ error: 'reCAPTCHA verification failed.' }, { status: 403 })
+    }
 
     const companyName  = data.get('companyName')  as string
     const street       = data.get('street')        as string || ''
@@ -28,73 +67,37 @@ export async function POST(req: NextRequest) {
 
     const contactName = [firstName, middleName, lastName].filter(Boolean).join(' ')
     const address     = [street, city, state, zip].filter(Boolean).join(', ')
+    const hasTaxFile  = !!(taxFile && taxFile.size > 0)
 
-    const transporter = nodemailer.createTransport({
-      host:   process.env.SMTP_HOST || 'smtp.gmail.com',
-      port:   Number(process.env.SMTP_PORT || 587),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    })
-
-    const attachments: nodemailer.SendMailOptions['attachments'] = []
-    if (taxFile && taxFile.size > 0) {
-      const buf = Buffer.from(await taxFile.arrayBuffer())
-      attachments.push({ filename: taxFile.name, content: buf })
+    // Encode the tax file so the Apps Script can save it to a Drive folder
+    let taxFileName = ''
+    let taxFileType = ''
+    let taxFileData = ''
+    if (hasTaxFile) {
+      taxFileName = String(taxFile!.name).substring(0, 200)
+      taxFileType = taxFile!.type || 'application/octet-stream'
+      taxFileData = Buffer.from(await taxFile!.arrayBuffer()).toString('base64')
     }
 
-    const recipient = recipients.register
-
-    await transporter.sendMail({
-      from:    `"BV Registrations" <${process.env.SMTP_USER}>`,
-      to:      recipient,
-      replyTo: email,
-      subject: `New Account Application - ${companyName}`,
-      html: `
-        <h2 style="margin:0 0 20px;font-family:sans-serif;color:#001D68">New Account Application</h2>
-
-        <h3 style="font-family:sans-serif;color:#555;margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.06em">Company Information</h3>
-        <table style="border-collapse:collapse;font-family:sans-serif;font-size:15px;margin-bottom:24px">
-          <tr><td style="padding:6px 20px 6px 0;color:#888;width:160px">Company Name</td><td><strong>${companyName}</strong></td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Address</td><td>${address || '-'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Tel / ID #</td><td>${tel || '-'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Mobile</td><td>${mobile || '-'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Fax</td><td>${fax || '-'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Contact Name</td><td>${contactName}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Email</td><td><a href="mailto:${email}">${email}</a></td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Tax Deduction</td><td>${taxDeduction === 'yes' ? '✅ Yes' : taxDeduction === 'no' ? 'No' : '-'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Print Name</td><td>${printName || '-'}</td></tr>
-        </table>
-
-        ${taxFile && taxFile.size > 0 ? `<p style="font-family:sans-serif;font-size:13px;color:#888">Tax I.D. attached: ${taxFile.name}</p>` : ''}
-
-        <p style="font-family:sans-serif;font-size:12px;color:#aaa;margin-top:24px;border-top:1px solid #eee;padding-top:16px">
-          Submitted on ${new Date().toLocaleDateString('en-US', { dateStyle: 'long' })}
-        </p>
-      `,
-      attachments,
-    })
-
-    // Confirmation to applicant
-    await transporter.sendMail({
-      from:    `"Best Value Auto Body Supply" <${process.env.SMTP_USER}>`,
-      to:      email,
-      subject: `Account Application Received - ${companyName}`,
-      html: `
-        <h2 style="font-family:sans-serif;color:#001D68">Thank you, ${firstName}!</h2>
-        <p style="font-family:sans-serif;font-size:15px;color:#333">
-          We've received your account application for <strong>${companyName}</strong>.
-          Our team will review it and contact you within 1–2 business days.
-        </p>
-        <p style="font-family:sans-serif;font-size:15px;color:#333">
-          Questions? Call us at <a href="tel:17737621000" style="color:#ED1C24">(773) 762-1000</a>.
-        </p>
-        <p style="font-family:sans-serif;font-size:13px;color:#aaa;margin-top:32px">
-          Best Value Auto Body Supply Inc. · 160 N 25th Ave, Melrose Park, IL 60160
-        </p>
-      `,
+    // Send to Google Sheet
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'registration',
+        companyName:  String(companyName).substring(0, 200),
+        address:      String(address).substring(0, 300),
+        tel:          String(tel).substring(0, 20),
+        mobile:       String(mobile).substring(0, 20),
+        fax:          String(fax).substring(0, 20),
+        contactName:  String(contactName).substring(0, 200),
+        email:        String(email).substring(0, 100),
+        taxDeduction: taxDeduction === 'yes' ? 'Yes' : taxDeduction === 'no' ? 'No' : '',
+        printName:    String(printName).substring(0, 200),
+        taxFileName,
+        taxFileType,
+        taxFileData,
+      }),
     })
 
     return NextResponse.json({ ok: true })

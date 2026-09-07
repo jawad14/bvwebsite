@@ -1,10 +1,49 @@
 import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
-import { recipients } from '@/lib/email-config'
+
+const SHEET_URL = process.env.GOOGLE_SHEET_INQUIRY_URL || process.env.GOOGLE_SHEET_URL!
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY!
+
+// Rate limiting: track IPs
+const submissions = new Map<string, number[]>()
+const RATE_LIMIT = 5
+const RATE_WINDOW = 60_000 // 60 seconds
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const timestamps = (submissions.get(ip) || []).filter(t => now - t < RATE_WINDOW)
+  if (timestamps.length >= RATE_LIMIT) return true
+  timestamps.push(now)
+  submissions.set(ip, timestamps)
+  return false
+}
 
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json({ error: 'Too many requests. Please wait and try again.' }, { status: 429 })
+    }
+
     const data = await req.formData()
+
+    // Honeypot check
+    if (data.get('website')) {
+      return NextResponse.json({ ok: true }) // silently reject
+    }
+
+    // Verify reCAPTCHA
+    const recaptchaToken = data.get('recaptchaToken') as string
+    const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${RECAPTCHA_SECRET}&response=${recaptchaToken}`,
+    })
+    const recaptchaResult = await recaptchaRes.json()
+
+    if (!recaptchaResult.success || recaptchaResult.score < 0.5) {
+      return NextResponse.json({ error: 'reCAPTCHA verification failed.' }, { status: 403 })
+    }
 
     const name     = data.get('name')     as string
     const email    = data.get('email')    as string
@@ -16,33 +55,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields.' }, { status: 400 })
     }
 
-    const transporter = nodemailer.createTransport({
-      host:   process.env.SMTP_HOST || 'smtp.gmail.com',
-      port:   Number(process.env.SMTP_PORT || 587),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    })
-
-    const recipient = recipients.inquiry
-
-    await transporter.sendMail({
-      from:    `"BV Paint Inquiries" <${process.env.SMTP_USER}>`,
-      to:      recipient,
-      replyTo: email,
-      subject: `Paint Inquiry - ${category} (${name})`,
-      html: `
-        <h2 style="margin:0 0 20px;font-family:sans-serif;color:#001D68">Paint Product Inquiry</h2>
-        <table style="border-collapse:collapse;font-family:sans-serif;font-size:15px;margin-bottom:24px">
-          <tr><td style="padding:6px 20px 6px 0;color:#888;width:140px">Category</td><td><strong>${category}</strong></td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Name</td><td>${name}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Email</td><td><a href="mailto:${email}">${email}</a></td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Phone</td><td>${phone || '-'}</td></tr>
-        </table>
-        ${message ? `<h3 style="font-family:sans-serif;font-size:14px;color:#555;margin:0 0 8px">Message</h3><p style="font-family:sans-serif;font-size:15px;white-space:pre-wrap;margin:0">${message}</p>` : ''}
-      `,
+    // Send to Google Sheet
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'inquiry',
+        category: String(category).substring(0, 100),
+        name:     String(name).substring(0, 100),
+        email:    String(email).substring(0, 100),
+        phone:    String(phone).substring(0, 20),
+        message:  String(message).substring(0, 2000),
+      }),
     })
 
     return NextResponse.json({ ok: true })

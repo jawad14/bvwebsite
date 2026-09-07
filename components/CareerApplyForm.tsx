@@ -3,6 +3,17 @@
 import { useState, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (cb: () => void) => void
+      execute: (siteKey: string, opts: { action: string }) => Promise<string>
+    }
+  }
+}
+
+const RECAPTCHA_SITE_KEY = '6LcON_IsAAAAAGJ-Fl79iBcd6PTsYtizhaGC7aam'
+
 const POSITIONS = [
   'Warehouse',
   'Driver',
@@ -37,6 +48,7 @@ export default function CareerApplyForm() {
     address: '', apt: '', city: '', state: '', zip: '',
     phone: '', email: '',
     otherPosition: '',
+    website: '', // honeypot
   })
   const [positions, setPositions] = useState<string[]>(preselect ? [preselect] : [])
   const [education, setEducation] = useState({
@@ -73,16 +85,26 @@ export default function CareerApplyForm() {
     setStatus('sending')
     setErrorMsg('')
 
-    const fd = new FormData()
-    Object.entries(form).forEach(([k, v]) => fd.append(k, v))
-    const positionList = positions.includes('Other') && form.otherPosition
-      ? positions.map(p => p === 'Other' ? `Other: ${form.otherPosition}` : p).join(', ')
-      : positions.join(', ')
-    fd.append('position', positionList)
-    fd.append('education', JSON.stringify(education))
-    if (resumeFile) fd.append('resume', resumeFile)
-
     try {
+      // Get reCAPTCHA token
+      const token = await new Promise<string>((resolve, reject) => {
+        if (!window.grecaptcha) { reject(new Error('reCAPTCHA not loaded')); return }
+        window.grecaptcha.ready(() => {
+          window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'apply' })
+            .then(resolve).catch(reject)
+        })
+      })
+
+      const fd = new FormData()
+      Object.entries(form).forEach(([k, v]) => fd.append(k, v))
+      const positionList = positions.includes('Other') && form.otherPosition
+        ? positions.map(p => p === 'Other' ? `Other: ${form.otherPosition}` : p).join(', ')
+        : positions.join(', ')
+      fd.append('position', positionList)
+      fd.append('education', JSON.stringify(education))
+      fd.append('recaptchaToken', token)
+      if (resumeFile) fd.append('resume', resumeFile)
+
       const res  = await fetch('/api/apply', { method: 'POST', body: fd })
       const json = await res.json()
       if (!res.ok) throw new Error(json.error || 'Unknown error')
@@ -90,7 +112,6 @@ export default function CareerApplyForm() {
     } catch (err: unknown) {
       setStatus('error')
       setErrorMsg(err instanceof Error ? err.message : 'Something went wrong.')
-      setStatus('error')
     }
   }
 
@@ -112,6 +133,11 @@ export default function CareerApplyForm() {
 
   return (
     <form className="app-form" onSubmit={handleSubmit} noValidate>
+
+      {/* Honeypot */}
+      <input type="text" name="website" autoComplete="off" tabIndex={-1}
+        value={form.website} onChange={setF('website')}
+        style={{ position: 'absolute', left: -9999, opacity: 0, height: 0, width: 0 }} />
 
       {/* EEO Notice */}
       <div className="app-eeo">

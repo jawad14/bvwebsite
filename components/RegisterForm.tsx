@@ -2,6 +2,17 @@
 
 import { useState, useRef } from 'react'
 
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (cb: () => void) => void
+      execute: (siteKey: string, opts: { action: string }) => Promise<string>
+    }
+  }
+}
+
+const RECAPTCHA_SITE_KEY = '6LcON_IsAAAAAGJ-Fl79iBcd6PTsYtizhaGC7aam'
+
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA',
   'KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ',
@@ -23,6 +34,7 @@ export default function RegisterForm() {
   const [taxFile, setTaxFile]   = useState<File | null>(null)
   const [status, setStatus]     = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  const [website, setWebsite]   = useState('') // honeypot
   const fileRef = useRef<HTMLInputElement>(null)
 
   function set(field: keyof typeof form) {
@@ -36,11 +48,22 @@ export default function RegisterForm() {
     setStatus('sending')
     setErrorMsg('')
 
-    const fd = new FormData()
-    Object.entries(form).forEach(([k, v]) => fd.append(k, String(v)))
-    if (taxFile) fd.append('taxFile', taxFile)
-
     try {
+      // Get reCAPTCHA token
+      const token = await new Promise<string>((resolve, reject) => {
+        if (!window.grecaptcha) { reject(new Error('reCAPTCHA not loaded')); return }
+        window.grecaptcha.ready(() => {
+          window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'register' })
+            .then(resolve).catch(reject)
+        })
+      })
+
+      const fd = new FormData()
+      Object.entries(form).forEach(([k, v]) => fd.append(k, String(v)))
+      if (taxFile) fd.append('taxFile', taxFile)
+      fd.append('website', website) // honeypot
+      fd.append('recaptchaToken', token)
+
       const res  = await fetch('/api/register', { method: 'POST', body: fd })
       const json = await res.json()
       if (!res.ok) throw new Error(json.error || 'Unknown error')
@@ -74,6 +97,17 @@ export default function RegisterForm() {
 
   return (
     <form className="acct-form" onSubmit={handleSubmit} noValidate>
+
+      {/* Honeypot */}
+      <input
+        type="text"
+        name="website"
+        autoComplete="off"
+        tabIndex={-1}
+        value={website}
+        onChange={e => setWebsite(e.target.value)}
+        style={{ position: 'absolute', left: -9999, opacity: 0, height: 0, width: 0 }}
+      />
 
       {/* Company Information */}
       <div className="acct-section">

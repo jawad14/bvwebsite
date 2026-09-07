@@ -1,10 +1,75 @@
 import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
-import { recipients } from '@/lib/email-config'
+
+const SHEET_URL = process.env.GOOGLE_SHEET_APPLY_URL || process.env.GOOGLE_SHEET_URL!
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY!
+
+// Rate limiting: track IPs
+const submissions = new Map<string, number[]>()
+const RATE_LIMIT = 5
+const RATE_WINDOW = 60_000 // 60 seconds
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const timestamps = (submissions.get(ip) || []).filter(t => now - t < RATE_WINDOW)
+  if (timestamps.length >= RATE_LIMIT) return true
+  timestamps.push(now)
+  submissions.set(ip, timestamps)
+  return false
+}
+
+interface EduRow { name?: string; address?: string; from?: string; to?: string; graduated?: string; degree?: string }
+
+function formatEducation(raw: string): string {
+  if (!raw) return ''
+  try {
+    const edu = JSON.parse(raw) as Record<string, EduRow>
+    const labels: Record<string, string> = { highSchool: 'High School', college: 'College', other: 'Other' }
+    return Object.entries(edu)
+      .filter(([, r]) => r && (r.name || r.degree))
+      .map(([key, r]) => {
+        const parts = [
+          labels[key] || key,
+          r.name,
+          r.address,
+          [r.from, r.to].filter(Boolean).join('–'),
+          r.graduated ? `Graduated: ${r.graduated}` : '',
+          r.degree ? `Degree: ${r.degree}` : '',
+        ].filter(Boolean)
+        return parts.join(' | ')
+      })
+      .join('\n')
+  } catch {
+    return ''
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json({ error: 'Too many requests. Please wait and try again.' }, { status: 429 })
+    }
+
     const data = await req.formData()
+
+    // Honeypot check
+    if (data.get('website')) {
+      return NextResponse.json({ ok: true }) // silently reject
+    }
+
+    // Verify reCAPTCHA
+    const recaptchaToken = data.get('recaptchaToken') as string
+    const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${RECAPTCHA_SECRET}&response=${recaptchaToken}`,
+    })
+    const recaptchaResult = await recaptchaRes.json()
+
+    if (!recaptchaResult.success || recaptchaResult.score < 0.5) {
+      return NextResponse.json({ error: 'reCAPTCHA verification failed.' }, { status: 403 })
+    }
 
     const firstName  = (data.get('firstName') as string) || (data.get('name') as string) || ''
     const lastName   = data.get('lastName')  as string || ''
@@ -20,84 +85,40 @@ export async function POST(req: NextRequest) {
     const eduRaw     = data.get('education') as string || ''
     const file       = data.get('resume')    as File | null
 
-    const fullName = [firstName, mi ? mi + '.' : '', lastName].filter(Boolean).join(' ')
-
     if (!email || !position) {
       return NextResponse.json({ error: 'Missing required fields.' }, { status: 400 })
     }
 
-    let eduHtml = ''
-    if (eduRaw) {
-      try {
-        const edu = JSON.parse(eduRaw)
-        const rows = [['High School', edu.highSchool], ['College', edu.college], ['Other', edu.other]] as const
-        eduHtml = `
-          <h3 style="font-family:sans-serif;color:#555;margin:24px 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.06em">Education</h3>
-          <table style="border-collapse:collapse;font-family:sans-serif;font-size:14px;width:100%;margin-bottom:16px">
-            <thead><tr style="background:#f5f5f5">
-              <th style="padding:8px;text-align:left;border:1px solid #eee">Level</th>
-              <th style="padding:8px;text-align:left;border:1px solid #eee">School</th>
-              <th style="padding:8px;text-align:left;border:1px solid #eee">Address</th>
-              <th style="padding:8px;text-align:left;border:1px solid #eee">From</th>
-              <th style="padding:8px;text-align:left;border:1px solid #eee">To</th>
-              <th style="padding:8px;text-align:left;border:1px solid #eee">Graduated</th>
-              <th style="padding:8px;text-align:left;border:1px solid #eee">Degree</th>
-            </tr></thead>
-            <tbody>
-              ${rows.map(([label, row]) => `<tr>
-                <td style="padding:8px;border:1px solid #eee"><strong>${label}</strong></td>
-                <td style="padding:8px;border:1px solid #eee">${row?.name || '-'}</td>
-                <td style="padding:8px;border:1px solid #eee">${row?.address || '-'}</td>
-                <td style="padding:8px;border:1px solid #eee">${row?.from || '-'}</td>
-                <td style="padding:8px;border:1px solid #eee">${row?.to || '-'}</td>
-                <td style="padding:8px;border:1px solid #eee">${row?.graduated || '-'}</td>
-                <td style="padding:8px;border:1px solid #eee">${row?.degree || '-'}</td>
-              </tr>`).join('')}
-            </tbody>
-          </table>`
-      } catch { /* ignore parse error */ }
-    }
+    const fullName    = [firstName, mi ? mi + '.' : '', lastName].filter(Boolean).join(' ')
+    const fullAddress = [address, apt, city, state, zip].filter(Boolean).join(', ')
+    const education   = formatEducation(eduRaw)
 
-    const transporter = nodemailer.createTransport({
-      host:   process.env.SMTP_HOST   || 'smtp.gmail.com',
-      port:   Number(process.env.SMTP_PORT || 587),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    })
-
-    const attachments: nodemailer.SendMailOptions['attachments'] = []
+    // Encode the resume so the Apps Script can save it to a Drive folder
+    let resumeName = ''
+    let resumeType = ''
+    let resumeData = ''
     if (file && file.size > 0) {
-      const buf = Buffer.from(await file.arrayBuffer())
-      attachments.push({ filename: file.name, content: buf })
+      resumeName = String(file.name).substring(0, 200)
+      resumeType = file.type || 'application/octet-stream'
+      resumeData = Buffer.from(await file.arrayBuffer()).toString('base64')
     }
 
-    const recipient = recipients.careers
-
-    await transporter.sendMail({
-      from:    `"BV Careers" <${process.env.SMTP_USER}>`,
-      to:      recipient,
-      replyTo: email,
-      subject: `Job Application - ${position} (${fullName || email})`,
-      html: `
-        <h2 style="margin:0 0 20px;font-family:sans-serif;color:#001D68">New Job Application</h2>
-
-        <h3 style="font-family:sans-serif;color:#555;margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.06em">Personal Information</h3>
-        <table style="border-collapse:collapse;font-family:sans-serif;font-size:15px;margin-bottom:24px">
-          <tr><td style="padding:6px 20px 6px 0;color:#888;width:160px">Name</td><td><strong>${fullName || '-'}</strong></td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Email</td><td><a href="mailto:${email}">${email}</a></td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Phone</td><td>${phone || '-'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Address</td><td>${[address, apt, city, state, zip].filter(Boolean).join(', ') || '-'}</td></tr>
-          <tr><td style="padding:6px 20px 6px 0;color:#888">Position(s)</td><td><strong>${position}</strong></td></tr>
-        </table>
-
-        ${eduHtml}
-
-        ${file && file.size > 0 ? `<p style="font-family:sans-serif;font-size:13px;color:#888;margin-top:16px">Resume attached: ${file.name}</p>` : '<p style="font-family:sans-serif;font-size:13px;color:#888;margin-top:16px">No resume attached.</p>'}
-      `,
-      attachments,
+    // Send to Google Sheet
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'application',
+        name:      String(fullName).substring(0, 200),
+        email:     String(email).substring(0, 100),
+        phone:     String(phone).substring(0, 20),
+        address:   String(fullAddress).substring(0, 300),
+        position:  String(position).substring(0, 300),
+        education: education.substring(0, 2000),
+        resumeName,
+        resumeType,
+        resumeData,
+      }),
     })
 
     return NextResponse.json({ ok: true })
