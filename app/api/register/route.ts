@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isFeedConfigured, writeRegistrationToS3 } from '@/lib/registration-feed'
 
 const SHEET_URL = process.env.GOOGLE_SHEET_REGISTER_URL || process.env.GOOGLE_SHEET_URL!
 const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY!
@@ -73,10 +74,37 @@ export async function POST(req: NextRequest) {
     let taxFileName = ''
     let taxFileType = ''
     let taxFileData = ''
+    let taxFileBuffer: Buffer | null = null
     if (hasTaxFile) {
       taxFileName = String(taxFile!.name).substring(0, 200)
       taxFileType = taxFile!.type || 'application/octet-stream'
-      taxFileData = Buffer.from(await taxFile!.arrayBuffer()).toString('base64')
+      taxFileBuffer = Buffer.from(await taxFile!.arrayBuffer())
+      taxFileData = taxFileBuffer.toString('base64')
+    }
+
+    // Dual-write to the Best Value S3 feed (contract v2.0). During the
+    // dual-write phase an S3 failure must not block the Sheet write.
+    if (isFeedConfigured()) {
+      try {
+        await writeRegistrationToS3(
+          {
+            companyName:  String(companyName).substring(0, 200),
+            address:      String(address).substring(0, 300),
+            telIdNo:      String(tel).substring(0, 20),
+            mobile:       String(mobile).substring(0, 20),
+            fax:          String(fax).substring(0, 20),
+            contactName:  String(contactName).substring(0, 200),
+            email:        String(email).substring(0, 100),
+            taxDeduction: taxDeduction === 'yes' ? 'Yes' : taxDeduction === 'no' ? 'No' : '',
+            printName:    String(printName).substring(0, 200),
+          },
+          hasTaxFile
+            ? { name: taxFileName, contentType: taxFileType, data: taxFileBuffer! }
+            : null,
+        )
+      } catch (err) {
+        console.error('Registration S3 feed write failed:', err)
+      }
     }
 
     // Send to Google Sheet
