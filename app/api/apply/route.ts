@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isFormFeedConfigured, writeFormSubmissionToS3 } from '@/lib/form-feed'
 
 const SHEET_URL = process.env.GOOGLE_SHEET_APPLY_URL || process.env.GOOGLE_SHEET_URL!
 const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY!
@@ -97,10 +98,21 @@ export async function POST(req: NextRequest) {
     let resumeName = ''
     let resumeType = ''
     let resumeData = ''
+    let resumeBuffer: Buffer | null = null
     if (file && file.size > 0) {
       resumeName = String(file.name).substring(0, 200)
       resumeType = file.type || 'application/octet-stream'
-      resumeData = Buffer.from(await file.arrayBuffer()).toString('base64')
+      resumeBuffer = Buffer.from(await file.arrayBuffer())
+      resumeData = resumeBuffer.toString('base64')
+    }
+
+    const fields = {
+      name:      String(fullName).substring(0, 200),
+      email:     String(email).substring(0, 100),
+      phone:     String(phone).substring(0, 20),
+      address:   String(fullAddress).substring(0, 300),
+      position:  String(position).substring(0, 300),
+      education: education.substring(0, 2000),
     }
 
     // Send to Google Sheet
@@ -109,17 +121,26 @@ export async function POST(req: NextRequest) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         type: 'application',
-        name:      String(fullName).substring(0, 200),
-        email:     String(email).substring(0, 100),
-        phone:     String(phone).substring(0, 20),
-        address:   String(fullAddress).substring(0, 300),
-        position:  String(position).substring(0, 300),
-        education: education.substring(0, 2000),
+        ...fields,
         resumeName,
         resumeType,
         resumeData,
       }),
     })
+
+    // Archive to S3 alongside the Sheet. The Sheet is still the system of
+    // record, so a failure here must not fail the submission.
+    if (isFormFeedConfigured()) {
+      try {
+        await writeFormSubmissionToS3(
+          'application',
+          fields,
+          resumeBuffer ? { name: resumeName, contentType: resumeType, data: resumeBuffer } : null,
+        )
+      } catch (err) {
+        console.error('Application S3 archive failed:', err)
+      }
+    }
 
     return NextResponse.json({ ok: true })
   } catch (err) {

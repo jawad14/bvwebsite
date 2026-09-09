@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isFormFeedConfigured, writeFormSubmissionToS3 } from '@/lib/form-feed'
 
 const SHEET_URL = process.env.GOOGLE_SHEET_URL!
 const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY!
@@ -49,19 +50,31 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields.' }, { status: 400 })
     }
 
+    const fields = {
+      name: String(data.name).substring(0, 100),
+      phone: String(data.phone).substring(0, 20),
+      email: String(data.email || '').substring(0, 100),
+      vehicle: String(data.vehicle).substring(0, 200),
+      parts: String(data.parts).substring(0, 500),
+      notes: String(data.notes || '').substring(0, 1000),
+    }
+
     // Send to Google Sheet
     await fetch(SHEET_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: String(data.name).substring(0, 100),
-        phone: String(data.phone).substring(0, 20),
-        email: String(data.email || '').substring(0, 100),
-        vehicle: String(data.vehicle).substring(0, 200),
-        parts: String(data.parts).substring(0, 500),
-        notes: String(data.notes || '').substring(0, 1000),
-      }),
+      body: JSON.stringify(fields),
     })
+
+    // Archive to S3 alongside the Sheet. The Sheet is still the system of
+    // record, so a failure here must not fail the submission.
+    if (isFormFeedConfigured()) {
+      try {
+        await writeFormSubmissionToS3('quote', fields)
+      } catch (err) {
+        console.error('Quote S3 archive failed:', err)
+      }
+    }
 
     return NextResponse.json({ ok: true })
   } catch (err) {

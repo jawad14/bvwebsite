@@ -1,5 +1,6 @@
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { randomUUID } from 'crypto'
+import { isoWithOffset, utcStamp, sanitizedExtension, type UploadedFile } from './s3-feed-common'
 
 // Best Value registration feed — contract v2.0 (bv_registration_feed_contract).
 // One immutable JSON object per submission under registrations/, tax document
@@ -34,36 +35,7 @@ export interface RegistrationFields {
   printName: string
 }
 
-export interface RegistrationTaxFile {
-  name: string
-  contentType: string
-  data: Buffer
-}
-
-// ISO 8601 with the display-timezone UTC offset, e.g. 2026-09-07T17:09:31-05:00
-// (FMT-4; contract section 10 — America/Chicago unless Best Value says otherwise).
-function isoWithOffset(date: Date, timeZone = 'America/Chicago'): string {
-  const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone,
-    year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', second: '2-digit',
-    hour12: false, timeZoneName: 'longOffset',
-  }).formatToParts(date)
-  const get = (type: string) => parts.find(p => p.type === type)?.value ?? ''
-  const hour = get('hour') === '24' ? '00' : get('hour')
-  const rawOffset = get('timeZoneName').replace('GMT', '') // '-05:00', or '' for UTC
-  const offset = rawOffset || '+00:00'
-  return `${get('year')}-${get('month')}-${get('day')}T${hour}:${get('minute')}:${get('second')}${offset}`
-}
-
-function sanitizedExtension(fileName: string, contentType: string): string {
-  const match = /\.([A-Za-z0-9]{1,10})$/.exec(fileName)
-  if (match) return match[1].toLowerCase()
-  if (contentType === 'application/pdf') return 'pdf'
-  if (contentType === 'image/jpeg') return 'jpg'
-  if (contentType === 'image/png') return 'png'
-  return 'bin'
-}
+export type RegistrationTaxFile = UploadedFile
 
 export function isFeedConfigured(): boolean {
   return !!(BUCKET && process.env.BV_REG_AWS_ACCESS_KEY_ID && process.env.BV_REG_AWS_SECRET_ACCESS_KEY)
@@ -111,8 +83,7 @@ export async function writeRegistrationToS3(
   }
 
   // registrations/<YYYYMMDDTHHMMSSZ>-<uuid>.json (OBJ-2..5)
-  const stamp = now.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z')
-  const registrationKey = `registrations/${stamp}-${uuid}.json`
+  const registrationKey = `registrations/${utcStamp(now)}-${uuid}.json`
   await s3.send(new PutObjectCommand({
     Bucket: BUCKET,
     Key: registrationKey,

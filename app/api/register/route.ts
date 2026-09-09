@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isFeedConfigured, writeRegistrationToS3 } from '@/lib/registration-feed'
 
-const SHEET_URL = process.env.GOOGLE_SHEET_REGISTER_URL || process.env.GOOGLE_SHEET_URL!
+// Google Sheet write retired in favour of the S3 registration feed (contract
+// v2.0 section 9 step 6). Kept commented so it can be restored if Best Value
+// asks for the Sheet back as a human-readable record.
+// const SHEET_URL = process.env.GOOGLE_SHEET_REGISTER_URL || process.env.GOOGLE_SHEET_URL!
 const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY!
 
 // Rate limiting: track IPs
@@ -70,63 +73,61 @@ export async function POST(req: NextRequest) {
     const address     = [street, city, state, zip].filter(Boolean).join(', ')
     const hasTaxFile  = !!(taxFile && taxFile.size > 0)
 
-    // Encode the tax file so the Apps Script can save it to a Drive folder
     let taxFileName = ''
     let taxFileType = ''
-    let taxFileData = ''
     let taxFileBuffer: Buffer | null = null
     if (hasTaxFile) {
       taxFileName = String(taxFile!.name).substring(0, 200)
       taxFileType = taxFile!.type || 'application/octet-stream'
       taxFileBuffer = Buffer.from(await taxFile!.arrayBuffer())
-      taxFileData = taxFileBuffer.toString('base64')
     }
 
-    // Dual-write to the Best Value S3 feed (contract v2.0). During the
-    // dual-write phase an S3 failure must not block the Sheet write.
-    if (isFeedConfigured()) {
-      try {
-        await writeRegistrationToS3(
-          {
-            companyName:  String(companyName).substring(0, 200),
-            address:      String(address).substring(0, 300),
-            telIdNo:      String(tel).substring(0, 20),
-            mobile:       String(mobile).substring(0, 20),
-            fax:          String(fax).substring(0, 20),
-            contactName:  String(contactName).substring(0, 200),
-            email:        String(email).substring(0, 100),
-            taxDeduction: taxDeduction === 'yes' ? 'Yes' : taxDeduction === 'no' ? 'No' : '',
-            printName:    String(printName).substring(0, 200),
-          },
-          hasTaxFile
-            ? { name: taxFileName, contentType: taxFileType, data: taxFileBuffer! }
-            : null,
-        )
-      } catch (err) {
-        console.error('Registration S3 feed write failed:', err)
-      }
+    // The S3 feed is now the only store for registrations, so a failed write
+    // means the submission is lost — surface it instead of returning ok.
+    if (!isFeedConfigured()) {
+      console.error('Registration feed is not configured; refusing the submission rather than dropping it.')
+      return NextResponse.json({ error: 'Failed to submit application. Please try again.' }, { status: 500 })
     }
 
-    // Send to Google Sheet
-    await fetch(SHEET_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'registration',
+    await writeRegistrationToS3(
+      {
         companyName:  String(companyName).substring(0, 200),
         address:      String(address).substring(0, 300),
-        tel:          String(tel).substring(0, 20),
+        telIdNo:      String(tel).substring(0, 20),
         mobile:       String(mobile).substring(0, 20),
         fax:          String(fax).substring(0, 20),
         contactName:  String(contactName).substring(0, 200),
         email:        String(email).substring(0, 100),
         taxDeduction: taxDeduction === 'yes' ? 'Yes' : taxDeduction === 'no' ? 'No' : '',
         printName:    String(printName).substring(0, 200),
-        taxFileName,
-        taxFileType,
-        taxFileData,
-      }),
-    })
+      },
+      hasTaxFile
+        ? { name: taxFileName, contentType: taxFileType, data: taxFileBuffer! }
+        : null,
+    )
+
+    // Google Sheet write — retired in favour of the S3 feed above. Restoring it
+    // also needs `taxFileData = taxFileBuffer.toString('base64')` back, since the
+    // Apps Script saves the document to Drive itself.
+    // await fetch(SHEET_URL, {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     type: 'registration',
+    //     companyName:  String(companyName).substring(0, 200),
+    //     address:      String(address).substring(0, 300),
+    //     tel:          String(tel).substring(0, 20),
+    //     mobile:       String(mobile).substring(0, 20),
+    //     fax:          String(fax).substring(0, 20),
+    //     contactName:  String(contactName).substring(0, 200),
+    //     email:        String(email).substring(0, 100),
+    //     taxDeduction: taxDeduction === 'yes' ? 'Yes' : taxDeduction === 'no' ? 'No' : '',
+    //     printName:    String(printName).substring(0, 200),
+    //     taxFileName,
+    //     taxFileType,
+    //     taxFileData,
+    //   }),
+    // })
 
     return NextResponse.json({ ok: true })
   } catch (err) {
