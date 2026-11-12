@@ -23,6 +23,12 @@ function getClient(): S3Client {
   return client
 }
 
+// Branch the customer is registering with. Not part of the contract's original
+// eleven fields — added as a twelfth key, so readers that ignore unknown keys
+// are unaffected (FMT-5 still holds).
+// Values are the codes Best Value uses — keep exactly as spelled.
+export const REGISTRATION_LOCATIONS = ['BestValue-Chicago', 'Bestvalue-GrandRapids'] as const
+
 export interface RegistrationFields {
   companyName: string
   address: string
@@ -33,6 +39,7 @@ export interface RegistrationFields {
   email: string
   taxDeduction: string // 'Yes' | 'No' | ''
   printName: string
+  location: string // one of REGISTRATION_LOCATIONS
 }
 
 export type RegistrationTaxFile = UploadedFile
@@ -67,7 +74,7 @@ export async function writeRegistrationToS3(
     }))
   }
 
-  // All eleven fields, always strings, blanks as "" (FMT-1..7)
+  // The contract's eleven fields plus location, always strings, blanks as "" (FMT-1..7)
   const payload = {
     submittedAt: isoWithOffset(now),
     companyName: fields.companyName,
@@ -80,6 +87,7 @@ export async function writeRegistrationToS3(
     taxDeduction: fields.taxDeduction,
     printName: fields.printName,
     taxFile: taxFileKey,
+    location: fields.location,
   }
 
   // registrations/<YYYYMMDDTHHMMSSZ>-<uuid>.json (OBJ-2..5)

@@ -20,8 +20,15 @@ const US_STATES = [
   'VA','WA','WV','WI','WY','DC',
 ]
 
+// value is the code sent to Best Value; label is what the customer sees
+const LOCATIONS = [
+  { value: 'BestValue-Chicago',     label: 'Best Value Chicago' },
+  { value: 'Bestvalue-GrandRapids', label: 'Best Value Grand Rapids' },
+]
+
 export default function RegisterForm() {
   const [form, setForm] = useState({
+    location: '',
     companyName: '',
     street: '', city: '', state: '', zip: '',
     tel: '', mobile: '', fax: '',
@@ -44,6 +51,7 @@ export default function RegisterForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    if (!form.location) { setErrorMsg('Please select a Best Value location.'); return }
     if (!form.agreed) { setErrorMsg('Please read and agree to the declaration.'); return }
     setStatus('sending')
     setErrorMsg('')
@@ -112,6 +120,16 @@ export default function RegisterForm() {
       {/* Company Information */}
       <div className="acct-section">
         <h3 className="acct-section__title">Company Information</h3>
+
+        <div className="acct-row">
+          <div className="field field--full">
+            <label htmlFor="r-location">Best Value Location <span aria-hidden="true">*</span></label>
+            <select id="r-location" required value={form.location} onChange={set('location')}>
+              <option value="">Select a location</option>
+              {LOCATIONS.map(l => <option key={l.value} value={l.value}>{l.label}</option>)}
+            </select>
+          </div>
+        </div>
 
         <div className="acct-row">
           <div className="field field--full">

@@ -46,6 +46,7 @@ async function main() {
     email: 'qa@example.com',
     taxDeduction: 'No',
     printName: 'QA Bot',
+    location: 'Bestvalue-GrandRapids',
   }, null))
 }
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { isFeedConfigured, writeRegistrationToS3 } from '@/lib/registration-feed'
+import { isFeedConfigured, writeRegistrationToS3, REGISTRATION_LOCATIONS } from '@/lib/registration-feed'
 
 // Google Sheet write retired in favour of the S3 registration feed (contract
 // v2.0 section 9 step 6). Kept commented so it can be restored if Best Value
@@ -49,6 +49,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'reCAPTCHA verification failed.' }, { status: 403 })
     }
 
+    const location     = data.get('location')      as string || ''
     const companyName  = data.get('companyName')  as string
     const street       = data.get('street')        as string || ''
     const city         = data.get('city')          as string || ''
@@ -67,6 +68,9 @@ export async function POST(req: NextRequest) {
 
     if (!companyName || !email || !firstName || !lastName) {
       return NextResponse.json({ error: 'Missing required fields.' }, { status: 400 })
+    }
+    if (!(REGISTRATION_LOCATIONS as readonly string[]).includes(location)) {
+      return NextResponse.json({ error: 'Please select a Best Value location.' }, { status: 400 })
     }
 
     const contactName = [firstName, middleName, lastName].filter(Boolean).join(' ')
@@ -100,6 +104,7 @@ export async function POST(req: NextRequest) {
         email:        String(email).substring(0, 100),
         taxDeduction: taxDeduction === 'yes' ? 'Yes' : taxDeduction === 'no' ? 'No' : '',
         printName:    String(printName).substring(0, 200),
+        location,
       },
       hasTaxFile
         ? { name: taxFileName, contentType: taxFileType, data: taxFileBuffer! }

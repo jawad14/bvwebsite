@@ -14,6 +14,7 @@ async function main() {
       email: 'test@example.com',
       taxDeduction: 'Yes',
       printName: 'John Smith',
+      location: 'BestValue-Chicago',
     },
     {
       name: 'test-tax-doc.pdf',
